@@ -13,14 +13,18 @@ import { hero } from '../content/site';
   .sticky-apply {
     display: none;
   }
-  @supports (animation-timeline: scroll()) {
-    @media (prefers-reduced-motion: no-preference) {
-      .sticky-apply {
-        display: block;
-        transform: translateY(100%);
-        animation: sticky-apply-in 1ms linear both;
-        animation-timeline: scroll();
-        animation-range: 0 100vh;
+  /* Width guard lives here too: the scoped selector outweighs Tailwind's
+     md:hidden utility, so the utility alone cannot keep this hidden on md+. */
+  @media (width < 48rem) {
+    @supports (animation-timeline: scroll()) {
+      @media (prefers-reduced-motion: no-preference) {
+        .sticky-apply {
+          display: block;
+          transform: translateY(100%);
+          animation: sticky-apply-in 1ms linear both;
+          animation-timeline: scroll();
+          animation-range: 0 100vh;
+        }
       }
     }
   }

@@ -22,17 +22,22 @@ const rowB = startups.companies.slice(half);
       [rowA, rowB].map((row, i) => (
         <div class="marquee-row" data-reverse={i === 1 ? 'true' : undefined}>
           <div class="marquee-track gap-4 pr-4">
-            {[...row, ...row].map((company) => (
-              <article class="w-72 shrink-0 border border-line bg-ink-raised px-6 py-5">
-                <div class="flex items-baseline justify-between gap-3">
-                  <h3 class="font-display text-2xl text-paper">{company.name}</h3>
-                  <span class="font-mono text-[0.6875rem] tracking-[0.08em] text-phoenix-bright">
-                    {company.tag}
-                  </span>
-                </div>
-                <p class="mt-2.5 text-sm leading-relaxed text-fog">{company.line}</p>
-              </article>
-            ))}
+            {[false, true].map((isClone) =>
+              row.map((company) => (
+                <article
+                  class="w-72 shrink-0 border border-line bg-ink-raised px-6 py-5"
+                  aria-hidden={isClone || undefined}
+                >
+                  <div class="flex items-baseline justify-between gap-3">
+                    <h3 class="font-display text-2xl text-paper">{company.name}</h3>
+                    <span class="font-mono text-[0.6875rem] tracking-[0.08em] text-phoenix-bright">
+                      {company.tag}
+                    </span>
+                  </div>
+                  <p class="mt-2.5 text-sm leading-relaxed text-fog">{company.line}</p>
+                </article>
+              ))
+            )}
           </div>
         </div>
       ))
