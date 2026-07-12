@@ -28,3 +28,6 @@ pnpm-debug.log*
 
 # playwright review screenshots
 .playwright-mcp/
+
+# vercel project link
+.vercel/
