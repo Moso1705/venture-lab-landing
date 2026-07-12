@@ -1,0 +1,60 @@
+---
+import { startups } from '../content/site';
+
+const half = Math.ceil(startups.companies.length / 2);
+const rowA = startups.companies.slice(0, half);
+const rowB = startups.companies.slice(half);
+---
+
+<section id="startups" class="border-t border-line">
+  <div class="mx-auto max-w-6xl px-6 pt-24 md:pt-32">
+    <div class="reveal">
+      <p class="eyebrow">{startups.eyebrow}</p>
+      <h2 class="mt-5 font-display text-[clamp(2.25rem,5vw,4rem)] leading-[1.02] text-paper">
+        {startups.headline.lead} <em>{startups.headline.emphasis}</em>
+      </h2>
+      <p class="mt-4 font-mono text-[0.8125rem] tracking-[0.08em] text-fog-dim">{startups.intro}</p>
+    </div>
+  </div>
+
+  <div class="mt-14 space-y-4 overflow-hidden pb-24 md:pb-32">
+    {
+      [rowA, rowB].map((row, i) => (
+        <div class="marquee-row" data-reverse={i === 1 ? 'true' : undefined}>
+          <div class="marquee-track gap-4 pr-4">
+            {[...row, ...row].map((company) => (
+              <article class="w-72 shrink-0 border border-line bg-ink-raised px-6 py-5">
+                <div class="flex items-baseline justify-between gap-3">
+                  <h3 class="font-display text-2xl text-paper">{company.name}</h3>
+                  <span class="font-mono text-[0.6875rem] tracking-[0.08em] text-phoenix-bright">
+                    {company.tag}
+                  </span>
+                </div>
+                <p class="mt-2.5 text-sm leading-relaxed text-fog">{company.line}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  .marquee-row[data-reverse] .marquee-track {
+    animation-direction: reverse;
+  }
+  /* Reduced motion: the duplicated half is decorative, hide it and wrap the rest */
+  @media (prefers-reduced-motion: reduce) {
+    .marquee-track {
+      flex-wrap: wrap;
+      width: auto;
+      max-width: 72rem;
+      margin-inline: auto;
+      padding-inline: 1.5rem;
+    }
+    .marquee-track > :nth-child(n + 7) {
+      display: none;
+    }
+  }
+</style>

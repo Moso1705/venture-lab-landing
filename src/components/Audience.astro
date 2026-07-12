@@ -1,0 +1,47 @@
+---
+import { audience } from '../content/site';
+---
+
+<section class="border-t border-line">
+  <div class="mx-auto max-w-6xl px-6 py-24 md:py-32">
+    <div class="reveal">
+      <p class="eyebrow">{audience.eyebrow}</p>
+      <h2 class="mt-5 max-w-3xl font-display text-[clamp(2.25rem,5vw,4rem)] leading-[1.02] text-paper">
+        {audience.headline.lead} <em>{audience.headline.emphasis}</em>
+      </h2>
+    </div>
+
+    <div class="mt-16 grid gap-10 md:grid-cols-2 md:gap-6">
+      <div class="reveal border-t-2 border-paper pt-6">
+        <h3 class="font-display text-3xl text-paper">{audience.forYou.title}</h3>
+        <ul class="mt-6 space-y-4">
+          {
+            audience.forYou.items.map((item) => (
+              <li class="flex gap-3 text-[0.9375rem] leading-relaxed text-fog">
+                <span class="font-mono text-phoenix-bright">+</span>
+                {item}
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+      <div class="reveal border-t-2 border-fog-dim pt-6">
+        <h3 class="font-display text-3xl text-fog">{audience.notForYou.title}</h3>
+        <ul class="mt-6 space-y-4">
+          {
+            audience.notForYou.items.map((item) => (
+              <li class="flex gap-3 text-[0.9375rem] leading-relaxed text-fog-dim">
+                <span class="font-mono">–</span>
+                {item}
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+
+    <p class="reveal mt-12 font-mono text-[0.8125rem] tracking-[0.08em] text-fog-dim">
+      {audience.soloNote}
+    </p>
+  </div>
+</section>

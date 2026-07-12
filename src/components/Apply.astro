@@ -1,0 +1,40 @@
+---
+import { apply, applyFormUrl } from '../content/site';
+---
+
+<section id="apply" class="grid-texture border-t border-line bg-ink-raised">
+  <div class="mx-auto max-w-6xl px-6 py-24 md:py-32">
+    <div class="reveal text-center">
+      <p class="eyebrow">{apply.eyebrow}</p>
+      <h2 class="mt-5 font-display text-[clamp(2.75rem,7vw,5.5rem)] leading-[0.98] text-paper">
+        {apply.headline.lead} <em class="text-phoenix-bright">{apply.headline.emphasis}</em>
+      </h2>
+      <p class="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-fog">{apply.sub}</p>
+    </div>
+
+    <div class="reveal mx-auto mt-14 max-w-3xl">
+      {
+        applyFormUrl ? (
+          <iframe
+            src={applyFormUrl}
+            title="Cohort 3 application form"
+            loading="lazy"
+            class="h-[40rem] w-full border border-line bg-ink"
+          />
+        ) : (
+          <div class="border border-line bg-ink px-8 py-12 text-center">
+            <p class="font-mono text-[0.8125rem] leading-relaxed tracking-[0.08em] text-fog">
+              {apply.fallback.text}{' '}
+              <a
+                href={apply.fallback.href}
+                class="text-phoenix-bright underline underline-offset-4 hover:text-paper"
+              >
+                {apply.fallback.linkLabel}
+              </a>
+            </p>
+          </div>
+        )
+      }
+    </div>
+  </div>
+</section>

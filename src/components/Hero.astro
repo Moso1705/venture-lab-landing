@@ -1,0 +1,87 @@
+---
+import { hero } from '../content/site';
+import Ruler from './Ruler.astro';
+---
+
+<section id="top" class="grid-texture relative">
+  <div class="relative mx-auto max-w-6xl px-6 pt-20 pb-16 md:pt-28 md:pb-20">
+    <aside
+      class="hero-enter absolute top-28 right-6 hidden border border-line bg-ink-raised px-5 py-4 lg:block"
+      style="animation-delay: 360ms"
+      aria-label="Next cohort at a glance"
+    >
+      {
+        hero.telemetry.map((line, i) => (
+          <p
+            class:list={[
+              'font-mono text-[0.75rem] leading-loose tracking-[0.08em]',
+              i === 0 ? 'text-phoenix-bright' : 'text-fog',
+            ]}
+          >
+            {line}
+          </p>
+        ))
+      }
+    </aside>
+    <p class="eyebrow hero-enter">{hero.eyebrow}</p>
+    <h1
+      class="hero-enter mt-6 max-w-4xl font-display text-[clamp(2.75rem,8vw,6.5rem)] leading-[0.98] tracking-[-0.01em] text-paper"
+      style="animation-delay: 90ms"
+    >
+      {hero.headline.lead}<br />
+      <em class="text-phoenix-bright">{hero.headline.emphasis}</em>
+    </h1>
+    <p class="hero-enter mt-8 max-w-xl text-lg leading-relaxed text-fog" style="animation-delay: 180ms">
+      {hero.sub}
+    </p>
+    <div class="hero-enter mt-10 flex flex-wrap items-center gap-4" style="animation-delay: 270ms">
+      <a
+        href={hero.primaryCta.href}
+        class="bg-paper px-7 py-3.5 font-sans text-base font-semibold text-ink transition-colors hover:bg-phoenix-bright"
+      >
+        {hero.primaryCta.label}
+      </a>
+      <a
+        href={hero.secondaryCta.href}
+        class="border border-line px-7 py-3.5 font-sans text-base font-medium text-fog transition-colors hover:border-fog hover:text-paper"
+      >
+        {hero.secondaryCta.label}
+      </a>
+    </div>
+  </div>
+
+  <Ruler />
+
+  <dl class="mx-auto grid max-w-6xl grid-cols-2 gap-px px-6 py-10 md:grid-cols-4">
+    {
+      hero.stats.map((stat) => (
+        <div class="border-l border-line pl-4">
+          <dd class="font-display text-4xl text-paper md:text-5xl">{stat.value}</dd>
+          <dt class="mt-2 max-w-44 font-mono text-[0.75rem] leading-snug text-fog-dim">{stat.label}</dt>
+        </div>
+      ))
+    }
+  </dl>
+</section>
+
+<style>
+  /* One orchestrated page-load moment; snaps to final state under reduced motion. */
+  .hero-enter {
+    animation: hero-rise 0.7s var(--ease-out-quart) both;
+  }
+  @keyframes hero-rise {
+    from {
+      opacity: 0;
+      transform: translateY(18px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .hero-enter {
+      animation: none;
+    }
+  }
+</style>

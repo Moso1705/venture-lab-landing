@@ -1,0 +1,41 @@
+---
+import { successes } from '../content/site';
+---
+
+<section class="grid-texture border-t border-line bg-ink-raised">
+  <div class="mx-auto max-w-6xl px-6 py-24 md:py-32">
+    <div class="reveal">
+      <p class="eyebrow">{successes.eyebrow}</p>
+      <h2 class="mt-5 font-display text-[clamp(2.25rem,5vw,4rem)] leading-[1.02] text-paper">
+        {successes.headline.lead} <em>{successes.headline.emphasis}</em>
+      </h2>
+    </div>
+
+    <div class="mt-16 grid gap-6 md:grid-cols-2">
+      <article class="reveal border border-phoenix/40 bg-ink px-8 py-9">
+        <p class="font-mono text-[0.75rem] tracking-[0.08em] text-phoenix-bright">
+          {successes.featured.kicker}
+        </p>
+        <h3 class="mt-4 font-display text-4xl text-paper">{successes.featured.title}</h3>
+        <p class="mt-4 max-w-prose text-base leading-relaxed text-fog">{successes.featured.body}</p>
+      </article>
+
+      {
+        successes.quotes.map((quote) => (
+          <figure class="reveal border border-line bg-ink px-8 py-9">
+            <blockquote class="font-display text-2xl leading-snug text-paper">
+              <span class="text-phoenix-bright">“</span>{quote.text}<span class="text-phoenix-bright">”</span>
+            </blockquote>
+            <figcaption class="mt-6 font-mono text-[0.8125rem] tracking-[0.08em] text-fog-dim">
+              {quote.name} · {quote.role}
+            </figcaption>
+          </figure>
+        ))
+      }
+    </div>
+
+    <p class="reveal mt-10 font-mono text-[0.8125rem] tracking-[0.08em] text-fog-dim">
+      {successes.placeholderNote}
+    </p>
+  </div>
+</section>

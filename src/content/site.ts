@@ -14,12 +14,12 @@ export const site = {
   url: 'https://ventures.hack-nation.ai',
   parentUrl: 'https://hack-nation.ai',
   ogDescription:
-    'The Venture Lab takes the top teams from the HackNation AI hackathon and gives them 12 weeks, senior mentors, and a room of investors to turn a prototype into a company. Free to join, no equity taken.',
+    'The Venture Lab takes the top teams from the HackNation AI hackathon, plus scouted builders from outside, and gives them 12 weeks, senior mentors, and a room of investors to turn a prototype into a company. Free to join, no equity taken.',
 };
 
 export const announcement = {
   label: 'cohort 3',
-  text: 'Applications for Cohort 3 are open',
+  text: 'Applications are open',
   cta: 'Apply now',
   href: '#apply',
 };
@@ -38,7 +38,7 @@ export const hero = {
   eyebrow: '/ hacknation venture lab',
   // Serif display; the *company* segment renders italic.
   headline: { lead: 'You built it in 48 hours.', emphasis: 'Now build the company.' },
-  sub: 'The Venture Lab takes the top teams from the world’s biggest AI hackathon and gives them 12 weeks, senior mentors, and a room of investors to turn a weekend prototype into a company. Free to join, no equity taken.',
+  sub: 'Twelve weeks, senior mentors, and a room full of investors to turn your prototype into a company. Most teams earn their seat at the world’s biggest AI hackathon; a scouted few come from outside. Free to join, no equity taken.',
   primaryCta: { label: 'Apply for Cohort 3', href: '#apply' },
   secondaryCta: { label: 'See the program', href: '#program' },
   stats: [
@@ -46,6 +46,13 @@ export const hero = {
     { value: '59', label: 'startups built across two cohorts' },
     { value: '19', label: 'VC firms at the last Investor Day' },
     { value: '€1M+', label: 'in credits and discounts per team' },
+  ],
+  telemetry: [
+    '/ next cohort',
+    'c03 · dates tba',
+    'format: remote, worldwide',
+    'hubs: muc zrh lon bos sf',
+    'cost: 0 · equity taken: 0',
   ],
 };
 
@@ -55,13 +62,13 @@ export const pipeline = {
   steps: [
     {
       num: '01',
-      title: 'Hack',
-      body: '5,500 builders apply to the Global AI Hackathon. 24 hours, 14 cities, one global stage.',
+      title: 'Build',
+      body: 'Most teams start at the Global AI Hackathon: 5,500 builders, 24 hours, 14 cities. Others build on their own, nights and weekends.',
     },
     {
       num: '02',
-      title: 'Get selected',
-      body: 'We scout the strongest teams from every edition. A working prototype, a real user pain, a team that keeps moving after the weekend.',
+      title: 'Get scouted',
+      body: 'We select the strongest teams from every edition and scout ambitious builders from outside. Same bar for both: a working prototype, a real user pain, momentum.',
     },
     {
       num: '03',
@@ -112,12 +119,12 @@ export const program = {
   intro:
     'Every two weeks, one challenge that must either feed your Investor Day deck or produce real traction. Workshops with EWOR and operators like Petter Made cover product-market fit, technical depth, sales, and pitch craft.',
   phases: [
-    { weeks: 'wk 01–02', title: 'Voice of customer', body: 'Out of the building. Talk to the people you think you are building for.' },
-    { weeks: 'wk 03–04', title: 'First commitment', body: 'Get someone to commit something real: money, a pilot, a signed letter.' },
-    { weeks: 'wk 05–06', title: 'Public launch', body: 'Ship it where strangers can find it. Demo Day: pitch what you learned.' },
-    { weeks: 'wk 07–08', title: 'Deck teardown', body: 'Your peers take your pitch apart before an investor ever sees it.' },
-    { weeks: 'wk 09–10', title: 'Pitch video', body: '90 seconds, no fast-forward. Curated investors watch these before the finale.' },
-    { weeks: 'wk 11–12', title: 'Investor Day', body: 'The room is full of angels and VCs. Close your pre-seed conversation.' },
+    { weeks: 'wk 01-02', title: 'Voice of customer', body: 'Out of the building. Talk to the people you think you are building for.' },
+    { weeks: 'wk 03-04', title: 'First commitment', body: 'Get someone to commit something real: money, a pilot, a signed letter.' },
+    { weeks: 'wk 05-06', title: 'Public launch', body: 'Ship it where strangers can find it. Demo Day: pitch what you learned.' },
+    { weeks: 'wk 07-08', title: 'Deck teardown', body: 'Your peers take your pitch apart before an investor ever sees it.' },
+    { weeks: 'wk 09-10', title: 'Pitch video', body: '90 seconds, no fast-forward. Curated investors watch these before the finale.' },
+    { weeks: 'wk 11-12', title: 'Investor Day', body: 'The room is full of angels and VCs. Close your pre-seed conversation.' },
   ],
   gate: {
     title: 'The gate to Investor Day',
@@ -221,7 +228,7 @@ export const faq = {
     },
     {
       q: 'Do I need to have competed in the hackathon?',
-      a: 'Most teams come from the Global AI Hackathon, and hackathon performance is the strongest signal we have. Strong outside teams can still apply. The bar is the same: a working prototype and evidence of momentum.',
+      a: 'No. Most teams come from the Global AI Hackathon, and hackathon performance is the strongest signal we have. But we also scout and accept builders from outside. The bar is the same for everyone: a working prototype and evidence of momentum.',
     },
     {
       q: 'How much time does it take?',

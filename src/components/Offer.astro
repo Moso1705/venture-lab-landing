@@ -1,0 +1,25 @@
+---
+import { offer } from '../content/site';
+---
+
+<section class="border-t border-line">
+  <div class="mx-auto max-w-6xl px-6 py-24 md:py-32">
+    <div class="reveal">
+      <p class="eyebrow">{offer.eyebrow}</p>
+      <h2 class="mt-5 max-w-3xl font-display text-[clamp(2.25rem,5vw,4rem)] leading-[1.02] text-paper">
+        {offer.headline.lead} <em>{offer.headline.emphasis}</em>
+      </h2>
+    </div>
+
+    <div class="mt-16">
+      {
+        offer.pillars.map((pillar) => (
+          <div class="reveal grid gap-4 border-t border-line py-10 last:border-b md:grid-cols-[1fr_1.2fr] md:gap-12">
+            <h3 class="font-display text-3xl leading-tight text-paper md:text-4xl">{pillar.title}</h3>
+            <p class="max-w-prose text-base leading-relaxed text-fog md:text-lg">{pillar.body}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

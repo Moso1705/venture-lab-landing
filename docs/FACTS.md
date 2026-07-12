@@ -16,6 +16,8 @@ Internal-only facts need Michi's sign-off before publishing (flagged below).
   Investor Day final. Partners: EWOR ("backing the top 0.1% of founders"), Databricks.
 - Selection criteria (from public venture-track page): working prototype, clear user pain,
   a team that keeps moving after the weekend, evidence it can become more than a demo.
+- Two entry doors (confirmed by Michi, Jul 2026): most teams come from the hackathon,
+  but Cohort 3 also scouts and accepts builders from outside. Same selection bar.
 - Cohort 1 startups + one-liners (public on ventures.hack-nation.ai): FandS AI, CirqetAI,
   Cadio, Twin01, Erudition Systems, Aucta Labs, AgentDock, JanNiti, Anka, Eliot, a11y,
   Upwind (12 with public descriptions; 16 pitched at Investor Day).

@@ -1,0 +1,49 @@
+---
+/**
+ * Signature element: a time ruler. The hackathon is 48 dense hours (orange
+ * segment), the Lab is 12 wide weeks. The tick pattern is pure CSS.
+ */
+---
+
+<div class="relative select-none overflow-hidden border-y border-line" aria-hidden="true">
+  <div class="mx-auto flex max-w-6xl items-stretch px-6">
+    <div class="ruler-ticks-dense relative h-14 w-[22%] min-w-28 border-x border-line">
+      <span class="absolute top-2 left-2 font-mono text-[0.6875rem] tracking-[0.08em] text-phoenix-bright"
+        >h00–h48</span
+      >
+      <span class="absolute bottom-2 left-2 font-mono text-[0.6875rem] tracking-[0.08em] text-fog-dim"
+        >the hackathon</span
+      >
+    </div>
+    <div class="ruler-ticks-wide relative h-14 flex-1 border-r border-line">
+      <span class="absolute top-2 left-3 font-mono text-[0.6875rem] tracking-[0.08em] text-paper">wk01</span>
+      <span class="absolute top-2 right-3 font-mono text-[0.6875rem] tracking-[0.08em] text-paper">wk12</span>
+      <span class="absolute bottom-2 left-3 font-mono text-[0.6875rem] tracking-[0.08em] text-fog-dim"
+        >the venture lab</span
+      >
+    </div>
+  </div>
+</div>
+
+<style>
+  .ruler-ticks-dense {
+    background-image: repeating-linear-gradient(
+      to right,
+      color-mix(in srgb, var(--color-phoenix) 55%, transparent) 0 1px,
+      transparent 1px 7px
+    );
+    background-size: 100% 10px;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  .ruler-ticks-wide {
+    background-image: repeating-linear-gradient(
+      to right,
+      color-mix(in srgb, var(--color-paper) 28%, transparent) 0 1px,
+      transparent 1px 28px
+    );
+    background-size: 100% 10px;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+</style>

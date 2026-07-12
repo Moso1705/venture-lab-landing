@@ -9,6 +9,8 @@ HackNation runs the biggest AI hackathon series in the world (5,500 applicants, 
 MIT roots). The Venture Lab is the layer on top: a 12-week, equity-free incubator that takes
 the top teams from the hackathon and prepares them to raise a pre-seed round at Investor Day.
 The page must sell the bridge: "you built it in 48 hours, now build the company."
+Since Cohort 3 there are two entry doors: the hackathon funnel stays the anchor story, but
+scouted builders from outside can apply too. Copy must never read as hackathon-only.
 
 Audience: technical builders who competed in (or heard about) the hackathon, plus curious
 outsiders evaluating the program. They live in editors and terminals, are allergic to

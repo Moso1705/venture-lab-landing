@@ -1,0 +1,38 @@
+---
+import { program } from '../content/site';
+---
+
+<section id="program" class="bg-paper text-ink">
+  <div class="mx-auto max-w-6xl px-6 py-24 md:py-32">
+    <div class="reveal">
+      <p class="eyebrow !text-phoenix">{program.eyebrow}</p>
+      <h2 class="mt-5 font-display text-[clamp(2.25rem,5vw,4rem)] leading-[1.02]">
+        {program.headline.lead} <em>{program.headline.emphasis}</em>
+      </h2>
+      <p class="mt-6 max-w-2xl text-lg leading-relaxed text-soot">{program.intro}</p>
+    </div>
+
+    <ol class="mt-16 border-t border-paper-line">
+      {
+        program.phases.map((phase) => (
+          <li class="reveal grid gap-2 border-b border-paper-line py-6 md:grid-cols-[10rem_16rem_1fr] md:gap-8 md:py-7">
+            <span class="font-mono text-[0.8125rem] font-medium tracking-[0.08em] text-phoenix">{phase.weeks}</span>
+            <h3 class="font-display text-2xl leading-tight">{phase.title}</h3>
+            <p class="max-w-prose text-[0.9375rem] leading-relaxed text-soot">{phase.body}</p>
+          </li>
+        ))
+      }
+    </ol>
+
+    <aside class="reveal mt-14 border-l-4 border-phoenix bg-ink px-8 py-8 text-paper md:px-10">
+      <p class="font-mono text-[0.75rem] tracking-[0.08em] text-phoenix-bright">/ the stage gate</p>
+      <p class="mt-4 max-w-2xl font-display text-2xl leading-snug md:text-3xl">
+        {program.gate.body}
+      </p>
+    </aside>
+
+    <p class="reveal mt-14 text-center font-mono text-[0.8125rem] tracking-[0.08em] text-soot">
+      {program.motto}
+    </p>
+  </div>
+</section>
