@@ -10,5 +10,10 @@ Working notes that do not fit README/CLAUDE.md. Keep short, keep current.
 - lightningcss breaks scroll-driven animations (folds animation-timeline into the
   animation shorthand). We pin cssMinify: 'esbuild' in astro.config.mjs. Do not revert.
 - Review loop lives in docs/reviews/. Next run number: 04.
+- Live on Vercel: https://venture-lab-landing.vercel.app (project venture-lab-landing,
+  personal team, deployed via CLI from disk; npx vercel is authenticated). GitHub repo
+  not yet connected to Vercel; until then deploy with `npx vercel deploy --prod --yes`.
+- scripts/ensure-assets.mjs restores fonts/og.png during build if missing (needed for
+  source-only deploys); no-ops on normal checkouts.
 - Waiting on Michi: apply form URL, cohort 3 dates, alumni quotes, sign-off on the
   flagged claims in docs/FACTS.md.
