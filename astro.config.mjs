@@ -8,5 +8,11 @@ export default defineConfig({
   output: 'static',
   vite: {
     plugins: [tailwindcss()],
+    build: {
+      // lightningcss (the default) folds animation-timeline into the animation
+      // shorthand, which browsers reject, silently killing all scroll-driven
+      // animations. esbuild minifies without restructuring declarations.
+      cssMinify: 'esbuild',
+    },
   },
 });

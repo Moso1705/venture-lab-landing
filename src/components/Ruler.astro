@@ -6,6 +6,9 @@
 ---
 
 <div class="relative select-none overflow-hidden border-y border-line" aria-hidden="true">
+  <div class="runner-rail pointer-events-none absolute inset-y-0 left-0 w-full">
+    <span class="runner absolute inset-y-0 left-0 w-14"></span>
+  </div>
   <div class="mx-auto flex max-w-6xl items-stretch px-6">
     <div class="ruler-ticks-dense relative h-14 w-[22%] min-w-28 border-x border-line">
       <span class="absolute top-2 left-2 font-mono text-[0.6875rem] tracking-[0.08em] text-phoenix-bright"
@@ -26,6 +29,35 @@
 </div>
 
 <style>
+  /* A slow scan across the timeline: time moving from hackathon into the Lab. */
+  .runner {
+    background: linear-gradient(
+      to right,
+      transparent,
+      color-mix(in srgb, var(--color-phoenix-bright) 22%, transparent) 70%,
+      var(--color-phoenix-bright)
+    );
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .runner-rail {
+      will-change: transform;
+      animation: ruler-run 16s linear infinite;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .runner-rail {
+      display: none;
+    }
+  }
+  @keyframes ruler-run {
+    from {
+      transform: translateX(-3.5rem);
+    }
+    to {
+      transform: translateX(100%);
+    }
+  }
+
   .ruler-ticks-dense {
     background-image: repeating-linear-gradient(
       to right,

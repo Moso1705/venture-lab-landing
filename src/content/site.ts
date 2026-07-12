@@ -62,7 +62,7 @@ export const pipeline = {
   steps: [
     {
       num: '01',
-      title: 'Build',
+      title: 'Hack',
       body: 'Most teams start at the Global AI Hackathon: 5,500 builders, 24 hours, 14 cities. Others build on their own, nights and weekends.',
     },
     {
@@ -104,6 +104,7 @@ export const offer = {
 
 export const proof = {
   eyebrow: '/ the numbers',
+  live: 'Happening now: Cohort 2 is in the room. 30 teams pitch investors on July 31.',
   stats: [
     { value: '5,500', label: 'builders applied to the last hackathon' },
     { value: '115+', label: 'countries reached' },

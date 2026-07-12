@@ -4,7 +4,13 @@ import { proof } from '../content/site';
 
 <section id="proof" class="grid-texture border-t border-line bg-ink-raised">
   <div class="mx-auto max-w-6xl px-6 py-16 md:py-20">
-    <p class="eyebrow reveal">{proof.eyebrow}</p>
+    <div class="reveal flex flex-wrap items-baseline justify-between gap-4">
+      <p class="eyebrow">{proof.eyebrow}</p>
+      <p class="flex items-center gap-2.5 font-mono text-[0.75rem] tracking-[0.08em] text-fog">
+        <span class="live-dot relative inline-flex size-2 shrink-0 rounded-full bg-phoenix-bright" aria-hidden="true"></span>
+        {proof.live}
+      </p>
+    </div>
     <dl class="mt-10 grid grid-cols-2 gap-x-6 gap-y-10 md:grid-cols-5">
       {
         proof.stats.map((stat) => (
@@ -17,3 +23,20 @@ import { proof } from '../content/site';
     </dl>
   </div>
 </section>
+
+<style>
+  @media (prefers-reduced-motion: no-preference) {
+    .live-dot::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 9999px;
+      background: var(--color-phoenix-bright);
+      animation: live-ping 2.4s cubic-bezier(0, 0, 0.2, 1) infinite;
+    }
+    @keyframes live-ping {
+      0% { transform: scale(1); opacity: 0.7; }
+      75%, 100% { transform: scale(2.4); opacity: 0; }
+    }
+  }
+</style>

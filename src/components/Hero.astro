@@ -4,6 +4,7 @@ import Ruler from './Ruler.astro';
 ---
 
 <section id="top" class="grid-texture relative">
+  <div class="grid-spotlight pointer-events-none absolute inset-0" aria-hidden="true"></div>
   <div class="relative mx-auto max-w-6xl px-6 pt-20 pb-16 md:pt-28 md:pb-20">
     <aside
       class="hero-enter absolute top-28 right-6 hidden border border-line bg-ink-raised px-5 py-4 lg:block"
@@ -84,4 +85,41 @@ import Ruler from './Ruler.astro';
       animation: none;
     }
   }
+
+  /* Pointer spotlight: the hero grid brightens around the cursor. Hidden until
+     the script sets coordinates; desktop pointers only. */
+  .grid-spotlight {
+    opacity: 0;
+    background-image:
+      linear-gradient(to right, color-mix(in srgb, var(--color-phoenix-bright) 14%, transparent) 1px, transparent 1px),
+      linear-gradient(to bottom, color-mix(in srgb, var(--color-phoenix-bright) 14%, transparent) 1px, transparent 1px);
+    background-size: 56px 56px;
+    mask-image: radial-gradient(260px circle at var(--mx, 50%) var(--my, 50%), black 0%, transparent 100%);
+    -webkit-mask-image: radial-gradient(260px circle at var(--mx, 50%) var(--my, 50%), black 0%, transparent 100%);
+    transition: opacity 0.4s ease;
+  }
 </style>
+
+<script>
+  // Spotlight follows the pointer; skipped for touch devices and reduced motion.
+  const fine = window.matchMedia('(pointer: fine)').matches;
+  const motionOk = window.matchMedia('(prefers-reduced-motion: no-preference)').matches;
+  const section = document.getElementById('top');
+  const spot = section?.querySelector<HTMLElement>('.grid-spotlight');
+  if (fine && motionOk && section && spot) {
+    let raf = 0;
+    section.addEventListener('pointermove', (e) => {
+      if (raf) return;
+      raf = requestAnimationFrame(() => {
+        const rect = section.getBoundingClientRect();
+        spot.style.setProperty('--mx', `${e.clientX - rect.left}px`);
+        spot.style.setProperty('--my', `${e.clientY - rect.top}px`);
+        spot.style.opacity = '1';
+        raf = 0;
+      });
+    });
+    section.addEventListener('pointerleave', () => {
+      spot.style.opacity = '0';
+    });
+  }
+</script>
