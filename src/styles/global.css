@@ -1,0 +1,165 @@
+@import "tailwindcss";
+
+/* ---------------------------------------------------------------------------
+   Design tokens. Single source of truth for the whole page.
+   Palette anchors on the HackNation brand: phoenix orange #e8400d (from the
+   main site's CSS tokens) on a warm near-black, with the brand's whisper-gray
+   #f4f3ef as "paper" for text on dark and the inverted light band.
+--------------------------------------------------------------------------- */
+@theme {
+  /* color */
+  --color-ink: #0b0a08;
+  --color-ink-raised: #14110e;
+  --color-line: #26221d;
+  --color-paper: #f4f3ef;
+  --color-paper-line: #dedbd2;
+  --color-phoenix: #e8400d;
+  --color-phoenix-bright: #ff5c26;
+  --color-fog: #b4aea5;
+  --color-fog-dim: #7d786f;
+  --color-soot: #55514a;
+
+  /* type */
+  --font-display: "Instrument Serif", Georgia, "Times New Roman", serif;
+  --font-sans: "DM Sans", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-mono: "DM Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+  /* rhythm */
+  --spacing: 0.25rem;
+  --radius-none: 0px;
+  --radius-sm: 2px;
+  --radius-md: 4px;
+
+  /* motion */
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+  --animate-marquee: marquee 42s linear infinite;
+
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Self-hosted fonts (public/fonts). font-display swap + metric fallbacks.
+--------------------------------------------------------------------------- */
+@font-face {
+  font-family: "Instrument Serif";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/InstrumentSerif-400-normal.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Instrument Serif";
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/InstrumentSerif-400-italic.woff2") format("woff2");
+}
+@font-face {
+  font-family: "DM Sans";
+  font-style: normal;
+  font-weight: 100 1000;
+  font-display: swap;
+  src: url("/fonts/DMSans-100-1000-normal.woff2") format("woff2");
+}
+@font-face {
+  font-family: "DM Mono";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/DMMono-400-normal.woff2") format("woff2");
+}
+@font-face {
+  font-family: "DM Mono";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("/fonts/DMMono-500-normal.woff2") format("woff2");
+}
+
+/* ---------------------------------------------------------------------------
+   Base
+--------------------------------------------------------------------------- */
+html {
+  scroll-behavior: smooth;
+  @media (prefers-reduced-motion: reduce) {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  background: var(--color-ink);
+  color: var(--color-paper);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--color-phoenix);
+  color: var(--color-paper);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-phoenix-bright);
+  outline-offset: 2px;
+}
+
+/* ---------------------------------------------------------------------------
+   Shared utilities
+--------------------------------------------------------------------------- */
+
+/* Mono eyebrow label, HN12-style: "/ program" */
+@utility eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  letter-spacing: 0.08em;
+  text-transform: lowercase;
+  color: var(--color-phoenix-bright);
+}
+
+/* Fine graph-paper texture for dark sections */
+@utility grid-texture {
+  background-image:
+    linear-gradient(to right, color-mix(in srgb, var(--color-paper) 4%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in srgb, var(--color-paper) 4%, transparent) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+
+/* One-time scroll reveal. Progressive enhancement: without support or with
+   reduced motion, content is simply visible. Only transform/opacity animate. */
+@utility reveal {
+  @media (prefers-reduced-motion: no-preference) {
+    @supports (animation-timeline: view()) {
+      animation: reveal-in 1ms linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 60%;
+    }
+  }
+}
+
+@keyframes reveal-in {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Marquee track: duplicate content once in markup, pause on hover */
+@utility marquee-track {
+  display: flex;
+  width: max-content;
+  animation: var(--animate-marquee);
+  &:hover {
+    animation-play-state: paused;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+}
