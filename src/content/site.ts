@@ -213,7 +213,14 @@ export const audience = {
 export const partners = {
   eyebrow: '/ partners',
   headline: 'Run with partners who back founders early.',
-  orgs: ['EWOR', 'Databricks', 'Start2 Group', 'Anthropic', 'OpenAI', 'AWS'],
+  orgs: [
+    { name: 'EWOR', logo: '/logos/ewor.svg', href: 'https://ewor.com', h: 26 },
+    { name: 'Databricks', logo: '/logos/databricks.svg', href: 'https://databricks.com', h: 24 },
+    { name: 'Start2 Group', logo: '/logos/start2.svg', href: 'https://start2.group', h: 24 },
+    { name: 'Anthropic', logo: '/logos/anthropic.svg', href: 'https://anthropic.com', h: 22 },
+    { name: 'OpenAI', logo: '/logos/openai.svg', href: 'https://openai.com', h: 26 },
+    { name: 'AWS', logo: '/logos/aws.svg', href: 'https://aws.amazon.com', h: 30 },
+  ],
   schools: [
     'Stanford GSB',
     'Harvard',
@@ -263,7 +270,7 @@ export const faq = {
 };
 
 export const doors = {
-  eyebrow: '/ two doors, one bar',
+  eyebrow: '/ pick your door',
   items: [
     {
       title: 'You hacked with us',

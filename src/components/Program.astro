@@ -6,7 +6,7 @@ import { program } from '../content/site';
   <div class="mx-auto max-w-6xl px-6 py-28 md:py-40">
     <div class="reveal">
       <p class="font-mono text-[0.8125rem] tracking-[0.08em]">
-        <span class="font-medium text-phoenix">04</span>
+        <span class="font-medium text-phoenix-deep">04</span>
         <span class="ml-3 lowercase text-soot">{program.eyebrow.replace(/^\/\s*/, '')}</span>
       </p>
       <h2 class="mt-6 font-display text-[clamp(2.5rem,6vw,5rem)] leading-[0.98] tracking-[-0.01em]">
@@ -19,7 +19,7 @@ import { program } from '../content/site';
       {
         program.phases.map((phase) => (
           <li class="reveal grid gap-2 border-b border-paper-line py-6 md:grid-cols-[10rem_16rem_1fr] md:gap-8 md:py-7">
-            <span class="font-mono text-[0.8125rem] font-medium tracking-[0.08em] text-phoenix">{phase.weeks}</span>
+            <span class="font-mono text-[0.8125rem] font-medium tracking-[0.08em] text-phoenix-deep">{phase.weeks}</span>
             <h3 class="font-display text-2xl leading-tight">{phase.title}</h3>
             <p class="max-w-prose text-[0.9375rem] leading-relaxed text-soot">{phase.body}</p>
           </li>

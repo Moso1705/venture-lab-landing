@@ -71,7 +71,7 @@ export const mba = {
   ],
   apply: {
     headline: { lead: 'Your team is', emphasis: 'forming now.' },
-    sub: 'Cohort 3 coach applications open with the cohort. Leave your details and we come back to you first.',
+    sub: 'Cohort 3 coach applications open after Investor Day, July 31. The form will live right here.',
   },
 };
 
@@ -134,6 +134,6 @@ export const mentor = {
   ],
   apply: {
     headline: { lead: 'The next cohort needs', emphasis: 'your hour.' },
-    sub: 'Cohort 3 mentor applications open with the cohort. Leave your details and the matching starts with you.',
+    sub: 'Cohort 3 mentor applications open after Investor Day, July 31. The form will live right here.',
   },
 };

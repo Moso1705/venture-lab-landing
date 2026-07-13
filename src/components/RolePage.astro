@@ -94,14 +94,14 @@ const { data, formUrl, formTitle } = Astro.props;
     <section class="bg-paper text-ink">
       <div class="mx-auto max-w-6xl px-6 py-20 md:py-28">
         <p class="reveal font-mono text-[0.8125rem] tracking-[0.08em]">
-          <span class="font-medium text-phoenix">02</span>
+          <span class="font-medium text-phoenix-deep">02</span>
           <span class="ml-3 lowercase text-soot">{data.work.eyebrow.replace(/^\/\s*/, '')}</span>
         </p>
         <ol class="mt-12 border-t border-paper-line">
           {
             data.work.items.map((item, i) => (
               <li class="reveal grid gap-2 border-b border-paper-line py-6 md:grid-cols-[6rem_18rem_1fr] md:gap-8">
-                <span class="font-mono text-[0.8125rem] font-medium tracking-[0.08em] text-phoenix">0{i + 1}</span>
+                <span class="font-mono text-[0.8125rem] font-medium tracking-[0.08em] text-phoenix-deep">0{i + 1}</span>
                 <h2 class="font-display text-2xl leading-tight">{item.title}</h2>
                 <p class="max-w-prose text-[0.9375rem] leading-relaxed text-soot">{item.body}</p>
               </li>

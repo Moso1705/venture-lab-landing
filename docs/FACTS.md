@@ -82,3 +82,10 @@ Internal-only facts need Michi's sign-off before publishing (flagged below).
 - Real success-story quotes (alumni outreach pending: JanNiti, Rainbow Intelligence,
   Elyra, Anka, a11y).
 - Team/founder photos if we add a people section.
+
+## Partner logos (added run 07)
+
+- SVG sources: EWOR + Start2 from their own site headers, Anthropic/OpenAI/AWS from
+  the MIT-licensed svgl repo, Databricks recomposed from a public-domain Wikimedia
+  file. All remain their owners' trademarks; partner-row use is nominative. VERIFY
+  partner logo permission with each org before the real domain goes live.
