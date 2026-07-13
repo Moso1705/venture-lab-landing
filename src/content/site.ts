@@ -29,7 +29,7 @@ export const site = {
 
 export const announcement = formIsLive
   ? { label: 'cohort 3', text: 'applications are open', cta: 'Apply now', href: '#apply' }
-  : { label: 'live', text: 'Cohort 2 pitches 19 firms on July 31 · Cohort 3 forms next', cta: 'The plan', href: '#apply' };
+  : { label: 'live', text: 'Cohort 2 pitches 19 firms on July 31 · Cohort 3 forms next', cta: 'Get in line', href: '#apply' };
 
 export const nav = {
   links: [
@@ -298,7 +298,7 @@ export const apply = {
   headline: { lead: 'Ready when', emphasis: 'you are.' },
   sub: formIsLive
     ? 'Applications for Cohort 3 are open. Tell us what you built and who needs it. Ten minutes, no deck required.'
-    : 'Cohort 3 applications open right after Investor Day. The form will live here.',
+    : 'Cohort 3 applications open right after Investor Day. Get in line and you hear first.',
   fallback: {
     prompt: '/// apply_c03',
     text: 'opens after Investor Day, July 31. Until then: watch Cohort 2 pitch, or start at the hackathon on July 18-19.',

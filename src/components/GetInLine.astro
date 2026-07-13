@@ -1,0 +1,80 @@
+---
+/**
+ * The terminal box as a working funnel: one email field, POSTs to
+ * /api/get-in-line, stores in the vl-waitlist blob store. Every judge and
+ * persona named the dead-end apply as the page's costliest gap; this is
+ * the interim answer until the real application forms exist.
+ */
+interface Props {
+  role: 'founder' | 'mba' | 'mentor';
+  prompt: string;
+  note: string;
+}
+
+const { role, prompt, note } = Astro.props;
+---
+
+<div class="get-in-line border border-line bg-ink px-6 py-8 font-mono text-[0.9375rem] leading-relaxed md:px-10">
+  <p>
+    <span class="font-medium text-phoenix-bright">{prompt}</span>
+    <span class="text-paper"> {note}</span>
+  </p>
+  <form class="gil-form mt-5 flex flex-wrap items-center gap-3" data-role={role}>
+    <span class="text-fog-dim" aria-hidden="true">$</span>
+    <label class="sr-only" for={`gil-email-${role}`}>Email address</label>
+    <input
+      id={`gil-email-${role}`}
+      type="email"
+      name="email"
+      required
+      maxlength="254"
+      placeholder="your@email"
+      autocomplete="email"
+      class="min-w-0 flex-1 border-b border-line bg-transparent pb-1 text-paper placeholder:text-fog-dim focus:border-phoenix-bright focus:outline-none"
+    />
+    <input type="text" name="company_website" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
+    <button
+      type="submit"
+      class="border border-line px-4 py-1.5 text-[0.8125rem] tracking-[0.08em] text-paper transition-colors hover:border-phoenix-bright hover:text-phoenix-bright"
+    >
+      enter ↵
+    </button>
+  </form>
+  <p class="gil-status mt-4 hidden text-[0.8125rem]" role="status" aria-live="polite"></p>
+  <p class="mt-4 text-[0.6875rem] tracking-[0.04em] text-fog-dim">
+    email is only used to tell you when applications open
+  </p>
+</div>
+
+<script>
+  document.querySelectorAll<HTMLFormElement>('.gil-form').forEach((form) => {
+    const box = form.closest('.get-in-line')!;
+    const status = box.querySelector('.gil-status') as HTMLElement;
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const data = Object.fromEntries(new FormData(form).entries());
+      status.classList.remove('hidden');
+      status.textContent = '… writing you into the ledger';
+      status.style.color = 'var(--color-fog)';
+      try {
+        const res = await fetch('/api/get-in-line', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ ...data, role: form.dataset.role }),
+        });
+        const out = await res.json();
+        if (out.ok) {
+          form.classList.add('hidden');
+          status.textContent = '✓ you are in line. we write the moment selection opens.';
+          status.style.color = 'var(--color-phoenix-bright)';
+        } else {
+          status.textContent = `✗ ${out.error ?? 'could not save, try again'}`;
+          status.style.color = 'var(--color-fog)';
+        }
+      } catch {
+        status.textContent = '✗ network hiccup, try again';
+        status.style.color = 'var(--color-fog)';
+      }
+    });
+  });
+</script>

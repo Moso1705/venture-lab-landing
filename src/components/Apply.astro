@@ -1,5 +1,6 @@
 ---
 import { apply, applyFormUrl } from '../content/site';
+import GetInLine from './GetInLine.astro';
 ---
 
 <section id="apply" class="grid-texture relative overflow-hidden border-t border-line bg-ink-raised">
@@ -25,24 +26,11 @@ import { apply, applyFormUrl } from '../content/site';
             class="h-[40rem] w-full border border-line bg-ink"
           />
         ) : (
-          <div class="border border-line bg-ink px-6 py-8 font-mono text-[0.9375rem] leading-relaxed md:px-10">
-            <p>
-              <span class="font-medium text-phoenix-bright">{apply.fallback.prompt}</span>
-              <span class="text-paper"> {apply.fallback.text}</span>
-            </p>
-            <p class="mt-4">
-              <span class="text-fog-dim">$ </span>
-              <a
-                href={apply.fallback.href}
-                class="text-phoenix-bright underline underline-offset-4 hover:text-paper"
-              >
-                {apply.fallback.linkLabel}
-              </a>
-              <span class="cursor-blink text-paper" aria-hidden="true">
-                ▌
-              </span>
-            </p>
-          </div>
+          <GetInLine
+            role="founder"
+            prompt="/// get_in_line — cohort 3."
+            note="Applications open after Investor Day, July 31. Leave your email and you hear from us before anyone else."
+          />
         )
       }
     </div>

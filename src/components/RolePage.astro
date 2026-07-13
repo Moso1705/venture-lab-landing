@@ -1,6 +1,7 @@
 ---
 import Footer from './Footer.astro';
 import { theRoom } from '../content/roles';
+import GetInLine from './GetInLine.astro';
 
 interface RoleData {
   eyebrow: string;
@@ -21,9 +22,10 @@ interface Props {
   data: RoleData;
   formUrl: string;
   formTitle: string;
+  role: 'mba' | 'mentor';
 }
 
-const { data, formUrl, formTitle } = Astro.props;
+const { data, formUrl, formTitle, role } = Astro.props;
 ---
 
 <div class="grain relative">
@@ -222,18 +224,11 @@ const { data, formUrl, formTitle } = Astro.props;
             formUrl ? (
               <iframe src={formUrl} title={formTitle} loading="lazy" class="h-[36rem] w-full border border-line bg-ink" />
             ) : (
-              <div class="border border-line bg-ink px-6 py-8 font-mono text-[0.9375rem] leading-relaxed md:px-10">
-                <p>
-                  <span class="font-medium text-phoenix-bright">/// applications</span>
-                  <span class="text-paper"> open with Cohort 3. Until then:</span>
-                </p>
-                <p class="mt-4">
-                  <span class="text-fog-dim">$ </span>
-                  <a href="https://hack-nation.ai" class="text-phoenix-bright underline underline-offset-4 hover:text-paper">
-                    hack-nation.ai
-                  </a>
-                </p>
-              </div>
+              <GetInLine
+                role={role}
+                prompt="/// get_in_line."
+                note="Applications open with Cohort 3, after July 31. Leave your email and matching starts with you."
+              />
             )
           }
         </div>
