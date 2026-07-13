@@ -28,7 +28,9 @@ import SectionHead from './SectionHead.astro';
                 rel={company.url ? 'noopener' : undefined}
               >
                 <h3 class="font-display text-2xl text-paper">
-                  {company.name}
+                  {company.name.split(/(\d+)/).map((part) =>
+                    /\d/.test(part) ? <span class="font-mono text-xl">{part}</span> : part
+                  )}
                   {company.url && (
                     <span class="ml-1 inline-block font-mono text-sm text-phoenix-bright transition-transform duration-150 group-hover:-translate-y-0.5 group-hover:translate-x-0.5">
                       ↗

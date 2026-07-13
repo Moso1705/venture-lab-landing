@@ -29,7 +29,7 @@ export const site = {
 
 export const announcement = formIsLive
   ? { label: 'cohort 3', text: 'applications are open', cta: 'Apply now', href: '#apply' }
-  : { label: 'live', text: 'Cohort 2 pitches 19 firms on July 31 · Cohort 3 forms next', cta: 'Get in line', href: '#apply' };
+  : { label: 'live', text: 'Cohort 2 pitches 19 firms on July 31 · Cohort 3 forms next', cta: 'The plan', href: '#apply' };
 
 export const nav = {
   links: [
