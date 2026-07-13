@@ -29,6 +29,13 @@ npm run preview   # serve the build locally
 | `docs/FACTS.md` | What may be published, what needs sign-off |
 | `docs/design-review.md` | Review rubric; runs logged in `docs/reviews/` |
 
+## Waitlist submissions
+
+The apply sections capture emails via `/api/get-in-line` into the private Vercel Blob
+store `vl-waitlist` (paths `waitlist/<founder|mba|mentor>/...json`). Read them with
+`npx vercel blob list --prefix waitlist/` or in the Vercel dashboard. This is the
+interim funnel until the Tally forms replace it (paste URLs in `src/content/`).
+
 ## Editing content
 
 Change text, numbers, startups, or the application form URL in `src/content/site.ts`.
