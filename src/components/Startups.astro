@@ -19,10 +19,7 @@ import SectionHead from './SectionHead.astro';
           return (
             <li class="border-b border-line">
               <Tag
-                class:list={[
-                  'group grid gap-x-6 gap-y-1 py-5 md:grid-cols-[13rem_7rem_1fr_15rem] md:items-baseline',
-                  company.url && 'transition-colors duration-150 hover:bg-ink-raised',
-                ]}
+                class="group grid gap-x-6 gap-y-1 py-5 transition-colors duration-150 hover:bg-ink-raised md:grid-cols-[13rem_7rem_1fr_15rem] md:items-baseline" 
                 href={company.url}
                 target={company.url ? '_blank' : undefined}
                 rel={company.url ? 'noopener' : undefined}

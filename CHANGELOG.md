@@ -2,6 +2,14 @@
 
 ## [Unreleased]
 
+### Added (design sprint, judged 7.2 -> 9.2)
+- 24h stopwatch intro with clean handoff into hero choreography
+- "Measured page" system: document-long rail, fig. 01-05 plotted annotations,
+  index-numbered section grammar, proportional stat ticks, July 31 poster moment
+- Working get-in-line email capture (Vercel Blob) on all three pages
+- Partner logo row (real SVG wordmarks), ruled startup traction index
+- /mba and /mentor funnel pages with role-specific figures
+
 ### Added
 - Project brief, publishable-facts sheet, and design review rubric (`docs/`)
 - Astro 7 + Tailwind v4 scaffold, repo docs (CLAUDE.md, README, MEMORY)

@@ -40,18 +40,13 @@ import { successes } from '../content/site';
 
       {
         successes.quotes.map((quote) => (
-          <figure class="reveal grid gap-8 border border-paper-line px-8 py-9 md:col-span-2 md:grid-cols-[1fr_10rem]">
-            <div>
-              <blockquote class="max-w-3xl font-display text-2xl leading-snug md:text-3xl">
-                <span class="text-phoenix">“</span>{quote.text}<span class="text-phoenix">”</span>
-              </blockquote>
-              <figcaption class="mt-6 font-mono text-[0.8125rem] tracking-[0.08em] text-soot">
-                {quote.name} · {quote.role}
-              </figcaption>
-            </div>
-            <div class="hidden aspect-square items-center justify-center border border-paper-line md:flex" aria-hidden="true">
-              <span class="font-mono text-[0.6875rem] tracking-[0.08em] text-soot">portrait · tba</span>
-            </div>
+          <figure class="reveal border border-paper-line px-8 py-9 md:col-span-2">
+            <blockquote class="max-w-3xl font-display text-2xl leading-snug md:text-3xl">
+              <span class="text-phoenix">“</span>{quote.text}<span class="text-phoenix">”</span>
+            </blockquote>
+            <figcaption class="mt-6 font-mono text-[0.8125rem] tracking-[0.08em] text-soot">
+              {quote.name} · {quote.role}
+            </figcaption>
           </figure>
         ))
       }
