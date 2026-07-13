@@ -5,7 +5,7 @@ import { faq } from '../content/site';
 <section id="faq" class="border-t border-line">
   <div class="mx-auto max-w-6xl px-6 py-24 md:py-32">
     <div class="reveal">
-      <p class="eyebrow">{faq.eyebrow}</p>
+      <p class="eyebrow" data-scramble>{faq.eyebrow}</p>
       <h2 class="mt-5 font-display text-[clamp(2.25rem,5vw,4rem)] leading-[1.02] text-paper">
         {faq.headline}
       </h2>
@@ -26,10 +26,28 @@ import { faq } from '../content/site';
                 +
               </span>
             </summary>
-            <p class="max-w-2xl pb-7 text-base leading-relaxed text-fog">{item.a}</p>
+            <p class="faq-answer max-w-2xl pb-7 text-base leading-relaxed text-fog">{item.a}</p>
           </details>
         ))
       }
     </div>
   </div>
 </section>
+
+<style>
+  @media (prefers-reduced-motion: no-preference) {
+    details[open] .faq-answer {
+      animation: faq-in 0.35s var(--ease-out-quart) both;
+    }
+    @keyframes faq-in {
+      from {
+        opacity: 0;
+        transform: translateY(-6px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  }
+</style>

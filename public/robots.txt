@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://venture-lab-landing.vercel.app/sitemap.xml

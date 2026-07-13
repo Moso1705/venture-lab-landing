@@ -1,0 +1,49 @@
+---
+import { demoDayVideoUrl, film } from '../content/site';
+
+// Renders nothing until Michi drops a video URL into site.ts.
+const isEmbed = /youtube\.com|youtu\.be|vimeo\.com/.test(demoDayVideoUrl);
+const embedSrc = demoDayVideoUrl
+  .replace(/watch\?v=/, 'embed/')
+  .replace(/youtu\.be\//, 'www.youtube.com/embed/')
+  .replace(/vimeo\.com\//, 'player.vimeo.com/video/');
+---
+
+{
+  demoDayVideoUrl && (
+    <section class="border-t border-line">
+      <div class="mx-auto max-w-6xl px-6 py-24 md:py-32">
+        <div class="reveal">
+          <p class="eyebrow" data-scramble>
+            {film.eyebrow}
+          </p>
+          <h2 class="mt-5 max-w-3xl font-display text-[clamp(2.25rem,5vw,4rem)] leading-[1.02] text-paper">
+            {film.headline.lead} <em>{film.headline.emphasis}</em>
+          </h2>
+        </div>
+        <div class="reveal mt-12 border border-line">
+          {isEmbed ? (
+            <iframe
+              src={embedSrc}
+              title="Venture Lab Investor Day"
+              loading="lazy"
+              allow="autoplay; fullscreen; picture-in-picture"
+              allowfullscreen
+              class="aspect-video w-full bg-ink-raised"
+            />
+          ) : (
+            <video
+              src={demoDayVideoUrl}
+              class="aspect-video w-full bg-ink-raised object-cover"
+              autoplay
+              muted
+              loop
+              playsinline
+              preload="metadata"
+            />
+          )}
+        </div>
+      </div>
+    </section>
+  )
+}

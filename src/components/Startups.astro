@@ -9,7 +9,7 @@ const rowB = startups.companies.slice(half);
 <section id="startups" class="border-t border-line">
   <div class="mx-auto max-w-6xl px-6 pt-24 md:pt-32">
     <div class="reveal">
-      <p class="eyebrow">{startups.eyebrow}</p>
+      <p class="eyebrow" data-scramble>{startups.eyebrow}</p>
       <h2 class="mt-5 font-display text-[clamp(2.25rem,5vw,4rem)] leading-[1.02] text-paper">
         {startups.headline.lead} <em>{startups.headline.emphasis}</em>
       </h2>
@@ -23,20 +23,31 @@ const rowB = startups.companies.slice(half);
         <div class="marquee-row" data-reverse={i === 1 ? 'true' : undefined}>
           <div class="marquee-track gap-4 pr-4">
             {[false, true].map((isClone) =>
-              row.map((company) => (
-                <article
-                  class="w-72 shrink-0 border border-line bg-ink-raised px-6 py-5"
-                  aria-hidden={isClone || undefined}
-                >
-                  <div class="flex items-baseline justify-between gap-3">
-                    <h3 class="font-display text-2xl text-paper">{company.name}</h3>
-                    <span class="font-mono text-[0.6875rem] tracking-[0.08em] text-phoenix-bright">
-                      {company.tag}
-                    </span>
-                  </div>
-                  <p class="mt-2.5 text-sm leading-relaxed text-fog">{company.line}</p>
-                </article>
-              ))
+              row.map((company) => {
+                const Tag = company.url ? 'a' : 'article';
+                const monogram = company.name.replace(/[^A-Za-z0-9]/g, '').slice(0, 2).toUpperCase();
+                return (
+                  <Tag
+                    class="group w-72 shrink-0 border border-line bg-ink-raised px-6 py-5 transition-[border-color,transform] duration-200 hover:-translate-y-0.5 hover:border-phoenix"
+                    aria-hidden={isClone || undefined}
+                    href={company.url}
+                    target={company.url ? '_blank' : undefined}
+                    rel={company.url ? 'noopener' : undefined}
+                    tabindex={isClone ? -1 : undefined}
+                  >
+                    <div class="flex items-center gap-3">
+                      <span class="flex size-8 shrink-0 items-center justify-center border border-phoenix/50 font-mono text-[0.6875rem] font-medium text-phoenix-bright">
+                        {monogram}
+                      </span>
+                      <h3 class="font-display text-2xl text-paper">{company.name}</h3>
+                      <span class="ml-auto font-mono text-[0.6875rem] tracking-[0.08em] text-fog-dim group-hover:text-phoenix-bright">
+                        {company.tag}
+                      </span>
+                    </div>
+                    <p class="mt-3 text-sm leading-relaxed text-fog">{company.line}</p>
+                  </Tag>
+                );
+              })
             )}
           </div>
         </div>

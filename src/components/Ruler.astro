@@ -29,6 +29,35 @@
 </div>
 
 <style>
+  /* Ticks draw in left-to-right on load: a curtain collapses toward the right. */
+  .ruler-ticks-dense::after,
+  .ruler-ticks-wide::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--color-ink);
+    transform-origin: right;
+    animation: ruler-curtain 0.9s var(--ease-out-quart) 0.5s both;
+  }
+  .ruler-ticks-wide::after {
+    animation-delay: 0.8s;
+    animation-duration: 1.1s;
+  }
+  @keyframes ruler-curtain {
+    from {
+      transform: scaleX(1);
+    }
+    to {
+      transform: scaleX(0);
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .ruler-ticks-dense::after,
+    .ruler-ticks-wide::after {
+      display: none;
+    }
+  }
+
   /* A slow scan across the timeline: time moving from hackathon into the Lab. */
   .runner {
     background: linear-gradient(

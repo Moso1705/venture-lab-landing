@@ -1,0 +1,9 @@
+---
+import Base from '../layouts/Base.astro';
+import RolePage from '../components/RolePage.astro';
+import { mentor, mentorFormUrl } from '../content/roles';
+---
+
+<Base title={mentor.title} description={mentor.description} path="/mentor">
+  <RolePage data={mentor} formUrl={mentorFormUrl} formTitle="Mentor application" />
+</Base>

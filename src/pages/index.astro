@@ -5,32 +5,53 @@ import Hero from '../components/Hero.astro';
 import Pipeline from '../components/Pipeline.astro';
 import Offer from '../components/Offer.astro';
 import ProofBand from '../components/ProofBand.astro';
+import DemoDayFilm from '../components/DemoDayFilm.astro';
 import Program from '../components/Program.astro';
 import Startups from '../components/Startups.astro';
 import Successes from '../components/Successes.astro';
 import Audience from '../components/Audience.astro';
 import Partners from '../components/Partners.astro';
 import Faq from '../components/Faq.astro';
+import Doors from '../components/Doors.astro';
 import Apply from '../components/Apply.astro';
 import Footer from '../components/Footer.astro';
 import StickyApply from '../components/StickyApply.astro';
+import RulerSpine from '../components/RulerSpine.astro';
+import { faq } from '../content/site';
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.items.map((item) => ({
+    '@type': 'Question',
+    name: item.q,
+    acceptedAnswer: { '@type': 'Answer', text: item.a },
+  })),
+};
 ---
 
 <Base>
-  <Nav />
-  <main>
-    <Hero />
-    <Pipeline />
-    <Offer />
-    <ProofBand />
-    <Program />
-    <Startups />
-    <Successes />
-    <Audience />
-    <Partners />
-    <Faq />
-    <Apply />
-  </main>
-  <Footer />
-  <StickyApply />
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  <div class="grain">
+    <Nav />
+    <RulerSpine />
+    <main>
+      <Hero />
+      <Pipeline />
+      <Offer />
+      <ProofBand />
+      <DemoDayFilm />
+      <Program />
+      <Startups />
+      <Successes />
+      <Audience />
+      <Partners />
+      <Faq />
+      <Doors />
+      <Apply />
+    </main>
+    <Footer />
+    <StickyApply />
+  </div>
+  <script src="../scripts/enhance.js"></script>
 </Base>

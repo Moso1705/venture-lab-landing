@@ -1,0 +1,25 @@
+---
+import { doors } from '../content/site';
+---
+
+<section class="grid-texture border-t border-line">
+  <div class="mx-auto max-w-6xl px-6 py-20 md:py-24">
+    <p class="eyebrow reveal" data-scramble>{doors.eyebrow}</p>
+    <div class="mt-10 grid gap-px bg-line md:grid-cols-3">
+      {
+        doors.items.map((door) => (
+          <a
+            href={door.href}
+            class="group flex flex-col bg-ink px-7 py-8 transition-colors duration-200 hover:bg-ink-raised"
+          >
+            <h3 class="font-display text-2xl text-paper md:text-3xl">{door.title}</h3>
+            <p class="mt-3 grow text-[0.9375rem] leading-relaxed text-fog">{door.body}</p>
+            <span class="mt-6 font-mono text-[0.8125rem] tracking-[0.08em] text-phoenix-bright">
+              {door.cta} <span class="inline-block transition-transform duration-200 group-hover:translate-x-1">→</span>
+            </span>
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</section>

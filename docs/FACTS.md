@@ -44,6 +44,16 @@ Internal-only facts need Michi's sign-off before publishing (flagged below).
   form CTA and no dates until Michi supplies them.
 - Anthropic/OpenAI/AWS credit floor: internal doc. VERIFY naming rights before logos.
 
+## /mba and /mentor pages (from admin role docs, aggregate only)
+
+- One MBA coach per team since Cohort 2 (C1 had up to two), matched on domain and
+  location, weekly cadence, written role brief. ~30 coaches served in Cohort 1.
+- 1-2 mentors per team; we pre-select candidates, the team takes short calls and picks.
+  36 mentors served in Cohort 1. Expectation: about an hour weekly.
+- Coaches gave structured feedback on biweekly challenge submissions.
+- Time commitments are honest estimates, not documented numbers. VERIFY wording.
+- Both roles unpaid, no equity: stated plainly on the pages.
+
 ## Never publish
 
 - The 6.5% venture scout fee and any fee economics.

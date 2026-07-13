@@ -2,10 +2,11 @@
 import { apply, applyFormUrl } from '../content/site';
 ---
 
-<section id="apply" class="grid-texture border-t border-line bg-ink-raised">
-  <div class="mx-auto max-w-6xl px-6 py-24 md:py-32">
+<section id="apply" class="grid-texture relative border-t border-line bg-ink-raised">
+  <div class="glow-warm -right-32 -bottom-40 h-[30rem] w-[30rem] opacity-70" aria-hidden="true"></div>
+  <div class="relative mx-auto max-w-6xl px-6 py-24 md:py-32">
     <div class="reveal text-center">
-      <p class="eyebrow">{apply.eyebrow}</p>
+      <p class="eyebrow" data-scramble>{apply.eyebrow}</p>
       <h2 class="mt-5 font-display text-[clamp(2.75rem,7vw,5.5rem)] leading-[0.98] text-paper">
         {apply.headline.lead} <em class="text-phoenix-bright">{apply.headline.emphasis}</em>
       </h2>
@@ -22,15 +23,22 @@ import { apply, applyFormUrl } from '../content/site';
             class="h-[40rem] w-full border border-line bg-ink"
           />
         ) : (
-          <div class="border border-line bg-ink px-8 py-12 text-center">
-            <p class="font-mono text-[0.8125rem] leading-relaxed tracking-[0.08em] text-fog">
-              {apply.fallback.text}{' '}
+          <div class="border border-line bg-ink px-6 py-8 font-mono text-[0.9375rem] leading-relaxed md:px-10">
+            <p>
+              <span class="font-medium text-phoenix-bright">{apply.fallback.prompt}</span>
+              <span class="text-paper"> {apply.fallback.text}</span>
+            </p>
+            <p class="mt-4">
+              <span class="text-fog-dim">$ </span>
               <a
                 href={apply.fallback.href}
                 class="text-phoenix-bright underline underline-offset-4 hover:text-paper"
               >
                 {apply.fallback.linkLabel}
               </a>
+              <span class="cursor-blink text-paper" aria-hidden="true">
+                ▌
+              </span>
             </p>
           </div>
         )
@@ -38,3 +46,16 @@ import { apply, applyFormUrl } from '../content/site';
     </div>
   </div>
 </section>
+
+<style>
+  @media (prefers-reduced-motion: no-preference) {
+    .cursor-blink {
+      animation: blink 1.1s steps(1) infinite;
+    }
+    @keyframes blink {
+      50% {
+        opacity: 0;
+      }
+    }
+  }
+</style>
