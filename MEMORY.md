@@ -9,7 +9,11 @@ Working notes that do not fit README/CLAUDE.md. Keep short, keep current.
   write copy that reads hackathon-only.
 - lightningcss breaks scroll-driven animations (folds animation-timeline into the
   animation shorthand). We pin cssMinify: 'esbuild' in astro.config.mjs. Do not revert.
-- Review loop lives in docs/reviews/. Next run number: 04.
+- Review loop lives in docs/reviews/. Next run number: 06.
+- Impact layer shipped Jul 13 (run-04 plan): glyph-field hero, grain/glow/ray depth,
+  ruler spine, count-ups, receipts on paper, three-door section, /mba + /mentor pages.
+- Config slots waiting for Michi in src/content: applyFormUrl + demoDayVideoUrl
+  (site.ts), mbaFormUrl + mentorFormUrl (roles.ts). Sections adapt automatically.
 - Live on Vercel: https://venture-lab-landing.vercel.app (project venture-lab-landing,
   personal team, deployed via CLI from disk; npx vercel is authenticated). GitHub repo
   not yet connected to Vercel; until then deploy with `npx vercel deploy --prod --yes`.
