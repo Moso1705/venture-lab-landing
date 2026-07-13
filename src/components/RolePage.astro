@@ -13,6 +13,7 @@ interface RoleData {
   bar: { eyebrow: string; items: string[] };
   proof: { value: number; suffix: string; label: string }[];
   faq: { q: string; a: string }[];
+  fig?: { variant: 'funnel' | 'hours'; caption: string };
   apply: { headline: { lead: string; emphasis: string }; sub: string };
 }
 
@@ -25,7 +26,8 @@ interface Props {
 const { data, formUrl, formTitle } = Astro.props;
 ---
 
-<div class="grain">
+<div class="grain relative">
+  <div class="doc-rail pointer-events-none absolute inset-y-0 left-5 z-0 hidden w-4 xl:block" aria-hidden="true"></div>
   <header class="sticky top-0 z-50 border-b border-line bg-ink/90 backdrop-blur-sm">
     <div class="mx-auto flex max-w-6xl items-center justify-between px-6 py-3.5">
       <a href="/" class="flex items-baseline gap-2">
@@ -67,6 +69,41 @@ const { data, formUrl, formTitle } = Astro.props;
         >
           {data.cta}
         </a>
+
+        {data.fig && (
+          <figure class="absolute right-6 bottom-10 hidden w-80 lg:block" aria-hidden="true">
+            <svg viewBox="0 0 288 96" class="w-full" fill="none">
+              <g stroke="#26221d" stroke-width="1">
+                {Array.from({ length: 9 }, (_, i) => <line x1={i * 36} y1="0" x2={i * 36} y2="80" />)}
+                {Array.from({ length: 3 }, (_, i) => <line x1="0" y1={i * 40} x2="288" y2={i * 40} />)}
+              </g>
+              {data.fig.variant === 'funnel' ? (
+                <>
+                  <rect x="12" y="16" width="180" height="14" fill="#ff5c26" opacity="0.85" />
+                  <rect x="12" y="40" width="46" height="14" fill="#98928a" />
+                  <rect x="12" y="64" width="16" height="14" fill="#f4f3ef" />
+                  <text x="200" y="27" fill="#ff5c26" font-family="DM Mono, monospace" font-size="9">300 outreaches</text>
+                  <text x="66" y="51" fill="#98928a" font-family="DM Mono, monospace" font-size="9">15 interviews</text>
+                  <text x="36" y="75" fill="#f4f3ef" font-family="DM Mono, monospace" font-size="9">1 deck</text>
+                </>
+              ) : (
+                <>
+                  {Array.from({ length: 12 }, (_, i) => (
+                    <rect x={12 + i * 22} y="56" width="10" height="16" fill="#26221d" />
+                  ))}
+                  {Array.from({ length: 12 }, (_, i) => (
+                    <rect x={12 + i * 22} y={52 - (i % 4) * 6} width="10" height="4" fill="#ff5c26" />
+                  ))}
+                  <text x="12" y="30" fill="#98928a" font-family="DM Mono, monospace" font-size="9">1h that moves the week</text>
+                  <text x="222" y="86" fill="#98928a" font-family="DM Mono, monospace" font-size="9">wk12</text>
+                </>
+              )}
+            </svg>
+            <figcaption class="mt-3 font-mono text-[0.6875rem] tracking-[0.08em] text-fog-dim">
+              <span class="text-phoenix-bright">{data.fig.caption.split(' — ')[0]}</span> — {data.fig.caption.split(' — ')[1]}
+            </figcaption>
+          </figure>
+        )}
       </div>
     </section>
 

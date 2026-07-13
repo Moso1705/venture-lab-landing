@@ -21,6 +21,7 @@ export const mba = {
   headline: { lead: 'Coach a startup before', emphasis: 'the world knows it exists.' },
   sub: 'One technical team from the world’s biggest AI hackathon. Twelve weeks from prototype to Investor Day. You are their business brain: strategy, go-to-market, and the discipline to hit the gates.',
   telemetry: ['/ the role', '1 team · 12 weeks', 'cadence: weekly', 'format: remote', 'cohort 3 · dates tba'],
+  fig: { variant: 'funnel', caption: 'fig. 04 — the gate, plotted' },
   cta: 'Apply as a coach',
   why: {
     eyebrow: '/ why coaches do it',
@@ -83,6 +84,7 @@ export const mentor = {
   headline: { lead: 'An hour a week with a team', emphasis: 'moving at hackathon speed.' },
   sub: 'You have shipped, scaled, or sold. Give one hour a week to a technical team racing from prototype to Investor Day, and get the earliest look at AI startups before any investor sees them.',
   telemetry: ['/ the role', '1-2 teams · 12 weeks', 'cadence: ~1h weekly', 'format: remote', 'matching: mutual opt-in'],
+  fig: { variant: 'hours', caption: 'fig. 05 — your hour, every week' },
   cta: 'Apply as a mentor',
   why: {
     eyebrow: '/ why operators do it',

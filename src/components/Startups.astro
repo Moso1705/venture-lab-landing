@@ -27,7 +27,7 @@ import SectionHead from './SectionHead.astro';
                 target={company.url ? '_blank' : undefined}
                 rel={company.url ? 'noopener' : undefined}
               >
-                <h3 class:list={[/\d/.test(company.name) ? 'font-mono text-xl' : 'font-display text-2xl', 'text-paper']}>
+                <h3 class="font-display text-2xl text-paper">
                   {company.name}
                   {company.url && (
                     <span class="ml-1 inline-block font-mono text-sm text-phoenix-bright transition-transform duration-150 group-hover:-translate-y-0.5 group-hover:translate-x-0.5">

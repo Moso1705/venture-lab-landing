@@ -121,6 +121,18 @@ body {
   color: var(--color-phoenix-bright);
 }
 
+/* The document-long measurement rail: full-height tick column, far left. */
+@utility doc-rail {
+  background-image: repeating-linear-gradient(
+    to bottom,
+    color-mix(in srgb, var(--color-paper) 16%, transparent) 0 1px,
+    transparent 1px 12px
+  );
+  background-size: 10px 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
 /* Fine graph-paper texture for dark sections */
 @utility grid-texture {
   background-image:

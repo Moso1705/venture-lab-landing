@@ -21,7 +21,7 @@ import { proof } from '../content/site';
             <dd class="font-display text-5xl text-paper tabular-nums md:text-6xl" data-countup={stat.value} data-suffix={stat.suffix}>
               {stat.value.toLocaleString('en-US')}{stat.suffix}
             </dd>
-            <div class="stat-ticks mt-3 h-2 w-24" />
+            <div class="stat-ticks mt-3 h-2" style={`width: ${24 + Math.round(Math.log10(Math.max(stat.value, 2)) * 22)}px`} />
             <dt class="mt-2 max-w-40 font-mono text-[0.75rem] leading-snug text-fog-dim">{stat.label}</dt>
           </div>
         ))

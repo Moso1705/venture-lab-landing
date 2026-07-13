@@ -40,7 +40,7 @@ import Ruler from './Ruler.astro';
     <!-- fig. 01, actually drawn: the jump from a 24h prototype to a 12wk company,
          plotted on the ruler grid. Static SVG so it survives no-JS and reduced motion. -->
     <figure
-      class="hero-enter absolute right-6 bottom-40 hidden w-72 lg:block"
+      class="hero-enter absolute right-6 bottom-16 hidden w-96 lg:block"
       style="animation-delay: 560ms"
       aria-hidden="true"
     >
@@ -53,6 +53,7 @@ import Ruler from './Ruler.astro';
         <path d="M102 74 L108 40" stroke="#ff5c26" stroke-width="1.5" stroke-dasharray="3 3" />
         <path d="M108 40 L150 34 L168 24 L204 20 L240 10 L288 6" stroke="#ff5c26" stroke-width="1.5" />
         <circle cx="102" cy="74" r="3" fill="#98928a" />
+        <text x="114" y="62" fill="#98928a" font-family="DM Mono, monospace" font-size="9">← the lab starts here</text>
         <circle cx="288" cy="6" r="3.5" fill="#ff5c26" />
         <text x="30" y="116" fill="#98928a" font-family="DM Mono, monospace" font-size="9">h24 · prototype</text>
         <text x="196" y="116" fill="#ff5c26" font-family="DM Mono, monospace" font-size="9">wk12 · company</text>
