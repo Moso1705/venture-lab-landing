@@ -9,7 +9,12 @@ Working notes that do not fit README/CLAUDE.md. Keep short, keep current.
   write copy that reads hackathon-only.
 - lightningcss breaks scroll-driven animations (folds animation-timeline into the
   animation shorthand). We pin cssMinify: 'esbuild' in astro.config.mjs. Do not revert.
-- Review loop lives in docs/reviews/. Next run number: 06.
+- Review loop lives in docs/reviews/. Next run number: 07 (judge rounds: 7.2 -> 7.9
+  [stale-cache artifact] -> round 3 pending). Judge agents MUST pass maxAge: 0 to
+  Firecrawl and verify freshness markers, or they review cached snapshots.
+- Design direction is binding in .claude/skills/vl-design ("the measured page").
+  Judges' do-not-touch list: measurement system, copywriting voice, hero typographic
+  move, 24h intro.
 - Impact layer shipped Jul 13 (run-04 plan): glyph-field hero, grain/glow/ray depth,
   ruler spine, count-ups, receipts on paper, three-door section, /mba + /mentor pages.
 - Config slots waiting for Michi in src/content: applyFormUrl + demoDayVideoUrl
