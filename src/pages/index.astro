@@ -1,5 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
+import Intro from '../components/Intro.astro';
 import Nav from '../components/Nav.astro';
 import Hero from '../components/Hero.astro';
 import Pipeline from '../components/Pipeline.astro';
@@ -33,6 +34,7 @@ const faqSchema = {
 <Base>
   <script slot="head" type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
   <div class="grain">
+    <Intro />
     <Nav />
     <RulerSpine />
     <main>

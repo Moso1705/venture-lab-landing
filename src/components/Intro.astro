@@ -1,0 +1,100 @@
+---
+/**
+ * The opening moment: 48 hours compressed into one second. A stopwatch races
+ * h00 to h48 while a tick strip fills, then the curtain lifts into the hero.
+ * Plays once per session, any input skips it, reduced motion never sees it,
+ * and without JS the overlay never appears at all.
+ */
+---
+
+<div id="intro" class="intro-overlay" hidden aria-hidden="true">
+  <div class="w-[min(28rem,80vw)]">
+    <p class="intro-counter font-mono text-[clamp(4.5rem,14vw,8rem)] font-medium tracking-[-0.02em] text-paper tabular-nums">
+      h00
+    </p>
+    <div class="intro-track relative mt-6 h-3">
+      <div class="intro-fill absolute inset-y-0 left-0 w-full origin-left bg-phoenix"></div>
+    </div>
+    <div class="mt-4 flex items-baseline justify-between font-mono text-[0.6875rem] tracking-[0.08em] text-fog-dim">
+      <span>the hackathon</span>
+      <span class="text-phoenix-bright">14 cities · one weekend</span>
+    </div>
+  </div>
+</div>
+
+<style>
+  .intro-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 70;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-ink);
+    transition: transform 0.65s var(--ease-out-quart);
+  }
+  .intro-overlay.exit {
+    transform: translateY(-100%);
+  }
+  .intro-track {
+    background-image: repeating-linear-gradient(
+      to right,
+      color-mix(in srgb, var(--color-paper) 26%, transparent) 0 1px,
+      transparent 1px 9px
+    );
+  }
+  .intro-fill {
+    transform: scaleX(var(--p, 0));
+  }
+  /* Hero choreography waits behind the curtain and plays on reveal. */
+  :global(html.intro-hold .hero-line-inner),
+  :global(html.intro-hold .hero-enter) {
+    animation-play-state: paused;
+  }
+</style>
+
+<script>
+  const overlay = document.getElementById('intro');
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const seen = sessionStorage.getItem('vl-intro') === '1';
+
+  if (overlay && !reduced && !seen) {
+    const html = document.documentElement;
+    const counter = overlay.querySelector('.intro-counter') as HTMLElement;
+    const fill = overlay.querySelector('.intro-fill') as HTMLElement;
+    html.classList.add('intro-hold');
+    overlay.hidden = false;
+
+    let finished = false;
+    const finish = () => {
+      if (finished) return;
+      finished = true;
+      sessionStorage.setItem('vl-intro', '1');
+      overlay.classList.add('exit');
+      html.classList.remove('intro-hold');
+      overlay.addEventListener('transitionend', () => overlay.remove(), { once: true });
+      // safety: remove even if transitionend never fires
+      setTimeout(() => overlay.isConnected && overlay.remove(), 900);
+    };
+
+    const DURATION = 1050;
+    const start = performance.now();
+    const tick = (now: number) => {
+      if (finished) return;
+      const t = Math.min((now - start) / DURATION, 1);
+      const eased = t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+      const hours = Math.round(48 * eased);
+      counter.textContent = `h${String(hours).padStart(2, '0')}`;
+      fill.style.setProperty('--p', String(eased));
+      if (t < 1) requestAnimationFrame(tick);
+      else setTimeout(finish, 220);
+    };
+    requestAnimationFrame(tick);
+
+    ['pointerdown', 'keydown', 'wheel', 'touchstart'].forEach((event) =>
+      window.addEventListener(event, finish, { once: true, passive: true })
+    );
+  } else if (overlay) {
+    overlay.remove();
+  }
+</script>

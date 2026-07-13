@@ -44,7 +44,6 @@ const { data, formUrl, formTitle } = Astro.props;
 
   <main>
     <section class="grid-texture relative overflow-hidden">
-      <div class="glow-warm -top-40 -left-40 h-[30rem] w-[30rem]" aria-hidden="true"></div>
       <div class="relative mx-auto max-w-6xl px-6 pt-20 pb-20 md:pt-28">
         <aside class="absolute top-24 right-6 hidden border border-line bg-ink-raised/80 px-5 py-4 lg:block" aria-label="Role at a glance">
           {
@@ -55,7 +54,7 @@ const { data, formUrl, formTitle } = Astro.props;
             ))
           }
         </aside>
-        <p class="eyebrow" data-scramble>{data.eyebrow}</p>
+        <p class="eyebrow">{data.eyebrow}</p>
         <h1 class="mt-6 max-w-4xl font-display text-[clamp(2.5rem,7vw,5.5rem)] leading-[0.98] tracking-[-0.01em] text-paper">
           {data.headline.lead}<br />
           <em class="text-phoenix-bright">{data.headline.emphasis}</em>
@@ -72,7 +71,12 @@ const { data, formUrl, formTitle } = Astro.props;
 
     <section class="border-t border-line">
       <div class="mx-auto max-w-6xl px-6 py-20 md:py-28">
-        <p class="eyebrow reveal" data-scramble>{data.why.eyebrow}</p>
+        <div class="reveal border-t border-line pt-3">
+          <p class="font-mono text-[0.8125rem] tracking-[0.08em]">
+            <span class="font-medium text-phoenix-bright">01</span>
+            <span class="ml-3 lowercase text-fog-dim">{data.why.eyebrow.replace(/^\/\s*/, '')}</span>
+          </p>
+        </div>
         <div class="mt-10 grid gap-px bg-line md:grid-cols-3">
           {
             data.why.items.map((item) => (
@@ -88,7 +92,10 @@ const { data, formUrl, formTitle } = Astro.props;
 
     <section class="bg-paper text-ink">
       <div class="mx-auto max-w-6xl px-6 py-20 md:py-28">
-        <p class="eyebrow !text-phoenix reveal" data-scramble>{data.work.eyebrow}</p>
+        <p class="reveal font-mono text-[0.8125rem] tracking-[0.08em]">
+          <span class="font-medium text-phoenix">02</span>
+          <span class="ml-3 lowercase text-soot">{data.work.eyebrow.replace(/^\/\s*/, '')}</span>
+        </p>
         <ol class="mt-12 border-t border-paper-line">
           {
             data.work.items.map((item, i) => (
@@ -122,7 +129,12 @@ const { data, formUrl, formTitle } = Astro.props;
 
     <section class="border-t border-line">
       <div class="mx-auto max-w-6xl px-6 py-20 md:py-28">
-        <p class="eyebrow reveal" data-scramble>{data.bar.eyebrow}</p>
+        <div class="reveal border-t border-line pt-3">
+          <p class="font-mono text-[0.8125rem] tracking-[0.08em]">
+            <span class="font-medium text-phoenix-bright">03</span>
+            <span class="ml-3 lowercase text-fog-dim">{data.bar.eyebrow.replace(/^\/\s*/, '')}</span>
+          </p>
+        </div>
         <ul class="mt-8 max-w-2xl space-y-4">
           {
             data.bar.items.map((item) => (
@@ -153,10 +165,12 @@ const { data, formUrl, formTitle } = Astro.props;
     </section>
 
     <section id="apply" class="grid-texture relative overflow-hidden border-t border-line bg-ink-raised">
-      <div class="glow-warm -right-32 -bottom-40 h-[26rem] w-[26rem] opacity-70" aria-hidden="true"></div>
       <div class="relative mx-auto max-w-6xl px-6 py-20 md:py-28">
         <div class="reveal text-center">
-          <p class="eyebrow" data-scramble>/ apply</p>
+          <p class="font-mono text-[0.8125rem] tracking-[0.08em]">
+            <span class="font-medium text-phoenix-bright">04</span>
+            <span class="ml-3 lowercase text-fog-dim">apply</span>
+          </p>
           <h2 class="mt-5 font-display text-[clamp(2.5rem,6vw,4.5rem)] leading-[0.98] text-paper">
             {data.apply.headline.lead} <em class="text-phoenix-bright">{data.apply.headline.emphasis}</em>
           </h2>

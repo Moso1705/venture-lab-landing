@@ -1,10 +1,11 @@
 ---
 import { doors } from '../content/site';
+import SectionHead from './SectionHead.astro';
 ---
 
-<section class="grid-texture border-t border-line">
-  <div class="mx-auto max-w-6xl px-6 py-20 md:py-24">
-    <p class="eyebrow reveal" data-scramble>{doors.eyebrow}</p>
+<section class="grid-texture">
+  <div class="mx-auto max-w-6xl px-6 py-16 md:py-20">
+    <SectionHead index="10" label={doors.eyebrow.replace(/^\/\s*/, '')} annotation="pick yours" />
     <div class="mt-10 grid gap-px bg-line md:grid-cols-3">
       {
         doors.items.map((door) => (

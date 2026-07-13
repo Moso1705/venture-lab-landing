@@ -1,13 +1,15 @@
 ---
 import { partners } from '../content/site';
+import SectionHead from './SectionHead.astro';
 ---
 
-<section class="border-t border-line">
-  <div class="mx-auto max-w-6xl px-6 py-20 md:py-24">
-    <p class="eyebrow reveal" data-scramble>{partners.eyebrow}</p>
-    <h2 class="reveal mt-5 max-w-2xl font-display text-3xl leading-tight text-paper md:text-4xl">
-      {partners.headline}
-    </h2>
+<section>
+  <div class="mx-auto max-w-6xl px-6 py-16 md:py-20">
+    <SectionHead index="08" label={partners.eyebrow.replace(/^\/\s*/, '')} annotation="named, not implied">
+      <h2 class="mt-10 max-w-2xl font-display text-3xl leading-tight text-paper md:text-4xl">
+        {partners.headline}
+      </h2>
+    </SectionHead>
 
     <div class="reveal mt-12 flex flex-wrap gap-x-10 gap-y-5">
       {

@@ -1,17 +1,17 @@
 ---
 import { offer } from '../content/site';
+import SectionHead from './SectionHead.astro';
 ---
 
-<section class="border-t border-line">
-  <div class="mx-auto max-w-6xl px-6 py-24 md:py-32">
-    <div class="reveal">
-      <p class="eyebrow" data-scramble>{offer.eyebrow}</p>
-      <h2 class="mt-5 max-w-3xl font-display text-[clamp(2.25rem,5vw,4rem)] leading-[1.02] text-paper">
-        {offer.headline.lead} <em>{offer.headline.emphasis}</em>
+<section>
+  <div class="mx-auto max-w-6xl px-6 py-20 md:py-28">
+    <SectionHead index="02" label={offer.eyebrow.replace(/^\/\s*/, '')} annotation="three layers of support">
+      <h2 class="mt-10 max-w-2xl font-display text-3xl leading-tight text-paper md:text-4xl">
+        {offer.headline.lead} {offer.headline.emphasis}
       </h2>
-    </div>
+    </SectionHead>
 
-    <div class="mt-16">
+    <div class="mt-14">
       {
         offer.pillars.map((pillar) => (
           <div class="reveal grid gap-4 border-t border-line py-10 last:border-b md:grid-cols-[1fr_1.2fr] md:gap-12">

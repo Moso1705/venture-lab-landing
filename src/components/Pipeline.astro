@@ -1,15 +1,15 @@
 ---
 import { pipeline } from '../content/site';
+import SectionHead from './SectionHead.astro';
 ---
 
 <section class="border-t border-line">
-  <div class="mx-auto max-w-6xl px-6 py-24 md:py-32">
-    <div class="reveal">
-      <p class="eyebrow" data-scramble>{pipeline.eyebrow}</p>
-      <h2 class="mt-5 max-w-3xl font-display text-[clamp(2.25rem,5vw,4rem)] leading-[1.02] text-paper">
-        {pipeline.headline.lead} <em>{pipeline.headline.emphasis}</em>
+  <div class="mx-auto max-w-6xl px-6 py-28 md:py-36">
+    <SectionHead index="01" label={pipeline.eyebrow.replace(/^\/\s*/, '')} mode="statement">
+      <h2 class="mt-6 max-w-3xl font-display text-[clamp(2.5rem,5.5vw,4.5rem)] leading-[1.0] tracking-[-0.01em] text-paper">
+        {pipeline.headline.lead} {pipeline.headline.emphasis}
       </h2>
-    </div>
+    </SectionHead>
 
     <ol class="mt-16 grid gap-10 md:grid-cols-4 md:gap-6">
       {
