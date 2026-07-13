@@ -54,6 +54,19 @@ Internal-only facts need Michi's sign-off before publishing (flagged below).
 - Time commitments are honest estimates, not documented numbers. VERIFY wording.
 - Both roles unpaid, no equity: stated plainly on the pages.
 
+## Startup traction lines + time system (added run 06)
+
+- Traction lines on the startup index come from the Cohort 1 Investor Day decks and
+  overview (pitched publicly to 19 firms): FandS 3 PoCs, Anka 4 US hospital pilot
+  talks, Eliot BASF champion, JanNiti 6 governments, Erudition HFT discovery,
+  Upwind first revenue, Twin01 5 beta customers, a11y live product. VERIFY each with
+  the team before the domain goes live; teams' numbers may have moved.
+- Time system unified on 24 hours (hack-nation.ai says "24 hours, 14 cities"): hero
+  headline, intro counter, ruler labels all use h24 now. The old "48 hours" framing
+  contradicted the parent site.
+- /mba "3 to 4 focused hours per week" and mentor post-program FAQ ("between you and
+  the team") are honest estimates/policies written by us. VERIFY with Michi.
+
 ## Never publish
 
 - The 6.5% venture scout fee and any fee economics.

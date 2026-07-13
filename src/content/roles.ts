@@ -9,6 +9,10 @@
 export const mbaFormUrl = '';
 export const mentorFormUrl = '';
 
+// Shown under the proof numbers on both pages: the room, named.
+export const theRoom =
+  'in the room at the last Investor Day: a16z · Antler · Creandum · Cherry Ventures · Entrepreneur First · EWOR + 13 more firms';
+
 export const mba = {
   title: 'Coach a team · HackNation Venture Lab',
   description:
@@ -55,12 +59,12 @@ export const mba = {
   },
   proof: [
     { value: 8, suffix: '', label: 'top MBA programs represented' },
-    { value: 30, suffix: '', label: 'coaches served in Cohort 1' },
+    { value: 30, suffix: '', label: 'coaches worked with Cohort 1 teams' },
     { value: 59, suffix: '', label: 'startups coached across two cohorts' },
     { value: 19, suffix: '', label: 'firms took the meeting at Investor Day' },
   ],
   faq: [
-    { q: 'How much time does it take?', a: 'Plan for a few focused hours per week: the team call, challenge feedback, and pitch prep peaks before Demo Day and Investor Day.' },
+    { q: 'How much time does it take?', a: 'Plan for 3 to 4 focused hours per week: the team call, challenge feedback, and pitch prep peaks before Demo Day (mid-program) and Investor Day (week 12). Cohort 3 selection starts after July 31.' },
     { q: 'Is it remote?', a: 'Yes. Matching considers your time zone, and everything runs remotely. Local peer groups meet in person in cities like Boston, SF, London, Munich, and Zurich.' },
     { q: 'How does matching work?', a: 'One coach per team, matched on domain and location. You get a written brief on the role, the cadence, and what good looks like.' },
     { q: 'What do I get out of it?', a: 'A real venture track record, the investor room at the end, and a network of operators, mentors, and founders who build fast. No pay, no equity; nobody does this for the money.' },
@@ -78,7 +82,7 @@ export const mentor = {
   eyebrow: '/ venture lab · mentors',
   headline: { lead: 'An hour a week with a team', emphasis: 'moving at hackathon speed.' },
   sub: 'You have shipped, scaled, or sold. Give one hour a week to a technical team racing from prototype to Investor Day, and get the earliest look at AI startups before any investor sees them.',
-  telemetry: ['/ the role', '1-2 teams · 12 weeks', 'cadence: ~1h weekly', 'format: remote', 'teams pick their mentors'],
+  telemetry: ['/ the role', '1-2 teams · 12 weeks', 'cadence: ~1h weekly', 'format: remote', 'matching: mutual opt-in'],
   cta: 'Apply as a mentor',
   why: {
     eyebrow: '/ why operators do it',
@@ -100,7 +104,7 @@ export const mentor = {
   work: {
     eyebrow: '/ how it works',
     items: [
-      { title: 'Teams choose you', body: 'We pre-select mentor candidates per team by domain and location. The team takes short calls and picks. No blind assignments.' },
+      { title: 'Mutual opt-in', body: 'We pre-select mentor candidates per team by domain and location. You meet for a short call and both sides opt in. No blind assignments, in either direction.' },
       { title: 'One weekly hour', body: 'A regular slot with your team: unblock the hard decision of the week, then get out of their way.' },
       { title: 'Moments that matter', body: 'Deck teardown in week 7, pitch rehearsals before Demo Day and Investor Day. Show up where your judgment compounds.' },
       { title: 'Twelve weeks, then done', body: 'The commitment ends at Investor Day. What you keep: the relationship with a funded team you shaped early.' },
@@ -116,7 +120,7 @@ export const mentor = {
     ],
   },
   proof: [
-    { value: 36, suffix: '', label: 'mentors served in Cohort 1' },
+    { value: 36, suffix: '', label: 'mentors worked with Cohort 1 teams' },
     { value: 59, suffix: '', label: 'startups mentored across two cohorts' },
     { value: 12, suffix: '', label: 'weeks from prototype to Investor Day' },
     { value: 19, suffix: '', label: 'firms took the meeting at Investor Day' },
@@ -125,6 +129,7 @@ export const mentor = {
     { q: 'How much time is it really?', a: 'About an hour a week with your team, plus optional pitch rehearsals before the two big days. Peaks are predictable and scheduled weeks ahead.' },
     { q: 'Is it remote?', a: 'Yes, fully. Matching considers your time zone and domain first.' },
     { q: 'Do I get equity or pay?', a: 'No. The program is free for teams and unpaid for mentors. What mentors take away: first-look relationships with fast teams and the operator network around the Lab.' },
+    { q: 'Can I invest in or advise my team afterward?', a: 'After Investor Day the program steps back. What you and your team agree on from there is between you.' },
     { q: 'What kind of teams would I get?', a: 'Technical founders from the Global AI Hackathon plus scouted outside builders: working prototypes, real user pain, and a hard gate to pass before they may pitch.' },
   ],
   apply: {

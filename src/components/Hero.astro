@@ -37,11 +37,30 @@ import Ruler from './Ruler.astro';
         ></span
       >
     </h1>
-    <div class="hero-enter relative mt-4 hidden max-w-5xl md:block" style="animation-delay: 420ms" aria-hidden="true">
-      <p class="absolute right-0 font-mono text-[0.6875rem] tracking-[0.08em] text-fog-dim">
-        <span class="text-phoenix-bright">fig. 01</span> — the jump from prototype to company
-      </p>
-    </div>
+    <!-- fig. 01, actually drawn: the jump from a 24h prototype to a 12wk company,
+         plotted on the ruler grid. Static SVG so it survives no-JS and reduced motion. -->
+    <figure
+      class="hero-enter absolute right-6 bottom-40 hidden w-72 lg:block"
+      style="animation-delay: 560ms"
+      aria-hidden="true"
+    >
+      <svg viewBox="0 0 288 120" class="w-full" fill="none">
+        <g stroke="#26221d" stroke-width="1">
+          {Array.from({ length: 9 }, (_, i) => <line x1={i * 36} y1="0" x2={i * 36} y2="104" />)}
+          {Array.from({ length: 4 }, (_, i) => <line x1="0" y1={i * 34.7} x2="288" y2={i * 34.7} />)}
+        </g>
+        <path d="M0 100 L48 92 L54 96 L72 84 L84 88 L96 70 L102 74" stroke="#98928a" stroke-width="1.5" />
+        <path d="M102 74 L108 40" stroke="#ff5c26" stroke-width="1.5" stroke-dasharray="3 3" />
+        <path d="M108 40 L150 34 L168 24 L204 20 L240 10 L288 6" stroke="#ff5c26" stroke-width="1.5" />
+        <circle cx="102" cy="74" r="3" fill="#98928a" />
+        <circle cx="288" cy="6" r="3.5" fill="#ff5c26" />
+        <text x="30" y="116" fill="#98928a" font-family="DM Mono, monospace" font-size="9">h24 · prototype</text>
+        <text x="196" y="116" fill="#ff5c26" font-family="DM Mono, monospace" font-size="9">wk12 · company</text>
+      </svg>
+      <figcaption class="mt-3 font-mono text-[0.6875rem] tracking-[0.08em] text-fog-dim">
+        <span class="text-phoenix-bright">fig. 01</span> — the jump, plotted
+      </figcaption>
+    </figure>
     <p class="hero-enter mt-10 max-w-xl text-lg leading-relaxed text-fog" style="animation-delay: 280ms">
       {hero.sub}
     </p>

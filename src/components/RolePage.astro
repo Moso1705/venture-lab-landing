@@ -1,5 +1,6 @@
 ---
 import Footer from './Footer.astro';
+import { theRoom } from '../content/roles';
 
 interface RoleData {
   eyebrow: string;
@@ -124,6 +125,9 @@ const { data, formUrl, formTitle } = Astro.props;
             ))
           }
         </dl>
+        <p class="reveal mt-10 border-t border-line pt-4 font-mono text-[0.75rem] leading-relaxed tracking-[0.04em] text-fog">
+          {theRoom}
+        </p>
       </div>
     </section>
 

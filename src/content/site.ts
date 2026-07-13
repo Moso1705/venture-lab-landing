@@ -28,8 +28,8 @@ export const site = {
 };
 
 export const announcement = formIsLive
-  ? { label: 'cohort 3', text: 'Applications are open', cta: 'Apply now', href: '#apply' }
-  : { label: 'cohort 3', text: 'Cohort 2 pitches investors July 31. Cohort 3 is next', cta: 'Get in line', href: '#apply' };
+  ? { label: 'cohort 3', text: 'applications are open', cta: 'Apply now', href: '#apply' }
+  : { label: 'live', text: 'Cohort 2 pitches 19 firms on July 31 · Cohort 3 forms next', cta: 'Get in line', href: '#apply' };
 
 export const nav = {
   links: [
@@ -44,7 +44,7 @@ export const nav = {
 export const hero = {
   eyebrow: '/ hacknation venture lab',
   // Serif display; the *company* segment renders italic.
-  headline: { lead: 'You built it in 48 hours.', emphasis: 'Now build the company.' },
+  headline: { lead: 'You built it in 24 hours.', emphasis: 'Now build the company.' },
   sub: 'Twelve weeks, senior mentors, and a room full of investors to turn your prototype into a company. Most teams earn their seat at the world’s biggest AI hackathon. The rest apply from outside and clear the same bar. Free to join, no equity taken.',
   primaryCta: { label: 'Apply for Cohort 3', href: '#apply' },
   secondaryCta: { label: 'See the program', href: '#program' },
@@ -149,20 +149,16 @@ export const film = {
 export const startups = {
   eyebrow: '/ built in the lab',
   headline: { lead: 'Real teams,', emphasis: 'real companies.' },
-  intro: 'A selection from the first two cohorts.',
+  intro: 'A selection. Traction as pitched at Investor Day.',
   companies: [
-    { name: 'FandS AI', tag: 'Commerce', line: 'Faster and more precise delivery promises for eCommerce.' },
-    { name: 'Anka', tag: 'Healthcare', line: 'AI patient companion that adapts healthcare to every patient.' },
-    { name: 'Eliot', tag: 'Enterprise', line: 'Semantic middleware between AI agents and enterprise systems.' },
-    { name: 'JanNiti', tag: 'GovTech', line: 'Predicts the socioeconomic impact of government decisions.' },
-    { name: 'Erudition Systems', tag: 'FinTech', line: 'Sub-100 microsecond data infrastructure for trading firms.' },
-    { name: 'Aucta Labs', tag: 'Field Ops', line: 'A senior HVAC expert in every technician’s pocket.' },
-    { name: 'AgentDock', tag: 'Enterprise', line: 'The job market for AI agents.' },
-    { name: 'Cadio', tag: 'Manufacturing', line: 'Natural-language CAD assistant for hardware engineering.' },
-    { name: 'Twin01', tag: 'Construction', line: 'AI tender analysis and Go/No-Go decisions for construction firms.' },
-    { name: 'a11y', tag: 'GovTech', line: 'Automated website accessibility for the public sector.', url: 'https://a11ygov.com' },
-    { name: 'Upwind', tag: 'Marketing', line: 'On-brand marketing campaigns at the speed of software.' },
-    { name: 'CirqetAI', tag: 'Hardware', line: 'LLM agents for hardware component sourcing.' },
+    { name: 'FandS AI', tag: 'Commerce', line: 'Precise delivery promises for eCommerce.', traction: '3 enterprise PoCs' },
+    { name: 'Anka', tag: 'Healthcare', line: 'AI patient companion for every patient.', traction: '4 US hospital pilots in talks' },
+    { name: 'Eliot', tag: 'Enterprise', line: 'Semantic middleware for AI agents.', traction: 'champion user at BASF' },
+    { name: 'JanNiti', tag: 'GovTech', line: 'Predicts the impact of government decisions.', traction: '6 governments interested' },
+    { name: 'Erudition Systems', tag: 'FinTech', line: 'Sub-100 microsecond trading data infra.', traction: 'in discovery with top HFT firms' },
+    { name: 'Upwind', tag: 'Marketing', line: 'On-brand campaigns at software speed.', traction: 'first revenue signed' },
+    { name: 'Twin01', tag: 'Construction', line: 'AI tender analysis for construction firms.', traction: '5 beta customers' },
+    { name: 'a11y', tag: 'GovTech', line: 'Automated accessibility for the public sector.', traction: 'live product', url: 'https://a11ygov.com' },
   ],
 };
 
@@ -175,14 +171,14 @@ export const successes = {
     body: 'David de Gruijl built Anto at a HackNation hackathon. The same idea carried him through Y Combinator F25 and into a seed round. That is the pipeline this Lab industrializes.',
   },
   statCard: {
-    value: '16 → 19',
-    label: 'At the last Investor Day, 16 teams pitched live in front of 19 venture firms.',
+    value: '16',
+    label: 'teams pitched live in front of 19 venture firms at the last Investor Day.',
   },
   quotes: [
     {
       text: 'Coming from a purely academic background, the Venture Track challenged me to think like a founder. Between the mentorship and pitch sessions, I gained new skills and thought about technology in completely new ways.',
       name: 'Artem Arzyn',
-      role: 'Cohort 1 founder',
+      role: 'Cohort 1 founder (the Lab ran as Venture Track then)',
     },
     // Michi: add approved alumni quotes here as they come in (alumni outreach pending).
     // { text: '...', name: '...', role: 'Cohort 1 founder' },

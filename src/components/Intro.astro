@@ -1,6 +1,6 @@
 ---
 /**
- * The opening moment: 48 hours compressed into one second. A stopwatch races
+ * The opening moment: 24 hours compressed into one second. A stopwatch races
  * h00 to h48 while a tick strip fills, then the curtain lifts into the hero.
  * Plays once per session, any input skips it, reduced motion never sees it,
  * and without JS the overlay never appears at all.
@@ -83,7 +83,7 @@
       if (finished) return;
       const t = Math.min((now - start) / DURATION, 1);
       const eased = t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
-      const hours = Math.round(48 * eased);
+      const hours = Math.round(24 * eased);
       counter.textContent = `h${String(hours).padStart(2, '0')}`;
       fill.style.setProperty('--p', String(eased));
       if (t < 1) requestAnimationFrame(tick);
