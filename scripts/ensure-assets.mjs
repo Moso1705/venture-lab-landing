@@ -56,10 +56,20 @@ async function ensureFonts() {
 
 async function ensureOgImage() {
   if (existsSync(ogPath)) return;
-  if (!existsSync(ogB64Path)) throw new Error('public/og.png and scripts/og.png.b64 are both missing.');
-  const b64 = (await readFile(ogB64Path, 'utf8')).replace(/\s/g, '');
-  await writeFile(ogPath, Buffer.from(b64, 'base64'));
-  console.log('restored og.png');
+  if (existsSync(ogB64Path)) {
+    const b64 = (await readFile(ogB64Path, 'utf8')).replace(/\s/g, '');
+    await writeFile(ogPath, Buffer.from(b64, 'base64'));
+    console.log('restored og.png');
+    return;
+  }
+  // Source-only deploys cannot carry the b64 sidecar either; fall back to the
+  // copy the live site already serves.
+  const res = await fetch('https://venture-lab-landing.vercel.app/og.png');
+  if (!res.ok) {
+    throw new Error(`og.png missing and live fetch failed (${res.status}). Restore public/og.png or scripts/og.png.b64.`);
+  }
+  await writeFile(ogPath, Buffer.from(await res.arrayBuffer()));
+  console.log('restored og.png from the live site');
 }
 
 await ensureFonts();
