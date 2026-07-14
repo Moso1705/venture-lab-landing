@@ -1,4 +1,9 @@
 ---
+/**
+ * Shared template for the /mba and /mentor recruiting pages, in the same
+ * white-first system as the main page: mono markers, light display type,
+ * hairlines, one accent.
+ */
 import Footer from './Footer.astro';
 import { theRoom } from '../content/roles';
 import GetInLine from './GetInLine.astro';
@@ -28,213 +33,190 @@ interface Props {
 const { data, formUrl, formTitle, role } = Astro.props;
 ---
 
-<div class="grain relative">
-  <div class="doc-rail pointer-events-none absolute inset-y-0 left-5 z-0 hidden w-4 xl:block" aria-hidden="true"></div>
-  <header class="sticky top-0 z-50 border-b border-line bg-ink/90 backdrop-blur-sm">
-    <div class="mx-auto flex max-w-6xl items-center justify-between px-6 py-3.5">
-      <a href="/" class="flex items-baseline gap-2">
-        <span class="font-sans text-[0.9375rem] font-bold tracking-tight text-paper">HACKNATION</span>
-        <span class="font-mono text-[0.8125rem] text-phoenix-bright">/ venture lab</span>
+<header class="sticky top-0 z-50 border-b border-line bg-paper/92 backdrop-blur-sm">
+  <div class="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
+    <a href="/" class="flex items-center gap-4">
+      <span class="font-mono text-[0.9375rem] font-medium tracking-[0.08em]">VL</span>
+      <span class="h-6 w-px bg-line" aria-hidden="true"></span>
+      <span class="flex flex-col gap-0.5 font-mono uppercase">
+        <span class="text-[0.625rem] tracking-[0.24em] text-faint">powered by</span>
+        <span class="text-[0.8125rem] tracking-[0.18em]">HACK-NATION</span>
+      </span>
+    </a>
+    <nav class="flex items-center gap-7" aria-label="Page">
+      <a href="/" class="hidden font-mono text-[0.75rem] uppercase tracking-[0.18em] text-gray transition-colors hover:text-ink md:block">
+        the program
       </a>
-      <nav class="flex items-center gap-7" aria-label="Page">
-        <a href="/" class="hidden font-mono text-[0.8125rem] lowercase tracking-[0.08em] text-fog transition-colors hover:text-paper md:block">
-          the program
-        </a>
-        <a href="#apply" class="bg-paper px-5 py-2 font-sans text-sm font-semibold text-ink transition-colors hover:bg-phoenix-bright">
-          Apply
-        </a>
-      </nav>
-    </div>
-  </header>
+      <a href="#apply" class="bg-ink px-6 py-2.5 font-mono text-[0.75rem] uppercase tracking-[0.18em] text-paper transition-colors hover:bg-phoenix">
+        Apply
+      </a>
+    </nav>
+  </div>
+</header>
 
-  <main>
-    <section class="grid-texture relative overflow-hidden">
-      <div class="relative mx-auto max-w-6xl px-6 pt-20 pb-20 md:pt-28">
-        <aside class="absolute top-24 right-6 hidden border border-line bg-ink-raised/80 px-5 py-4 lg:block" aria-label="Role at a glance">
-          {
-            data.telemetry.map((line, i) => (
-              <p class:list={['font-mono text-[0.75rem] leading-loose tracking-[0.08em]', i === 0 ? 'text-phoenix-bright' : 'text-fog']}>
-                {line}
-              </p>
-            ))
-          }
-        </aside>
-        <p class="eyebrow">{data.eyebrow}</p>
-        <h1 class="mt-6 max-w-4xl font-display text-[clamp(2.5rem,7vw,5.5rem)] leading-[0.98] tracking-[-0.01em] text-paper">
-          {data.headline.lead}<br />
-          <em class="text-phoenix-bright">{data.headline.emphasis}</em>
-        </h1>
-        <p class="mt-8 max-w-xl text-lg leading-relaxed text-fog">{data.sub}</p>
-        <a
-          href="#apply"
-          class="mt-10 inline-block bg-paper px-7 py-3.5 font-sans text-base font-semibold text-ink transition-colors hover:bg-phoenix-bright"
-        >
-          {data.cta}
-        </a>
+<main>
+  <section class="relative overflow-hidden border-b border-line">
+    <div class="relative mx-auto max-w-6xl px-6 pt-20 pb-20 md:pt-28">
+      <aside class="absolute top-20 right-6 hidden border border-line bg-paper-raised px-5 py-4 lg:block" aria-label="Role at a glance">
+        {
+          data.telemetry.map((line, i) => (
+            <p class:list={['font-mono text-[0.75rem] leading-loose tracking-[0.08em]', i === 0 ? 'text-phoenix' : 'text-soot']}>
+              {line}
+            </p>
+          ))
+        }
+      </aside>
+      <p class="marker">{data.eyebrow.replace(/^\/\s*/, '')}</p>
+      <h1 class="display mt-6 max-w-4xl text-[clamp(2.5rem,6.5vw,4.75rem)]">
+        <span class="text-faint">{data.headline.lead}</span><br />
+        <span>{data.headline.emphasis}</span>
+      </h1>
+      <p class="mt-8 max-w-xl text-lg leading-relaxed text-gray">{data.sub}</p>
+      <a href="#apply" class="btn-ink mt-10">{data.cta}</a>
 
-        {data.fig && (
-          <figure class="absolute right-6 bottom-10 hidden w-80 lg:block" aria-hidden="true">
-            <svg viewBox="0 0 288 96" class="w-full" fill="none">
-              <g stroke="#26221d" stroke-width="1">
-                {Array.from({ length: 9 }, (_, i) => <line x1={i * 36} y1="0" x2={i * 36} y2="80" />)}
-                {Array.from({ length: 3 }, (_, i) => <line x1="0" y1={i * 40} x2="288" y2={i * 40} />)}
-              </g>
-              {data.fig.variant === 'funnel' ? (
-                <>
-                  <rect x="12" y="16" width="180" height="14" fill="#ff5c26" opacity="0.85" />
-                  <rect x="12" y="40" width="46" height="14" fill="#98928a" />
-                  <rect x="12" y="64" width="16" height="14" fill="#f4f3ef" />
-                  <text x="200" y="27" fill="#ff5c26" font-family="DM Mono, monospace" font-size="9">300 outreaches</text>
-                  <text x="66" y="51" fill="#98928a" font-family="DM Mono, monospace" font-size="9">15 interviews</text>
-                  <text x="36" y="75" fill="#f4f3ef" font-family="DM Mono, monospace" font-size="9">1 deck</text>
-                </>
-              ) : (
-                <>
-                  {Array.from({ length: 12 }, (_, i) => (
-                    <rect x={12 + i * 22} y="56" width="10" height="16" fill="#26221d" />
-                  ))}
-                  {Array.from({ length: 12 }, (_, i) => (
-                    <rect x={12 + i * 22} y={52 - (i % 4) * 6} width="10" height="4" fill="#ff5c26" />
-                  ))}
-                  <text x="12" y="30" fill="#98928a" font-family="DM Mono, monospace" font-size="9">1h that moves the week</text>
-                  <text x="222" y="86" fill="#98928a" font-family="DM Mono, monospace" font-size="9">wk12</text>
-                </>
-              )}
-            </svg>
-            <figcaption class="mt-3 font-mono text-[0.6875rem] tracking-[0.08em] text-fog-dim">
-              <span class="text-phoenix-bright">{data.fig.caption.split(' — ')[0]}</span> — {data.fig.caption.split(' — ')[1]}
-            </figcaption>
-          </figure>
-        )}
-      </div>
-    </section>
-
-    <section class="border-t border-line">
-      <div class="mx-auto max-w-6xl px-6 py-20 md:py-28">
-        <div class="reveal border-t border-line pt-3">
-          <p class="font-mono text-[0.8125rem] tracking-[0.08em]">
-            <span class="font-medium text-phoenix-bright">01</span>
-            <span class="ml-3 lowercase text-fog-dim">{data.why.eyebrow.replace(/^\/\s*/, '')}</span>
-          </p>
-        </div>
-        <div class="mt-10 grid gap-px bg-line md:grid-cols-3">
-          {
-            data.why.items.map((item) => (
-              <div class="reveal bg-ink px-7 py-8">
-                <h2 class="font-display text-2xl leading-tight text-paper md:text-3xl">{item.title}</h2>
-                <p class="mt-3 text-[0.9375rem] leading-relaxed text-fog">{item.body}</p>
-              </div>
-            ))
-          }
-        </div>
-      </div>
-    </section>
-
-    <section class="bg-paper text-ink">
-      <div class="mx-auto max-w-6xl px-6 py-20 md:py-28">
-        <p class="reveal font-mono text-[0.8125rem] tracking-[0.08em]">
-          <span class="font-medium text-phoenix-deep">02</span>
-          <span class="ml-3 lowercase text-soot">{data.work.eyebrow.replace(/^\/\s*/, '')}</span>
-        </p>
-        <ol class="mt-12 border-t border-paper-line">
-          {
-            data.work.items.map((item, i) => (
-              <li class="reveal grid gap-2 border-b border-paper-line py-6 md:grid-cols-[6rem_18rem_1fr] md:gap-8">
-                <span class="font-mono text-[0.8125rem] font-medium tracking-[0.08em] text-phoenix-deep">0{i + 1}</span>
-                <h2 class="font-display text-2xl leading-tight">{item.title}</h2>
-                <p class="max-w-prose text-[0.9375rem] leading-relaxed text-soot">{item.body}</p>
-              </li>
-            ))
-          }
-        </ol>
-      </div>
-    </section>
-
-    <section class="grid-texture border-t border-line bg-ink-raised">
-      <div class="mx-auto max-w-6xl px-6 py-16 md:py-20">
-        <dl class="grid grid-cols-2 gap-x-6 gap-y-10 md:grid-cols-4">
-          {
-            data.proof.map((stat) => (
-              <div class="reveal">
-                <dd class="font-display text-5xl text-paper tabular-nums" data-countup={stat.value} data-suffix={stat.suffix}>
-                  {stat.value.toLocaleString('en-US')}{stat.suffix}
-                </dd>
-                <dt class="mt-2 max-w-40 font-mono text-[0.75rem] leading-snug text-fog-dim">{stat.label}</dt>
-              </div>
-            ))
-          }
-        </dl>
-        <p class="reveal mt-10 border-t border-line pt-4 font-mono text-[0.75rem] leading-relaxed tracking-[0.04em] text-fog">
-          {theRoom}
-        </p>
-      </div>
-    </section>
-
-    <section class="border-t border-line">
-      <div class="mx-auto max-w-6xl px-6 py-20 md:py-28">
-        <div class="reveal border-t border-line pt-3">
-          <p class="font-mono text-[0.8125rem] tracking-[0.08em]">
-            <span class="font-medium text-phoenix-bright">03</span>
-            <span class="ml-3 lowercase text-fog-dim">{data.bar.eyebrow.replace(/^\/\s*/, '')}</span>
-          </p>
-        </div>
-        <ul class="mt-8 max-w-2xl space-y-4">
-          {
-            data.bar.items.map((item) => (
-              <li class="reveal flex gap-3 text-[0.9375rem] leading-relaxed text-fog">
-                <span class="font-mono text-phoenix-bright">+</span>
-                {item}
-              </li>
-            ))
-          }
-        </ul>
-
-        <div class="mt-16 border-t border-line">
-          {
-            data.faq.map((item) => (
-              <details class="reveal group border-b border-line">
-                <summary class="flex cursor-pointer list-none items-baseline justify-between gap-6 py-5 [&::-webkit-details-marker]:hidden">
-                  <span class="font-display text-xl text-paper transition-colors group-hover:text-phoenix-bright md:text-2xl">{item.q}</span>
-                  <span class="shrink-0 font-mono text-xl text-phoenix-bright transition-transform duration-200 group-open:rotate-45" aria-hidden="true">
-                    +
-                  </span>
-                </summary>
-                <p class="max-w-2xl pb-6 text-base leading-relaxed text-fog">{item.a}</p>
-              </details>
-            ))
-          }
-        </div>
-      </div>
-    </section>
-
-    <section id="apply" class="grid-texture relative overflow-hidden border-t border-line bg-ink-raised">
-      <div class="relative mx-auto max-w-6xl px-6 py-20 md:py-28">
-        <div class="reveal text-center">
-          <p class="font-mono text-[0.8125rem] tracking-[0.08em]">
-            <span class="font-medium text-phoenix-bright">04</span>
-            <span class="ml-3 lowercase text-fog-dim">apply</span>
-          </p>
-          <h2 class="mt-5 font-display text-[clamp(2.5rem,6vw,4.5rem)] leading-[0.98] text-paper">
-            {data.apply.headline.lead} <em class="text-phoenix-bright">{data.apply.headline.emphasis}</em>
-          </h2>
-          <p class="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-fog">{data.apply.sub}</p>
-        </div>
-        <div class="reveal mx-auto mt-12 max-w-3xl">
-          {
-            formUrl ? (
-              <iframe src={formUrl} title={formTitle} loading="lazy" class="h-[36rem] w-full border border-line bg-ink" />
+      {data.fig && (
+        <figure class="absolute right-6 bottom-10 hidden w-80 lg:block" aria-hidden="true">
+          <svg viewBox="0 0 288 96" class="w-full" fill="none">
+            <g stroke="var(--color-line)" stroke-width="1">
+              {Array.from({ length: 9 }, (_, i) => <line x1={i * 36} y1="0" x2={i * 36} y2="80" />)}
+              {Array.from({ length: 3 }, (_, i) => <line x1="0" y1={i * 40} x2="288" y2={i * 40} />)}
+            </g>
+            {data.fig.variant === 'funnel' ? (
+              <>
+                <rect x="12" y="16" width="180" height="14" fill="var(--color-phoenix)" opacity="0.9" />
+                <rect x="12" y="40" width="46" height="14" fill="var(--color-gray)" />
+                <rect x="12" y="64" width="16" height="14" fill="var(--color-ink)" />
+                <text x="200" y="27" fill="var(--color-phoenix)" font-family="DM Mono, monospace" font-size="9">300 outreaches</text>
+                <text x="66" y="51" fill="var(--color-gray)" font-family="DM Mono, monospace" font-size="9">15 interviews</text>
+                <text x="36" y="75" fill="var(--color-ink)" font-family="DM Mono, monospace" font-size="9">1 deck</text>
+              </>
             ) : (
-              <GetInLine
-                role={role}
-                prompt="/// get_in_line."
-                note="Applications open with Cohort 3, after July 31. Leave your email and matching starts with you."
-              />
-            )
-          }
-        </div>
+              <>
+                {Array.from({ length: 12 }, (_, i) => (
+                  <rect x={12 + i * 22} y="56" width="10" height="16" fill="var(--color-line)" />
+                ))}
+                {Array.from({ length: 12 }, (_, i) => (
+                  <rect x={12 + i * 22} y={52 - (i % 4) * 6} width="10" height="4" fill="var(--color-phoenix)" />
+                ))}
+                <text x="12" y="30" fill="var(--color-gray)" font-family="DM Mono, monospace" font-size="9">1h that moves the week</text>
+                <text x="222" y="86" fill="var(--color-gray)" font-family="DM Mono, monospace" font-size="9">wk12</text>
+              </>
+            )}
+          </svg>
+          <figcaption class="mt-3 font-mono text-[0.6875rem] tracking-[0.08em] text-gray">
+            <span class="text-phoenix">{data.fig.caption.split(' — ')[0]}</span> · {data.fig.caption.split(' — ')[1]}
+          </figcaption>
+        </figure>
+      )}
+    </div>
+  </section>
+
+  <section>
+    <div class="mx-auto max-w-6xl px-6 py-20 md:py-28">
+      <p class="marker reveal">01 · {data.why.eyebrow.replace(/^\/\s*/, '')}</p>
+      <div class="mt-10 grid gap-x-10 gap-y-10 md:grid-cols-3">
+        {
+          data.why.items.map((item) => (
+            <div class="reveal border-t border-line pt-5">
+              <h2 class="text-xl font-medium leading-tight">{item.title}</h2>
+              <p class="mt-3 text-[0.9375rem] leading-relaxed text-gray">{item.body}</p>
+            </div>
+          ))
+        }
       </div>
-    </section>
-  </main>
-  <Footer />
-</div>
+    </div>
+  </section>
+
+  <section class="border-t border-line">
+    <div class="mx-auto max-w-6xl px-6 py-20 md:py-28">
+      <p class="marker reveal">02 · {data.work.eyebrow.replace(/^\/\s*/, '')}</p>
+      <ol class="mt-12 border-t border-line">
+        {
+          data.work.items.map((item, i) => (
+            <li class="reveal grid gap-2 border-b border-line py-6 md:grid-cols-[6rem_18rem_1fr] md:gap-8">
+              <span class="font-mono text-[0.8125rem] font-medium tracking-[0.08em] text-phoenix">0{i + 1}</span>
+              <h2 class="text-xl font-medium leading-tight">{item.title}</h2>
+              <p class="max-w-prose text-[0.9375rem] leading-relaxed text-gray">{item.body}</p>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+
+  <section class="border-t border-line bg-paper-raised">
+    <div class="mx-auto max-w-6xl px-6 py-16 md:py-20">
+      <dl class="grid grid-cols-2 gap-x-6 gap-y-10 md:grid-cols-4">
+        {
+          data.proof.map((stat) => (
+            <div class="reveal">
+              <dd class="display text-5xl tabular-nums" data-countup={stat.value} data-suffix={stat.suffix}>
+                {stat.value.toLocaleString('en-US')}{stat.suffix}
+              </dd>
+              <dt class="mt-2 max-w-40 text-[0.8125rem] leading-snug text-gray">{stat.label}</dt>
+            </div>
+          ))
+        }
+      </dl>
+      <p class="reveal mt-10 border-t border-line pt-4 font-mono text-[0.75rem] leading-relaxed tracking-[0.04em] text-soot">
+        {theRoom}
+      </p>
+    </div>
+  </section>
+
+  <section class="border-t border-line">
+    <div class="mx-auto max-w-6xl px-6 py-20 md:py-28">
+      <p class="marker reveal">03 · {data.bar.eyebrow.replace(/^\/\s*/, '')}</p>
+      <ul class="mt-8 max-w-2xl space-y-4">
+        {
+          data.bar.items.map((item) => (
+            <li class="reveal flex gap-3 text-[0.9375rem] leading-relaxed text-gray">
+              <span class="font-mono text-phoenix">+</span>
+              {item}
+            </li>
+          ))
+        }
+      </ul>
+
+      <div class="mt-16 border-t border-line">
+        {
+          data.faq.map((item) => (
+            <details class="reveal group border-b border-line">
+              <summary class="flex cursor-pointer list-none items-baseline justify-between gap-6 py-5 [&::-webkit-details-marker]:hidden">
+                <span class="font-mono text-[0.9375rem] uppercase tracking-[0.14em] text-ink transition-colors group-hover:text-phoenix">{item.q}</span>
+                <span class="shrink-0 font-mono text-xl text-gray transition-transform duration-200 group-open:rotate-45" aria-hidden="true">
+                  +
+                </span>
+              </summary>
+              <p class="max-w-2xl pb-6 text-base leading-relaxed text-gray">{item.a}</p>
+            </details>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section id="apply" class="border-t border-line">
+    <div class="mx-auto max-w-6xl px-6 py-20 md:py-28">
+      <p class="marker reveal">04 · apply</p>
+      <h2 class="display reveal mt-6 max-w-3xl text-[clamp(2.25rem,5vw,3.75rem)]">
+        <span class="text-faint">{data.apply.headline.lead}</span> {data.apply.headline.emphasis}
+      </h2>
+      <p class="reveal mt-5 max-w-xl text-[1.0625rem] leading-relaxed text-gray">{data.apply.sub}</p>
+      <div class="reveal mt-12 max-w-3xl">
+        {
+          formUrl ? (
+            <iframe src={formUrl} title={formTitle} loading="lazy" class="h-[36rem] w-full border border-line bg-paper" />
+          ) : (
+            <GetInLine
+              role={role}
+              note="Applications open with Cohort 3, after July 31. Leave your email and matching starts with you."
+            />
+          )
+        }
+      </div>
+    </div>
+  </section>
+</main>
+<Footer />
 <script src="../scripts/enhance.js"></script>

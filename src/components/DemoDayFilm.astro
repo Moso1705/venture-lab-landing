@@ -14,12 +14,8 @@ const embedSrc = demoDayVideoUrl
     <section class="border-t border-line">
       <div class="mx-auto max-w-6xl px-6 py-24 md:py-32">
         <div class="reveal">
-          <p class="eyebrow">
-            {film.eyebrow}
-          </p>
-          <h2 class="mt-5 max-w-3xl font-display text-[clamp(2.25rem,5vw,4rem)] leading-[1.02] text-paper">
-            {film.headline.lead} <em>{film.headline.emphasis}</em>
-          </h2>
+          <p class="marker">{film.marker}</p>
+          <h2 class="display mt-6 max-w-3xl text-[clamp(2.25rem,4.5vw,3.5rem)]">{film.headline}</h2>
         </div>
         <div class="reveal mt-12 border border-line">
           {isEmbed ? (
@@ -29,12 +25,12 @@ const embedSrc = demoDayVideoUrl
               loading="lazy"
               allow="autoplay; fullscreen; picture-in-picture"
               allowfullscreen
-              class="aspect-video w-full bg-ink-raised"
+              class="aspect-video w-full bg-ink"
             />
           ) : (
             <video
               src={demoDayVideoUrl}
-              class="aspect-video w-full bg-ink-raised object-cover"
+              class="aspect-video w-full bg-ink object-cover"
               autoplay
               muted
               loop

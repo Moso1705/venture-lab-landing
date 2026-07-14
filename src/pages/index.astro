@@ -3,22 +3,16 @@ import Base from '../layouts/Base.astro';
 import Intro from '../components/Intro.astro';
 import Nav from '../components/Nav.astro';
 import Hero from '../components/Hero.astro';
-import Pipeline from '../components/Pipeline.astro';
+import Jump from '../components/Jump.astro';
 import Offer from '../components/Offer.astro';
-import ProofBand from '../components/ProofBand.astro';
+import Proof from '../components/Proof.astro';
 import DemoDayFilm from '../components/DemoDayFilm.astro';
-import Program from '../components/Program.astro';
 import Startups from '../components/Startups.astro';
-import Successes from '../components/Successes.astro';
 import Audience from '../components/Audience.astro';
-import Partners from '../components/Partners.astro';
-import Faq from '../components/Faq.astro';
-import Poster from '../components/Poster.astro';
-import Doors from '../components/Doors.astro';
 import Apply from '../components/Apply.astro';
+import Faq from '../components/Faq.astro';
 import Footer from '../components/Footer.astro';
 import StickyApply from '../components/StickyApply.astro';
-import RulerSpine from '../components/RulerSpine.astro';
 import { faq } from '../content/site';
 
 const faqSchema = {
@@ -34,29 +28,20 @@ const faqSchema = {
 
 <Base>
   <script slot="head" type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
-  <div class="grain relative">
-    <div class="doc-rail pointer-events-none absolute inset-y-0 left-5 z-0 hidden w-4 xl:block" aria-hidden="true"></div>
-    <Intro />
-    <Nav />
-    <RulerSpine />
-    <main>
-      <Hero />
-      <Pipeline />
-      <Offer />
-      <ProofBand />
-      <DemoDayFilm />
-      <Program />
-      <Startups />
-      <Successes />
-      <Audience />
-      <Partners />
-      <Faq />
-      <Poster />
-      <Doors />
-      <Apply />
-    </main>
-    <Footer />
-    <StickyApply />
-  </div>
+  <Intro />
+  <Nav />
+  <main>
+    <Hero />
+    <Jump />
+    <Offer />
+    <Proof />
+    <DemoDayFilm />
+    <Startups />
+    <Audience />
+    <Apply />
+    <Faq />
+  </main>
+  <Footer />
+  <StickyApply />
   <script src="../scripts/enhance.js"></script>
 </Base>

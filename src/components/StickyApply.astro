@@ -6,7 +6,10 @@ import { hero } from '../content/site';
      Pure CSS scroll-driven animation: browsers without support never show it,
      which is fine because the same CTA exists in nav, hero, and apply. -->
 <nav aria-label="Quick apply">
-  <a href="#apply" class="sticky-apply fixed inset-x-0 bottom-0 z-50 bg-phoenix py-4 pb-[max(1rem,env(safe-area-inset-bottom))] text-center font-sans text-base font-semibold text-ink md:hidden">
+  <a
+    href="#apply"
+    class="sticky-apply fixed inset-x-0 bottom-0 z-50 bg-ink py-4 pb-[max(1rem,env(safe-area-inset-bottom))] text-center font-mono text-[0.8125rem] uppercase tracking-[0.18em] text-paper md:hidden"
+  >
     {hero.primaryCta.label}
   </a>
 </nav>

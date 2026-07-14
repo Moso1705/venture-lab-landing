@@ -14,7 +14,7 @@ const ogPath = join(root, 'public/og.png');
 const ogB64Path = join(root, 'scripts/og.png.b64');
 
 const GOOGLE_CSS =
-  'https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,100..1000&family=DM+Mono:wght@400;500&display=swap';
+  'https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,100..1000&family=DM+Mono:wght@400;500&display=swap';
 // A Chrome UA makes the API return woff2 sources.
 const UA =
   'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36';
@@ -24,8 +24,6 @@ const fontFile = (family, weight, style) =>
 
 async function ensureFonts() {
   const expected = [
-    'InstrumentSerif-400-normal.woff2',
-    'InstrumentSerif-400-italic.woff2',
     'DMSans-100-1000-normal.woff2',
     'DMMono-400-normal.woff2',
     'DMMono-500-normal.woff2',

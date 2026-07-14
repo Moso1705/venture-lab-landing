@@ -2,26 +2,33 @@
 
 /* ---------------------------------------------------------------------------
    Design tokens. Single source of truth for the whole page.
-   Palette anchors on the HackNation brand: phoenix orange #e8400d (from the
-   main site's CSS tokens) on a warm near-black, with the brand's whisper-gray
-   #f4f3ef as "paper" for text on dark and the inverted light band.
+   White-first system in the HN12 family: near-white paper body, one near-black
+   band on top (hero) and bottom (footer), neutral grays, phoenix orange as a
+   sparse accent. Type is DM Sans (light weights for display) + DM Mono labels.
 --------------------------------------------------------------------------- */
 @theme {
-  /* color */
-  --color-ink: #0b0a08;
-  --color-ink-raised: #14110e;
-  --color-line: #26221d;
-  --color-paper: #f4f3ef;
-  --color-paper-line: #dedbd2;
+  /* surfaces */
+  --color-paper: #f5f5f3;
+  --color-paper-raised: #ebebe8;
+  --color-ink: #0d0d0d;
+  --color-ink-raised: #161616;
+
+  /* hairlines */
+  --color-line: #e0dfdb;      /* on paper */
+  --color-line-ink: #262626;  /* on ink */
+
+  /* text */
+  --color-soot: #40403d;      /* secondary on paper */
+  --color-gray: #6f6e6a;      /* muted on paper */
+  --color-faint: #a3a29e;     /* tertiary on paper, "not for" columns */
+  --color-fog: #b9b8b4;       /* secondary on ink */
+  --color-fog-dim: #8f8e8a;   /* muted on ink */
+
+  /* accent */
   --color-phoenix: #e8400d;
   --color-phoenix-bright: #ff5c26;
-  --color-phoenix-deep: #b1330a;
-  --color-fog: #b4aea5;
-  --color-fog-dim: #98928a;
-  --color-soot: #55514a;
 
   /* type */
-  --font-display: "Instrument Serif", Georgia, "Times New Roman", serif;
   --font-sans: "DM Sans", ui-sans-serif, system-ui, -apple-system, sans-serif;
   --font-mono: "DM Mono", ui-monospace, "SF Mono", Menlo, monospace;
 
@@ -33,31 +40,11 @@
 
   /* motion */
   --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
-  --animate-marquee: marquee 42s linear infinite;
-
-  @keyframes marquee {
-    from { transform: translateX(0); }
-    to { transform: translateX(-50%); }
-  }
 }
 
 /* ---------------------------------------------------------------------------
-   Self-hosted fonts (public/fonts). font-display swap + metric fallbacks.
+   Self-hosted fonts (public/fonts). font-display swap.
 --------------------------------------------------------------------------- */
-@font-face {
-  font-family: "Instrument Serif";
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("/fonts/InstrumentSerif-400-normal.woff2") format("woff2");
-}
-@font-face {
-  font-family: "Instrument Serif";
-  font-style: italic;
-  font-weight: 400;
-  font-display: swap;
-  src: url("/fonts/InstrumentSerif-400-italic.woff2") format("woff2");
-}
 @font-face {
   font-family: "DM Sans";
   font-style: normal;
@@ -91,8 +78,8 @@ html {
 }
 
 body {
-  background: var(--color-ink);
-  color: var(--color-paper);
+  background: var(--color-paper);
+  color: var(--color-ink);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
@@ -104,7 +91,7 @@ body {
 }
 
 :focus-visible {
-  outline: 2px solid var(--color-phoenix-bright);
+  outline: 2px solid var(--color-phoenix);
   outline-offset: 2px;
 }
 
@@ -112,33 +99,54 @@ body {
    Shared utilities
 --------------------------------------------------------------------------- */
 
-/* Mono eyebrow label, HN12-style: "/ program" */
-@utility eyebrow {
+/* Mono section marker, HN12-style: "01 · THE PROGRAM". 12px floor, never smaller. */
+@utility marker {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-gray);
+}
+
+/* Light display headline: the one voice for section headings. */
+@utility display {
+  font-family: var(--font-sans);
+  font-weight: 275;
+  letter-spacing: -0.015em;
+  line-height: 1.05;
+}
+
+/* Rectangular mono button, dark on paper. */
+@utility btn-ink {
+  display: inline-block;
+  background: var(--color-ink);
+  color: var(--color-paper);
   font-family: var(--font-mono);
   font-size: 0.8125rem;
-  letter-spacing: 0.08em;
-  text-transform: lowercase;
-  color: var(--color-phoenix-bright);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 1.05rem 2.4rem;
+  transition: background-color 0.2s ease;
+  &:hover {
+    background: var(--color-phoenix);
+  }
 }
 
-/* The document-long measurement rail: full-height tick column, far left. */
-@utility doc-rail {
-  background-image: repeating-linear-gradient(
-    to bottom,
-    color-mix(in srgb, var(--color-paper) 16%, transparent) 0 1px,
-    transparent 1px 12px
-  );
-  background-size: 10px 100%;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
-/* Fine graph-paper texture for dark sections */
-@utility grid-texture {
-  background-image:
-    linear-gradient(to right, color-mix(in srgb, var(--color-paper) 3%, transparent) 1px, transparent 1px),
-    linear-gradient(to bottom, color-mix(in srgb, var(--color-paper) 3%, transparent) 1px, transparent 1px);
-  background-size: 56px 56px;
+/* Rectangular mono button, paper on ink (hero). */
+@utility btn-paper {
+  display: inline-block;
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 1.05rem 2.4rem;
+  transition: background-color 0.2s ease, color 0.2s ease;
+  &:hover {
+    background: var(--color-phoenix);
+    color: var(--color-paper);
+  }
 }
 
 /* One-time scroll reveal. Progressive enhancement: without support or with
@@ -163,36 +171,3 @@ body {
     transform: translateY(0);
   }
 }
-
-/* Marquee track: duplicate content once in markup, pause on hover */
-@utility marquee-track {
-  display: flex;
-  width: max-content;
-  animation: var(--animate-marquee);
-  &:hover {
-    animation-play-state: paused;
-  }
-  @media (prefers-reduced-motion: reduce) {
-    animation: none;
-  }
-}
-
-/* ---------------------------------------------------------------------------
-   Depth system: film grain + warm glow. The black must feel like material.
---------------------------------------------------------------------------- */
-
-/* Full-page film grain: SVG turbulence tile, soft-light, static (cheap). */
-@utility grain {
-  &::after {
-    content: '';
-    position: fixed;
-    inset: 0;
-    z-index: 60;
-    pointer-events: none;
-    opacity: 0.4;
-    mix-blend-mode: soft-light;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.16'/%3E%3C/svg%3E");
-    background-size: 160px 160px;
-  }
-}
-

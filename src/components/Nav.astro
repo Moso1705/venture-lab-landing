@@ -1,39 +1,95 @@
 ---
-import { announcement, nav } from '../content/site';
+/**
+ * Fixed nav in two states: transparent over the dark hero, paper with a
+ * hairline once scrolled past it. A scroll listener flips one data attribute;
+ * without JS the nav simply stays in its dark state over the hero.
+ */
+import { nav } from '../content/site';
 ---
 
-<a
-  href={announcement.href}
-  class="block bg-phoenix px-4 py-2 text-center font-mono text-[0.8125rem] tracking-[0.08em] text-ink transition-colors hover:bg-phoenix-bright"
->
-  <span class="font-medium">/// {announcement.label}</span>
-  <span class="mx-2">{announcement.text}</span>
-  <span class="underline underline-offset-4">{announcement.cta}</span>
-</a>
-
-<header class="sticky top-0 z-50 border-b border-line bg-ink/90 backdrop-blur-sm">
-  <div class="mx-auto flex max-w-6xl items-center justify-between px-6 py-3.5">
-    <a href="#top" class="flex items-baseline gap-2">
-      <span class="font-sans text-[0.9375rem] font-bold tracking-tight text-paper">HACKNATION</span>
-      <span class="font-mono text-[0.8125rem] text-phoenix-bright">/ venture lab</span>
+<header id="site-nav" class="fixed inset-x-0 top-0 z-50">
+  <div class="nav-inner flex items-center justify-between px-6 py-4 md:px-10">
+    <a href="#top" class="flex items-center gap-4">
+      <span class="font-mono text-[0.9375rem] font-medium tracking-[0.08em]">{nav.wordmark.short}</span>
+      <span class="nav-divider hidden h-6 w-px md:block" aria-hidden="true"></span>
+      <span class="hidden flex-col gap-0.5 font-mono uppercase md:flex">
+        <span class="text-[0.625rem] tracking-[0.24em] opacity-60">powered by</span>
+        <span class="text-[0.8125rem] tracking-[0.18em]">{nav.wordmark.poweredBy}</span>
+      </span>
     </a>
-    <nav class="flex items-center gap-7" aria-label="Page sections">
+    <nav class="flex items-center gap-8" aria-label="Page sections">
       {
         nav.links.map((link) => (
           <a
             href={link.href}
-            class="hidden font-mono text-[0.8125rem] lowercase tracking-[0.08em] text-fog transition-colors hover:text-paper md:block"
+            class="nav-link hidden font-mono text-[0.75rem] uppercase tracking-[0.18em] transition-opacity hover:opacity-100 md:block"
           >
             {link.label}
           </a>
         ))
       }
-      <a
-        href={nav.cta.href}
-        class="bg-paper px-5 py-2 font-sans text-sm font-semibold text-ink transition-colors hover:bg-phoenix-bright"
-      >
+      <a href={nav.cta.href} class="nav-cta px-6 py-2.5 font-mono text-[0.75rem] uppercase tracking-[0.18em] transition-colors">
         {nav.cta.label}
       </a>
     </nav>
   </div>
 </header>
+
+<style>
+  /* Dark state: over the hero. */
+  #site-nav {
+    color: var(--color-paper);
+    background: transparent;
+    transition: background-color 0.25s ease, color 0.25s ease;
+  }
+  #site-nav .nav-divider {
+    background: color-mix(in srgb, var(--color-paper) 30%, transparent);
+  }
+  #site-nav .nav-link {
+    opacity: 0.65;
+  }
+  #site-nav .nav-cta {
+    background: var(--color-paper);
+    color: var(--color-ink);
+  }
+  #site-nav .nav-cta:hover {
+    background: var(--color-phoenix);
+    color: var(--color-paper);
+  }
+
+  /* Light state: past the hero. */
+  #site-nav[data-scrolled] {
+    color: var(--color-ink);
+    background: color-mix(in srgb, var(--color-paper) 92%, transparent);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--color-line);
+  }
+  #site-nav[data-scrolled] .nav-divider {
+    background: var(--color-line);
+  }
+  #site-nav[data-scrolled] .nav-cta {
+    background: var(--color-ink);
+    color: var(--color-paper);
+  }
+  #site-nav[data-scrolled] .nav-cta:hover {
+    background: var(--color-phoenix);
+  }
+</style>
+
+<script>
+  const navEl = document.getElementById('site-nav')!;
+  const hero = document.getElementById('hero');
+  if (hero) {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) navEl.removeAttribute('data-scrolled');
+        else navEl.setAttribute('data-scrolled', '');
+      },
+      { rootMargin: '-72px 0px 0px 0px' }
+    );
+    observer.observe(hero);
+  } else {
+    // Pages without a dark hero (roles) always run the light nav.
+    navEl.setAttribute('data-scrolled', '');
+  }
+</script>

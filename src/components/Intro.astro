@@ -1,23 +1,23 @@
 ---
 /**
- * The opening moment: 24 hours compressed into one second. A stopwatch races
- * h00 to h48 while a tick strip fills, then the curtain lifts into the hero.
- * Plays once per session, any input skips it, reduced motion never sees it,
- * and without JS the overlay never appears at all.
+ * The opening moment: the wordmark appears while a counter runs the whole
+ * program, wk00 to wk12, over a filling tick strip. Then the curtain lifts
+ * into the hero. Plays once per session, any input skips it, reduced motion
+ * never sees it, and without JS the overlay never appears at all.
  */
 ---
 
 <div id="intro" class="intro-overlay" hidden aria-hidden="true">
-  <div class="w-[min(28rem,80vw)]">
-    <p class="intro-counter font-mono text-[clamp(4.5rem,14vw,8rem)] font-medium tracking-[-0.02em] text-paper tabular-nums">
-      h00
+  <div class="w-[min(34rem,84vw)]">
+    <p class="intro-wordmark font-sans text-[clamp(2.75rem,8vw,4.5rem)] font-extralight uppercase leading-none tracking-[0.04em] text-paper">
+      Venture Lab
     </p>
-    <div class="intro-track relative mt-6 h-3">
-      <div class="intro-fill absolute inset-y-0 left-0 w-full origin-left bg-phoenix"></div>
+    <div class="intro-track relative mt-8 h-2.5">
+      <div class="intro-fill absolute inset-y-0 left-0 w-full origin-left bg-paper"></div>
     </div>
-    <div class="mt-4 flex items-baseline justify-between font-mono text-[0.6875rem] tracking-[0.08em] text-fog-dim">
-      <span>the hackathon</span>
-      <span class="text-phoenix-bright">14 cities · one weekend</span>
+    <div class="mt-4 flex items-baseline justify-between font-mono text-[0.75rem] uppercase tracking-[0.18em] text-fog-dim">
+      <span class="intro-counter tabular-nums text-fog">wk00</span>
+      <span>cohort 3</span>
     </div>
   </div>
 </div>
@@ -39,15 +39,25 @@
   .intro-track {
     background-image: repeating-linear-gradient(
       to right,
-      color-mix(in srgb, var(--color-paper) 26%, transparent) 0 1px,
+      color-mix(in srgb, var(--color-paper) 24%, transparent) 0 1px,
       transparent 1px 9px
     );
   }
   .intro-fill {
     transform: scaleX(var(--p, 0));
   }
+  .intro-wordmark {
+    opacity: 0;
+    transform: translateY(10px);
+    animation: intro-word-in 0.7s var(--ease-out-quart) 0.05s forwards;
+  }
+  @keyframes intro-word-in {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
   /* Hero choreography waits behind the curtain and plays on reveal. */
-  :global(html.intro-hold .hero-line-inner),
   :global(html.intro-hold .hero-enter) {
     animation-play-state: paused;
   }
@@ -77,17 +87,18 @@
       setTimeout(() => overlay.isConnected && overlay.remove(), 900);
     };
 
-    const DURATION = 1050;
+    const DURATION = 1250;
+    const WEEKS = 12;
     const start = performance.now();
     const tick = (now: number) => {
       if (finished) return;
       const t = Math.min((now - start) / DURATION, 1);
       const eased = t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
-      const hours = Math.round(24 * eased);
-      counter.textContent = `h${String(hours).padStart(2, '0')}`;
+      const week = Math.round(WEEKS * eased);
+      counter.textContent = `wk${String(week).padStart(2, '0')}`;
       fill.style.setProperty('--p', String(eased));
       if (t < 1) requestAnimationFrame(tick);
-      else setTimeout(finish, 220);
+      else setTimeout(finish, 260);
     };
     requestAnimationFrame(tick);
 

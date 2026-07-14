@@ -1,49 +1,47 @@
 ---
+/**
+ * The startup index: one hairline row per company, traction on the right.
+ * Reads like a ledger, not a card wall.
+ */
 import { startups } from '../content/site';
-import SectionHead from './SectionHead.astro';
 ---
 
-<section id="startups">
-  <div class="mx-auto max-w-6xl px-6 pt-20 pb-24 md:pt-24 md:pb-32">
-    <SectionHead index="05" label={startups.eyebrow.replace(/^\/\s*/, '')} annotation={startups.intro.toLowerCase()}>
-      <h2 class="mt-10 max-w-2xl font-display text-3xl leading-tight text-paper md:text-4xl">
-        {startups.headline.lead} {startups.headline.emphasis}
-      </h2>
-    </SectionHead>
+<section id="startups" class="border-t border-line">
+  <div class="mx-auto max-w-6xl px-6 py-24 md:py-32">
+    <div class="flex flex-wrap items-end justify-between gap-6">
+      <div>
+        <p class="marker reveal">{startups.marker}</p>
+        <h2 class="display reveal mt-6 text-[clamp(2.25rem,4.5vw,3.5rem)]">{startups.headline}</h2>
+      </div>
+      <p class="reveal max-w-xs pb-2 text-[0.9375rem] leading-relaxed text-gray">{startups.intro}</p>
+    </div>
 
-    <!-- The portfolio as a ruled index, not cards: name / focus / what it is / traction. -->
-    <ol class="mt-12 border-t border-line">
+    <div class="mt-14 border-t border-line">
       {
         startups.companies.map((company) => {
-          const Tag = company.url ? 'a' : 'div';
+          const Row = company.url ? 'a' : 'div';
+          const rowProps = company.url ? { href: company.url, rel: 'noopener', target: '_blank' } : {};
           return (
-            <li class="border-b border-line">
-              <Tag
-                class="group grid gap-x-6 gap-y-1 py-5 transition-colors duration-150 hover:bg-ink-raised md:grid-cols-[13rem_7rem_1fr_15rem] md:items-baseline" 
-                href={company.url}
-                target={company.url ? '_blank' : undefined}
-                rel={company.url ? 'noopener' : undefined}
-              >
-                <h3 class="font-display text-2xl text-paper">
-                  {company.name.split(/(\d+)/).map((part) =>
-                    /\d/.test(part) ? <span class="font-mono text-xl">{part}</span> : part
-                  )}
-                  {company.url && (
-                    <span class="ml-1 inline-block font-mono text-sm text-phoenix-bright transition-transform duration-150 group-hover:-translate-y-0.5 group-hover:translate-x-0.5">
-                      ↗
-                    </span>
-                  )}
-                </h3>
-                <span class="font-mono text-[0.6875rem] tracking-[0.08em] text-fog-dim lowercase">{company.tag}</span>
-                <p class="text-[0.9375rem] leading-relaxed text-fog">{company.line}</p>
-                <p class="font-mono text-[0.75rem] tracking-[0.04em] text-phoenix-bright md:text-right">
-                  {company.traction}
-                </p>
-              </Tag>
-            </li>
+            <Row
+              {...rowProps}
+              class:list={[
+                'reveal group grid gap-x-8 gap-y-1.5 border-b border-line py-6 md:grid-cols-[15rem_minmax(0,1fr)_14rem] md:items-baseline',
+                company.url && 'cursor-pointer',
+              ]}
+            >
+              <p class="text-xl font-medium transition-colors group-hover:text-phoenix">
+                {company.name}
+                {company.url && <span class="ml-1 inline-block text-sm text-gray" aria-hidden="true">↗</span>}
+              </p>
+              <p class="text-[1.0625rem] leading-relaxed text-gray">
+                {company.line}
+                <span class="ml-3 font-mono text-[0.75rem] uppercase tracking-[0.16em] text-faint">{company.tag}</span>
+              </p>
+              <p class="font-mono text-[0.8125rem] tracking-[0.04em] text-soot md:text-right">{company.traction}</p>
+            </Row>
           );
         })
       }
-    </ol>
+    </div>
   </div>
 </section>

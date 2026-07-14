@@ -1,35 +1,30 @@
 ---
+/**
+ * FAQ as quiet accordion rows, HN12-style: mono questions, hairlines, a
+ * plus that turns into a cross. Native details/summary, no JS.
+ */
 import { faq } from '../content/site';
 ---
 
 <section id="faq" class="border-t border-line">
-  <div class="mx-auto max-w-6xl px-6 py-24 md:py-32">
-    <div class="reveal">
-      <p class="font-mono text-[0.8125rem] tracking-[0.08em]">
-        <span class="font-medium text-phoenix-bright">09</span>
-        <span class="ml-3 lowercase text-fog-dim">{faq.eyebrow.replace(/^\/\s*/, '')}</span>
-      </p>
-      <h2 class="mt-6 font-display text-[clamp(2.5rem,5.5vw,4.5rem)] leading-[0.98] tracking-[-0.01em] text-paper">
-        {faq.headline}
-      </h2>
-    </div>
-
-    <div class="mt-14 border-t border-line">
+  <div class="mx-auto max-w-6xl px-6 py-24 md:py-28">
+    <p class="marker reveal">{faq.marker}</p>
+    <div class="mt-10 border-t border-line">
       {
         faq.items.map((item) => (
           <details class="reveal group border-b border-line">
             <summary class="flex cursor-pointer list-none items-baseline justify-between gap-6 py-6 [&::-webkit-details-marker]:hidden">
-              <span class="font-display text-2xl text-paper transition-colors group-hover:text-phoenix-bright md:text-[1.75rem]">
+              <span class="font-mono text-[0.9375rem] uppercase tracking-[0.14em] text-ink transition-colors group-hover:text-phoenix">
                 {item.q}
               </span>
               <span
-                class="shrink-0 font-mono text-xl text-phoenix-bright transition-transform duration-200 group-open:rotate-45"
+                class="shrink-0 font-mono text-xl text-gray transition-transform duration-200 group-open:rotate-45"
                 aria-hidden="true"
               >
                 +
               </span>
             </summary>
-            <p class="faq-answer max-w-2xl pb-7 text-base leading-relaxed text-fog">{item.a}</p>
+            <p class="faq-answer max-w-2xl pb-7 text-[1.0625rem] leading-relaxed text-gray">{item.a}</p>
           </details>
         ))
       }
