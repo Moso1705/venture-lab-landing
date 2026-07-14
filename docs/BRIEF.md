@@ -16,21 +16,23 @@ Audience: technical builders who competed in (or heard about) the hackathon, plu
 outsiders evaluating the program. They live in editors and terminals, are allergic to
 corporate fluff, and respond to specificity, numbers, and named investors.
 
-## Visual direction (decided)
+## Visual direction (decided 2026-07-14, the HN12 overhaul)
 
-The "grown-up sibling" of the hackathon brand: same family DNA, night shift energy.
+The page lives in the HN12 family (hn12.hack-nation.ai): white-first, mono labels,
+thin light display type, hairline structure. Full system in `.claude/skills/vl-design`.
 
-- Dark warm-black base with one inverted warm-paper band mid-page for editorial rhythm.
-  The main site is light; the Lab is dark. Same family, next level.
-- Accent: Phoenix Orange `#e8400d` (the HackNation signature). No purple, no cyan glow,
-  no glassmorphism, no gradient text.
-- Type: Instrument Serif for display (brand continuity with hack-nation.ai, used huge with
-  italic emphasis), DM Sans for body, DM Mono for labels/stats/eyebrows (HN12 kinship).
-- Sharp corners (0 to 4px) like HN12, against the main site's soft 8 to 12px. Fine
-  grid/graph-paper texture on dark sections. Terminal credibility without cosplay.
-- Motion: restrained. One orchestrated hero entrance, subtle one-time scroll reveals
-  (CSS, progressive enhancement), marquee for startup/partner rows, counters on stats.
-  Only `transform` and `opacity`. Full `prefers-reduced-motion` support: snap to final state.
+- Near-white paper body (#f5f5f3); ONE dark band on top: the constellation hero
+  (hub-city network + thin VENTURE LAB wordmark). Everything else is light.
+- Accent: Phoenix Orange `#e8400d`, max ~2 orange elements per viewport. No purple,
+  no glow, no glassmorphism, no gradient text.
+- Type: DM Sans light (200-300) for display and wordmark, DM Sans for body,
+  DM Mono uppercase for labels (12px floor). No serif.
+- Two signature elements carry the identity: the hero constellation and the
+  trajectory chart (exponential curve to Investor Day, branch to "your seed round").
+  Everything else is quiet: hairlines, no filled cards, sharp corners (0 to 4px).
+- Motion: restrained. Intro (wk00 to wk12, once per session), hero entrance,
+  subtle constellation drift, chart wipe, one-time scroll reveals, counters.
+  Only `transform` and `opacity`. Full `prefers-reduced-motion` support.
 
 ## Page spine (top to bottom)
 

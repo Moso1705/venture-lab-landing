@@ -2,6 +2,22 @@
 
 ## [Unreleased]
 
+### Changed (run 09, the HN12 overhaul)
+- Full redesign into the HN12 design language: white-first page, DM Sans light
+  display (Instrument Serif removed), DM Mono labels with a 12px floor
+- New dark constellation hero: hub-city network, thin VENTURE LAB wordmark,
+  static live line; ticker bar, runner, ruler spine, and telemetry box deleted
+- New signature trajectory chart: exponential curve over the wk00-wk12 ruler,
+  gate marker, orange branch past wk12 into "your seed round"; replaces the
+  pipeline cards, the old program timeline, and the hero fig chart
+- Intro overlay counts wk00 to wk12 under the wordmark (was h00 to h24)
+- Sections rebuilt without card walls: expect-list offer, bare stat row,
+  speedrun-style giant quote, ledger startup index, two-column fit, mono FAQ
+  accordions, request-a-spot apply; page height at 1440 down ~2,000px
+- Partner claims corrected: Anthropic/OpenAI/AWS names and logos removed
+  (program is not run with them); credits copy matches the public site
+- /mba and /mentor role pages restyled to the same light system
+
 ### Added (design sprint, judged 7.2 -> 9.2)
 - 24h stopwatch intro with clean handoff into hero choreography
 - "Measured page" system: document-long rail, fig. 01-05 plotted annotations,

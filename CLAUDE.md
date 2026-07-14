@@ -7,10 +7,10 @@ before touching content. Both are binding.
 ## Stack
 
 - Astro 7 (static output, zero JS by default), Tailwind CSS v4 (CSS-first tokens in
-  `src/styles/global.css` under `@theme`), vanilla `motion` for the few JS animations.
+  `src/styles/global.css` under `@theme`), plain CSS/vanilla JS for the few animations.
 - No React, no shadcn, no GSAP. Islands only when a section truly needs JS.
-- Fonts self-hosted in `public/fonts/`: Instrument Serif (display), DM Sans (body),
-  DM Mono (labels/stats).
+- Fonts self-hosted in `public/fonts/`: DM Sans (display in light weights + body),
+  DM Mono (labels/stats). No serif.
 
 ## Commands
 

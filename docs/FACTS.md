@@ -42,7 +42,10 @@ Internal-only facts need Michi's sign-off before publishing (flagged below).
   places. Page says 12 weeks. VERIFY for Cohort 3.
 - Cohort 3: no confirmed dates, size, or deadline on file. Page uses "Cohort 3" with
   form CTA and no dates until Michi supplies them.
-- Anthropic/OpenAI/AWS credit floor: internal doc. VERIFY naming rights before logos.
+- Credits: public page says "free API credits and premium tools provided in
+  collaboration with our partners". Keep it generic. Michi (2026-07-14): the program
+  is NOT run with Anthropic, OpenAI, or AWS; never name them as partners or credit
+  providers. Their logos were removed from the repo in run 09.
 
 ## /mba and /mentor pages (from admin role docs, aggregate only)
 

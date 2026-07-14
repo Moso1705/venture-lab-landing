@@ -13,14 +13,14 @@ average 4.5+.
 3. Distinctive: you could recognize this page with the logo removed.
 
 ### Brand and visual system
-4. On-brand: reads as HackNation family (orange accent, serif display) while clearly
-   its own layer.
+4. On-brand: reads as HackNation family (HN12 kinship: mono labels, thin light
+   display, orange accent) while clearly its own layer.
 5. Consistent tokens: colors, spacing, radii, type sizes all from the design system,
    no one-off values.
 6. Typography: clear hierarchy, display type is confident, body is readable
    (16px+, 65-75ch, 1.5+ line height).
-7. Color discipline: orange used sparingly and deliberately; dark sections don't feel
-   muddy; paper band feels intentional.
+7. Color discipline: orange used sparingly and deliberately; the dark hero doesn't
+   feel muddy; the white page feels intentional, not unfinished.
 
 ### Content and copy
 8. Copy follows docs/BRIEF.md rules: specific, confident, human. No banned vocabulary,
@@ -32,13 +32,13 @@ average 4.5+.
 
 ### Flow and UX
 12. Scroll flow has rhythm: sections alternate density, no two identical layouts in a row,
-    the paper band breaks the dark.
+    the dark hero hands off cleanly to the white page.
 13. Apply CTA is always reachable (nav/sticky) and repeated at natural decision points.
 14. FAQ answers real objections. Selection criteria let visitors self-qualify.
 
 ### Motion and feel
-15. Motion is purposeful and subtle: nothing loops forever in view, nothing moves on
-    scroll except intended reveals, marquees pause on hover.
+15. Motion is purposeful and subtle: only the constellation drift loops (barely),
+    nothing moves on scroll except intended reveals.
 16. 60fps: only transform/opacity animated. No layout shift (CLS ~0).
 17. prefers-reduced-motion: page fully readable and complete with motion off.
 
