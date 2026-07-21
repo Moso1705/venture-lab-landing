@@ -176,7 +176,7 @@ export const stories = {
     { name: 'a11y', tag: 'GovTech', line: 'Automated accessibility for the public sector.', traction: 'Live product', url: 'https://a11ygov.com' },
     { name: 'Anka', tag: 'Healthcare', line: 'AI patient companion.', traction: 'Hospital pilots in talks', url: 'https://anka.health' },
     { name: 'Upwind', tag: 'Marketing', line: 'On-brand campaigns at software speed.', traction: 'First revenue' },
-    { name: 'Eliot', tag: 'Enterprise', line: 'Semantic middleware for AI agents.', traction: 'Champion at BASF', url: 'https://eliot-ai.net' },
+    { name: 'Eliot', tag: 'Enterprise', line: 'Semantic middleware for AI agents.', traction: 'Champion at BASF' },
   ],
   sponsors: {
     line: 'Partners',
