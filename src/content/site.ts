@@ -1,242 +1,310 @@
 /**
- * All page content: copy, numbers, startups, FAQ, links.
- * Components render what is here and never hardcode words.
- * Every claim must be covered by docs/FACTS.md before launch.
+ * Page content. Components render what is here and never hardcode words.
+ * Claims must stay covered by docs/FACTS.md.
+ *
+ * Structure: sketch order. Substance: Michi's Venture Lab copy, adapted.
+ * Tone: YC-short, top-tier, not hackathon-heavy. No em/en dashes. No "get in line".
+ * Free / no equity: stated once in hero meta pills (and once in og meta). Not repeated.
  */
-
-// Michi: paste the Cohort 3 application form URL here (Tally/Typeform/Google Form).
-// While empty, the apply section shows the get-in-line capture instead of an iframe.
+// Michi: paste the Cohort application form URL here (Tally/Typeform/Google Form).
 export const applyFormUrl = '';
 export const formIsLive = Boolean(applyFormUrl);
-
-// Michi: paste a Demo Day / Investor Day video URL here (mp4 file, YouTube, or Vimeo).
-// While empty, the film section does not render at all.
+// Michi: Demo Day / Investor Day video. Empty = section hidden.
 export const demoDayVideoUrl = '';
-
 export const site = {
   name: 'HackNation Venture Lab',
-  tagline: 'From the world’s biggest AI hackathon to your first funded company.',
-  // Flip to https://ventures.hack-nation.ai once the domain points at THIS deployment.
-  // Until then it must stay the Vercel origin: the old domain serves the old site, so
-  // og:image/canonical pointing there break share previews.
+  tagline: 'Twelve weeks from prototype to a company that can raise.',
   url: 'https://venture-lab-landing.vercel.app',
   parentUrl: 'https://hack-nation.ai',
   ogDescription:
-    'The Venture Lab takes the top teams from the HackNation AI hackathon, plus scouted builders from outside, and gives them 12 weeks, senior mentors, and a room of investors to turn a prototype into a company. Free to join, no equity taken.',
+    'Twelve weeks, senior mentors, and a room of investors. Free to join, no equity taken.',
 };
-
 export const nav = {
-  wordmark: { short: 'VL', poweredBy: 'HACK-NATION' },
+  hn: { label: 'HN', href: 'https://hack-nation.ai' },
+  wordmark: { short: 'VL', long: 'Venture Lab' },
+  parent: { label: 'Hack-Nation', href: 'https://hack-nation.ai' },
+  partnerSlot: null as null | { name: string; logo: string; href: string },
   links: [
     { label: 'Program', href: '#program' },
-    { label: 'Startups', href: '#startups' },
-    { label: 'Proof', href: '#proof' },
-    { label: 'FAQ', href: '#faq' },
+    { label: 'Apply', href: '#apply' },
+    { label: 'Stories', href: '#stories' },
   ],
   cta: { label: 'Apply', href: '#apply' },
 };
-
+export const whatIs = {
+  eyebrow: 'HackNation Venture Lab',
+  badge: 'Cohort 3',
+  headline: { lead: 'You built the prototype.', emphasis: 'Now build the company.' },
+  // Free / no-equity stated once in meta (and in og meta). Duration kept for legacy hero.meta.
+  duration: '12 weeks',
+  meta: ['Remote', 'Free', 'No equity'],
+  sub: 'Twelve weeks with senior mentors, biweekly gates, and a room of investors.',
+  pathLabel: 'How you get there',
+  pathEnd: 'Investor Day',
+  steps: [
+    {
+      num: '01',
+      title: 'Ship a prototype',
+      body: 'Something running that users can touch. Built with us, or scouted from outside.',
+    },
+    {
+      num: '02',
+      title: 'Get selected',
+      body: 'Real user pain, a sharp team, and proof you keep shipping. Small cohort on purpose.',
+    },
+    {
+      num: '03',
+      title: 'Run the Lab',
+      body: 'Twelve weeks of coaching and biweekly gates. Clear them and you pitch.',
+    },
+  ],
+  pillarsLabel: 'What you get',
+  pillars: [
+    {
+      title: 'Mentors and coaches',
+      body: 'An MBA coach from schools like Stanford GSB, Harvard, and MIT Sloan. Senior mentors matched by domain.',
+    },
+    {
+      title: 'Credits and partners',
+      body: 'API credits, Start2 discounts, and partners including EWOR and Databricks.',
+    },
+    {
+      title: 'Investors in the room',
+      body: 'Demo Day mid-program. Investor Day with firms including a16z, Antler, Creandum, Cherry Ventures, EF, and EWOR.',
+    },
+  ],
+  phasesLabel: 'The twelve-week journey',
+  phasesSpan: 'wk 01 → wk 12',
+  phases: [
+    { weeks: 'wk 01-02', title: 'Voice of customer', body: 'Talk to the people you think you are building for.' },
+    { weeks: 'wk 03-04', title: 'First commitment', body: 'Money, a pilot, or a signed letter. Something real.' },
+    { weeks: 'wk 05-06', title: 'Public launch', body: 'Ship where strangers can find it. Demo Day mid-point.' },
+    { weeks: 'wk 07-08', title: 'Deck teardown', body: 'Peers take the pitch apart before investors see it.' },
+    { weeks: 'wk 09-10', title: 'Pitch video', body: 'Ninety seconds. Investors watch these before the finale.' },
+    { weeks: 'wk 11-12', title: 'Investor Day', body: 'Angels and VCs in the room. Close the pre-seed conversation.' },
+  ],
+  gate: {
+    title: 'Clear the gate',
+    note: 'Before Investor Day',
+    body: 'You pitch only if you hit all three.',
+    requirements: [
+      { value: '300', label: 'cold outreaches' },
+      { value: '15', label: 'customer interviews' },
+      { value: '1', label: 'complete deck' },
+    ],
+  },
+};
+export const applyRoutes = {
+  marker: 'Apply',
+  headline: 'Pick your path',
+  sub: 'Founders, mentors, and MBA coaches. Same program, different seats.',
+  paths: [
+    {
+      role: 'Founders',
+      title: 'Build the company',
+      body: formIsLive
+        ? 'Apply with a working prototype. Ten minutes, no deck required.'
+        : 'Leave your email. We write when Cohort 3 selection opens.',
+      cta: formIsLive ? 'Apply with your team' : 'Notify me',
+      href: '#apply',
+      primary: true,
+    },
+    {
+      role: 'Mentors',
+      title: 'Guide a team',
+      body: 'About an hour a week. We pre-select; the team picks. Matched by domain.',
+      cta: 'Mentor a team',
+      href: '/mentor',
+      primary: false,
+    },
+    {
+      role: 'MBA coaches',
+      title: 'Coach a startup',
+      body: 'One team, weekly cadence, from prototype through Investor Day.',
+      cta: 'Coach as an MBA',
+      href: '/mba',
+      primary: false,
+    },
+  ],
+};
+export const apply = {
+  marker: 'Founders',
+  headline: formIsLive ? 'Request a spot' : 'Be first when Cohort 3 opens',
+  sub: formIsLive
+    ? 'Tell us what you built and who needs it. Ten minutes, no deck required.'
+    : 'Drop your email. You hear when selection opens.',
+  cta: formIsLive ? 'Continue' : 'Notify me',
+  note: 'Email is only used to tell you when applications open.',
+};
+export const stories = {
+  marker: 'Outcomes',
+  headline: 'Founders who shipped further.',
+  sub: 'Alumni have landed Y Combinator and seed rounds.',
+  // Photos: placeholders until Michi supplies portraits.
+  // LinkedIn: paste real profile URLs; empty string shows a pending slot.
+  testimonials: [
+    {
+      name: 'David de Gruijl',
+      role: 'Founder @ Anto (YC F25)',
+      badge: 'YC F25',
+      quote:
+        'I applied to Y Combinator with the same idea, got in, finished the batch, and raised a seed. Grateful for the push that got me there.',
+      image: '/portraits/placeholder.svg',
+      linkedin: 'https://www.linkedin.com/in/daviddegruijl',
+    },
+    {
+      name: 'Artem Arzyn',
+      role: 'Venture Lab alumnus',
+      badge: 'Alumnus',
+      quote:
+        'The Venture Track challenged me to think like a founder. Mentorship and pitch sessions changed how I build.',
+      image: '/portraits/placeholder.svg',
+      linkedin: 'https://www.linkedin.com/in/artem-arzyn',
+    },
+    {
+      name: 'Dr. Janet Brinz',
+      role: 'Venture Lab alumna',
+      badge: 'Alumna',
+      quote: 'Open exchange and honest peer feedback pushed my thinking forward.',
+      image: '/portraits/placeholder.svg',
+      linkedin: 'https://www.linkedin.com/in/dr-janet-brinz',
+    },
+  ],
+  examplesLabel: 'From past cohorts',
+  examplesIntro: 'A few teams from Investor Day.',
+  startups: [
+    { name: 'a11y', tag: 'GovTech', line: 'Automated accessibility for the public sector.', traction: 'Live product', url: 'https://a11ygov.com' },
+    { name: 'Anka', tag: 'Healthcare', line: 'AI patient companion.', traction: 'Hospital pilots in talks', url: 'https://anka.health' },
+    { name: 'Upwind', tag: 'Marketing', line: 'On-brand campaigns at software speed.', traction: 'First revenue' },
+    { name: 'Eliot', tag: 'Enterprise', line: 'Semantic middleware for AI agents.', traction: 'Champion at BASF', url: 'https://eliot-ai.net' },
+  ],
+  sponsors: {
+    line: 'Partners',
+    orgs: [
+      { name: 'EWOR', logo: '/logos/ewor.svg', href: 'https://ewor.com', h: 26 },
+      { name: 'Databricks', logo: '/logos/databricks.svg', href: 'https://databricks.com', h: 24 },
+      { name: 'Start2 Group', logo: '/logos/start2.svg', href: 'https://start2.group', h: 24 },
+    ],
+    ewor: 'EWOR co-runs product-market fit and sales workshops with the Lab.',
+  },
+};
+export const footer = {
+  wordmark: 'Venture Lab',
+  line: 'A Hack-Nation program. Built out of MIT, run worldwide.',
+  legal: 'Hack-Nation UG, Tal 44, 80339 München',
+  links: [
+    { label: 'Coach a team', href: '/mba' },
+    { label: 'Mentor a team', href: '/mentor' },
+    { label: 'hack-nation.ai', href: 'https://hack-nation.ai' },
+  ],
+};
+/* --------------------------------------------------------------------------
+   Legacy exports for /mba, /mentor, and older components.
+--------------------------------------------------------------------------- */
 export const hero = {
   poweredBy: 'powered by hack-nation',
   wordmark: 'Venture Lab',
-  subline: 'From the world’s biggest AI hackathon to your first funded company',
-  meta: '12 weeks · remote · free · no equity taken',
-  live: 'Cohort 2 pitches 19 firms on July 31 · Cohort 3 forms next',
-  primaryCta: { label: formIsLive ? 'Apply now' : 'Get in line', href: '#apply' },
-  secondaryCta: { label: 'or see the program', href: '#program' },
-  // Labeled nodes on the network: the published hub cities. The rest of the
-  // 14 hackathon cities stay unlabeled dots.
+  subline: site.tagline,
+  meta: [whatIs.duration, ...whatIs.meta].join(' · '),
+  live: 'Cohort 3 forms next',
+  primaryCta: { label: formIsLive ? 'Apply now' : 'Notify me', href: '#apply' },
+  secondaryCta: { label: 'see the program', href: '#program' },
   cities: ['Munich', 'Zurich', 'London', 'Boston', 'San Francisco'],
   networkNote: '14 cities · 115+ countries',
 };
-
-// The signature section: the trajectory from a weekend prototype to a raise.
 export const jump = {
   marker: '01 · the program',
-  headline: { lead: 'You built it in 24 hours.', emphasis: 'Now build the company.' },
-  sub: 'Twelve weeks of pushing, with senior mentors and biweekly gates. At the end you pitch a room full of investors and come out raising. Free to join, no equity taken.',
+  headline: whatIs.headline,
+  sub: whatIs.sub,
   chart: {
     startLabel: 'h24 · prototype',
     endLabel: 'wk12 · investor day',
     branchLabel: 'your seed round',
     axis: ['wk00', 'wk02', 'wk04', 'wk06', 'wk08', 'wk10', 'wk12'],
   },
-  phases: [
-    { weeks: 'wk 01-02', title: 'Voice of customer', body: 'Out of the building. Talk to the people you think you are building for.' },
-    { weeks: 'wk 03-04', title: 'First commitment', body: 'Get someone to commit something real: money, a pilot, a signed letter.' },
-    { weeks: 'wk 05-06', title: 'Public launch', body: 'Ship it where strangers can find it. Demo Day: pitch what you learned.' },
-    { weeks: 'wk 07-08', title: 'Deck teardown', body: 'Your peers take your pitch apart before an investor ever sees it.' },
-    { weeks: 'wk 09-10', title: 'Pitch video', body: '90 seconds, no fast-forward. Curated investors watch these before the finale.' },
-    { weeks: 'wk 11-12', title: 'Investor Day', body: 'The room is full of angels and VCs. Close your pre-seed conversation.' },
-  ],
-  gate: {
-    title: 'The gate to Investor Day',
-    body: '300 cold outreaches. 15 customer interviews. A complete deck. Teams that miss the gate do not pitch.',
-  },
+  phases: whatIs.phases,
+  gate: whatIs.gate,
 };
-
 export const offer = {
   marker: '02 · what you get',
   headline: 'What you can expect',
-  items: [
-    {
-      lead: 'Operators in your corner:',
-      body: 'an MBA coach from schools like Stanford GSB, Harvard, and MIT Sloan, plus senior mentors from successful startups and Big Tech. Matched to your team by domain and time zone. Weekly, not quarterly.',
-    },
-    {
-      lead: 'Compute and tooling credits:',
-      body: 'free API credits and premium tools in collaboration with our partners, plus the Start2 catalogue with discounts on the tools you already use.',
-    },
-    {
-      lead: 'Investors in the room:',
-      body: 'Demo Day feedback at the midpoint. Then Investor Day: at the last one, 16 teams pitched live in front of 19 firms, including a16z, Antler, Creandum, Cherry Ventures, Entrepreneur First, and EWOR.',
-    },
-    {
-      lead: 'The HackNation network:',
-      body: 'the community behind the world’s biggest AI hackathons, connecting builders from 115+ countries with founders and operators at the frontier.',
-    },
-  ],
+  items: whatIs.pillars.map((p) => ({ lead: `${p.title}:`, body: p.body })),
   partners: {
-    line: 'Run with partners who back founders early.',
-    orgs: [
-      { name: 'EWOR', logo: '/logos/ewor.svg', href: 'https://ewor.com', h: 26 },
-      { name: 'Databricks', logo: '/logos/databricks.svg', href: 'https://databricks.com', h: 24 },
-      { name: 'Start2 Group', logo: '/logos/start2.svg', href: 'https://start2.group', h: 24 },
-    ],
+    line: stories.sponsors.line,
+    orgs: stories.sponsors.orgs,
     schools: 'Coaches from Stanford GSB, Harvard, Wharton, MIT Sloan, LBS, Tuck, Fuqua, and Carnegie Mellon.',
-    ewor: 'EWOR, our closest program partner, backs the top 0.1% of founders and co-runs our product-market fit and sales workshops.',
+    ewor: stories.sponsors.ewor,
   },
 };
-
 export const proof = {
   marker: '03 · proof',
-  headline: 'The pipeline works',
-  live: 'Happening now: Cohort 2 is in the room. 30 teams pitch investors on July 31.',
+  headline: stories.headline,
+  live: 'Cohort 2 pitched investors. Cohort 3 forms next.',
   stats: [
-    { value: 5500, suffix: '', label: 'builders applied to the last hackathon' },
-    { value: 115, suffix: '+', label: 'countries reached' },
     { value: 59, suffix: '', label: 'startups across two cohorts' },
-    { value: 19, suffix: '', label: 'firms took the meeting at Investor Day' },
-    { value: 8, suffix: '', label: 'top MBA programs coaching teams' },
+    { value: 19, suffix: '', label: 'firms at Investor Day' },
+    { value: 8, suffix: '', label: 'top MBA programs coaching' },
+    { value: 12, suffix: '', label: 'weeks to the room' },
   ],
   featured: {
-    kicker: 'hackathon → funded founder',
+    kicker: 'YC F25',
     title: 'Anto raised a seed round.',
-    body: 'David de Gruijl built Anto at a HackNation hackathon. The same idea carried him through Y Combinator F25 and into a seed round. That is the trajectory this Lab industrializes.',
+    body: 'David de Gruijl took Anto from an early prototype through Y Combinator F25 and into a seed. That is the trajectory this Lab is built to repeat.',
   },
-  quotes: [
-    {
-      text: 'The Venture Track challenged me to think like a founder. Between the mentorship and pitch sessions, I gained new skills and thought about technology in completely new ways.',
-      name: 'Artem Arzyn',
-      role: 'Cohort 1 founder',
-    },
-    // Michi: add approved alumni quotes here as they come in (alumni outreach pending:
-    // JanNiti, Rainbow Intelligence, Elyra, Anka, a11y). They render automatically.
-    // { text: '...', name: '...', role: 'Cohort 2 founder' },
-  ],
+  quotes: stories.testimonials.map((t) => ({
+    text: t.quote,
+    name: t.name,
+    role: t.role,
+  })),
 };
-
 export const startups = {
   marker: '04 · built in the lab',
   headline: 'Real teams, real companies',
-  intro: 'A selection from two cohorts. Traction as pitched at Investor Day.',
-  companies: [
-    { name: 'FandS AI', tag: 'Commerce', line: 'Precise delivery promises for eCommerce.', traction: '3 enterprise PoCs' },
-    { name: 'Anka', tag: 'Healthcare', line: 'AI patient companion for every patient.', traction: '4 US hospital pilots in talks' },
-    { name: 'Eliot', tag: 'Enterprise', line: 'Semantic middleware for AI agents.', traction: 'champion user at BASF' },
-    { name: 'JanNiti', tag: 'GovTech', line: 'Predicts the impact of government decisions.', traction: '6 governments interested' },
-    { name: 'Erudition Systems', tag: 'FinTech', line: 'Sub-100 microsecond trading data infra.', traction: 'in discovery with top HFT firms' },
-    { name: 'Upwind', tag: 'Marketing', line: 'On-brand campaigns at software speed.', traction: 'first revenue signed' },
-    { name: 'Twin01', tag: 'Construction', line: 'AI tender analysis for construction firms.', traction: '5 beta customers' },
-    { name: 'a11y', tag: 'GovTech', line: 'Automated accessibility for the public sector.', traction: 'live product', url: 'https://a11ygov.com' },
-  ],
+  intro: stories.examplesIntro,
+  companies: stories.startups.map((s) => ({
+    name: s.name,
+    tag: s.tag,
+    line: s.line,
+    traction: s.traction,
+    url: 'url' in s ? s.url : undefined,
+  })),
 };
-
 export const audience = {
   marker: '05 · fit',
   forYou: {
     title: 'Who this is for',
     items: [
-      { lead: 'You have a working prototype:', body: 'from our hackathon or your own nights and weekends. Most teams earn their seat at the hackathon; scouted builders clear the same bar.' },
-      { lead: 'You can point at a real user pain:', body: 'not just a demo that impressed the judges.' },
-      { lead: 'Your team kept shipping:', body: 'after the event ended. Momentum is the strongest signal we read.' },
-      { lead: 'You want to raise:', body: 'a pre-seed round or get to first revenue within months, not someday.' },
+      { lead: 'You have a working prototype:', body: 'something running beats a deck every time.' },
+      { lead: 'You can point at a real user pain:', body: 'not just a demo that impressed a room once.' },
+      { lead: 'Your team keeps shipping:', body: 'momentum is the strongest signal we read.' },
+      { lead: 'You want to raise:', body: 'a pre-seed round or get to first revenue within months.' },
     ],
   },
   notForYou: {
     title: 'Who this is not for',
     items: [
-      { lead: 'You have an idea but nothing running yet:', body: 'do the hackathon first, July 18-19.' },
+      { lead: 'Idea only:', body: 'come back when something is running.' },
       { lead: 'You want a certificate:', body: 'there is none.' },
-      { lead: 'You cannot commit real weekly hours:', body: 'biweekly gates and 300 cold outreaches do not happen on the side.' },
-      { lead: 'You are looking for a job, not a company:', body: 'check HN12 instead.' },
+      { lead: 'You cannot commit weekly hours:', body: 'gates do not happen on the side.' },
     ],
   },
   soloNote: 'Solo technical founders are welcome. Cohort 1 had five.',
 };
-
 export const faq = {
-  marker: '07 · faq',
+  marker: 'FAQ',
   items: [
-    {
-      q: 'What does it cost?',
-      a: 'Nothing. Participation is free and we take no equity.',
-    },
+    { q: 'What does it cost?', a: 'Nothing. Participation is free and we take no equity.' },
     {
       q: 'Is it remote?',
-      a: 'Yes, the program runs fully remote across time zones. Local peer groups meet in person in cities like Munich, Zurich, London, Boston, and San Francisco.',
+      a: 'Yes. Fully remote across time zones, with local peer groups in cities like Munich, Zurich, London, Boston, and San Francisco.',
     },
     {
-      q: 'Do I need to have competed in the hackathon?',
-      a: 'No. Most teams come from the Global AI Hackathon, and hackathon performance is the strongest signal we have. But we also scout and accept builders from outside. The bar is the same for everyone: a working prototype and evidence of momentum.',
-    },
-    {
-      q: 'How much time does it take?',
-      a: 'Enough to pass the gates. Biweekly challenges, weekly coaching, and 300 cold outreaches before Demo Day do not happen on two hours a week. Most founders build alongside a degree or a job, but the Lab has to be your first priority after them.',
-    },
-    {
-      q: 'Can I join solo?',
-      a: 'Yes. Cohort 1 had five solo technical founders. You get an MBA coach and senior mentors around you from week one.',
-    },
-    {
-      q: 'What happens at Investor Day?',
-      a: 'You pitch live to a curated room of angels and VCs. At the last one, 16 teams pitched in front of 19 firms including a16z, Antler, and Creandum. Afterwards we help you read and act on investor feedback.',
-    },
-    {
-      q: 'When does Cohort 3 start?',
-      a: 'Dates will be announced soon. Get in line now and you hear from us as soon as selection opens.',
+      q: 'Do I need a prior event badge?',
+      a: 'No. A working prototype and evidence of momentum clear the bar, whether you built with us or on your own.',
     },
   ],
 };
-
-export const apply = {
-  marker: '06 · apply',
-  headline: 'Request a spot',
-  sub: formIsLive
-    ? 'Applications for Cohort 3 are open. Tell us what you built and who needs it. Ten minutes, no deck required.'
-    : 'Cohort 3 applications open right after Investor Day, July 31. Get in line and you hear first.',
-  // Three ways in, folded into the apply section as compact routes.
-  routes: [
-    { title: 'You hacked with us', body: 'Your prototype already survived 24 hours and a jury. Apply with it.' },
-    { title: 'You built on your own', body: 'No hackathon badge needed. A working prototype and momentum clear the same bar.' },
-    { title: 'Nothing built yet', body: 'Start where most of our teams started: the Global AI Hackathon, July 18-19.', link: { label: 'hack-nation.ai', href: 'https://hack-nation.ai' } },
-  ],
-};
-
 export const film = {
   marker: 'inside the room',
   headline: 'This is what Investor Day feels like',
-  // Renders only when demoDayVideoUrl is set (top of this file).
-};
-
-export const footer = {
-  wordmark: 'VENTURE LAB',
-  line: 'A Hack-Nation program. Built out of MIT, run worldwide.',
-  legal: 'Hack-Nation UG, Tal 44, 80339 München',
-  links: [
-    { label: 'coach a team', href: '/mba' },
-    { label: 'mentor a team', href: '/mentor' },
-    { label: 'hack-nation.ai', href: 'https://hack-nation.ai' },
-    { label: 'HN12', href: 'https://hn12.hack-nation.ai' },
-  ],
 };

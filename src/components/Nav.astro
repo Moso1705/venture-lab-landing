@@ -1,95 +1,66 @@
 ---
 /**
- * Fixed nav in two states: transparent over the dark hero, paper with a
- * hairline once scrolled past it. A scroll listener flips one data attribute;
- * without JS the nav simply stays in its dark state over the hero.
+ * Light header in the Hack-Nation style: HN · VL · Hack-Nation · partner slot.
  */
 import { nav } from '../content/site';
 ---
 
-<header id="site-nav" class="fixed inset-x-0 top-0 z-50">
-  <div class="nav-inner flex items-center justify-between px-6 py-4 md:px-10">
-    <a href="#top" class="flex items-center gap-4">
-      <span class="font-mono text-[0.9375rem] font-medium tracking-[0.08em]">{nav.wordmark.short}</span>
-      <span class="nav-divider hidden h-6 w-px md:block" aria-hidden="true"></span>
-      <span class="hidden flex-col gap-0.5 font-mono uppercase md:flex">
-        <span class="text-[0.625rem] tracking-[0.24em] opacity-60">powered by</span>
-        <span class="text-[0.8125rem] tracking-[0.18em]">{nav.wordmark.poweredBy}</span>
-      </span>
-    </a>
-    <nav class="flex items-center gap-8" aria-label="Page sections">
+<header id="site-nav" class="fixed inset-x-0 top-0 z-50 border-b border-transparent transition-[background-color,border-color,backdrop-filter] duration-200">
+  <div class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-6 py-4 md:px-8">
+    <div class="flex min-w-0 items-center gap-3 md:gap-5">
+      <a href={nav.hn.href} rel="noopener" class="text-sm font-medium tracking-tight text-ink/70 transition-colors hover:text-ink">
+        {nav.hn.label}
+      </a>
+      <span class="hidden h-4 w-px bg-line sm:block" aria-hidden="true"></span>
+      <a href="#top" class="flex min-w-0 items-baseline gap-2">
+        <span class="text-sm font-semibold tracking-tight">{nav.wordmark.short}</span>
+        <span class="hidden text-sm text-gray sm:inline">{nav.wordmark.long}</span>
+      </a>
+      <span class="hidden h-4 w-px bg-line md:block" aria-hidden="true"></span>
+      <a href={nav.parent.href} rel="noopener" class="hidden text-sm text-ink/70 transition-colors hover:text-ink md:inline">
+        {nav.parent.label}
+      </a>
+    </div>
+
+    <div class="flex items-center gap-4 md:gap-6">
       {
-        nav.links.map((link) => (
-          <a
-            href={link.href}
-            class="nav-link hidden font-mono text-[0.75rem] uppercase tracking-[0.18em] transition-opacity hover:opacity-100 md:block"
-          >
-            {link.label}
+        nav.partnerSlot ? (
+          <a href={nav.partnerSlot.href} rel="noopener" class="hidden items-center md:flex" aria-label={nav.partnerSlot.name}>
+            <img src={nav.partnerSlot.logo} alt={nav.partnerSlot.name} class="h-6 w-auto opacity-70" />
           </a>
-        ))
+        ) : (
+          <span
+            class="hidden h-7 w-[4.5rem] items-center justify-center rounded border border-dashed border-line md:flex"
+            aria-hidden="true"
+            title="Partner logo"
+          />
+        )
       }
-      <a href={nav.cta.href} class="nav-cta px-6 py-2.5 font-mono text-[0.75rem] uppercase tracking-[0.18em] transition-colors">
+      <nav class="hidden items-center gap-5 md:flex" aria-label="Page sections">
+        {
+          nav.links.map((link) => (
+            <a href={link.href} class="text-sm text-ink/65 transition-colors hover:text-ink">
+              {link.label}
+            </a>
+          ))
+        }
+      </nav>
+      <a href={nav.cta.href} class="btn-ink !px-5 !py-2.5 text-sm">
         {nav.cta.label}
       </a>
-    </nav>
+    </div>
   </div>
 </header>
 
-<style>
-  /* Dark state: over the hero. */
-  #site-nav {
-    color: var(--color-paper);
-    background: transparent;
-    transition: background-color 0.25s ease, color 0.25s ease;
-  }
-  #site-nav .nav-divider {
-    background: color-mix(in srgb, var(--color-paper) 30%, transparent);
-  }
-  #site-nav .nav-link {
-    opacity: 0.65;
-  }
-  #site-nav .nav-cta {
-    background: var(--color-paper);
-    color: var(--color-ink);
-  }
-  #site-nav .nav-cta:hover {
-    background: var(--color-phoenix);
-    color: var(--color-paper);
-  }
-
-  /* Light state: past the hero. */
-  #site-nav[data-scrolled] {
-    color: var(--color-ink);
-    background: color-mix(in srgb, var(--color-paper) 92%, transparent);
-    backdrop-filter: blur(8px);
-    border-bottom: 1px solid var(--color-line);
-  }
-  #site-nav[data-scrolled] .nav-divider {
-    background: var(--color-line);
-  }
-  #site-nav[data-scrolled] .nav-cta {
-    background: var(--color-ink);
-    color: var(--color-paper);
-  }
-  #site-nav[data-scrolled] .nav-cta:hover {
-    background: var(--color-phoenix);
-  }
-</style>
-
 <script>
   const navEl = document.getElementById('site-nav')!;
-  const hero = document.getElementById('hero');
-  if (hero) {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) navEl.removeAttribute('data-scrolled');
-        else navEl.setAttribute('data-scrolled', '');
-      },
-      { rootMargin: '-72px 0px 0px 0px' }
-    );
-    observer.observe(hero);
-  } else {
-    // Pages without a dark hero (roles) always run the light nav.
-    navEl.setAttribute('data-scrolled', '');
-  }
+  const onScroll = () => {
+    if (window.scrollY > 12) {
+      navEl.classList.add('bg-paper/90', 'border-line', 'backdrop-blur-md');
+    } else {
+      navEl.classList.remove('bg-paper/90', 'border-line', 'backdrop-blur-md');
+    }
+  };
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
 </script>

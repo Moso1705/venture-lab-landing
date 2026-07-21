@@ -1,47 +1,20 @@
 ---
 import Base from '../layouts/Base.astro';
-import Intro from '../components/Intro.astro';
 import Nav from '../components/Nav.astro';
-import Hero from '../components/Hero.astro';
-import Jump from '../components/Jump.astro';
-import Offer from '../components/Offer.astro';
-import Proof from '../components/Proof.astro';
-import DemoDayFilm from '../components/DemoDayFilm.astro';
-import Startups from '../components/Startups.astro';
-import Audience from '../components/Audience.astro';
+import WhatIs from '../components/WhatIs.astro';
+import ApplyRoutes from '../components/ApplyRoutes.astro';
 import Apply from '../components/Apply.astro';
-import Faq from '../components/Faq.astro';
+import Stories from '../components/Stories.astro';
 import Footer from '../components/Footer.astro';
-import StickyApply from '../components/StickyApply.astro';
-import { faq } from '../content/site';
-
-const faqSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faq.items.map((item) => ({
-    '@type': 'Question',
-    name: item.q,
-    acceptedAnswer: { '@type': 'Answer', text: item.a },
-  })),
-};
 ---
 
 <Base>
-  <script slot="head" type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
-  <Intro />
   <Nav />
   <main>
-    <Hero />
-    <Jump />
-    <Offer />
-    <Proof />
-    <DemoDayFilm />
-    <Startups />
-    <Audience />
+    <WhatIs />
+    <ApplyRoutes />
     <Apply />
-    <Faq />
+    <Stories />
   </main>
   <Footer />
-  <StickyApply />
-  <script src="../scripts/enhance.js"></script>
 </Base>

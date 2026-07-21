@@ -1,75 +1,92 @@
 @import "tailwindcss";
 
 /* ---------------------------------------------------------------------------
-   Design tokens. Single source of truth for the whole page.
-   White-first system in the HN12 family: near-white paper body, one near-black
-   band on top (hero) and bottom (footer), neutral grays, phoenix orange as a
-   sparse accent. Type is DM Sans (light weights for display) + DM Mono labels.
+   Design tokens aligned with hack-nation.ai: white canvas, Instrument Serif
+   display, Inter body, soft aura gradients, black pill CTAs, phoenix accent.
 --------------------------------------------------------------------------- */
 @theme {
-  /* surfaces */
-  --color-paper: #f5f5f3;
-  --color-paper-raised: #ebebe8;
-  --color-ink: #0d0d0d;
-  --color-ink-raised: #161616;
-
-  /* hairlines */
-  --color-line: #e0dfdb;      /* on paper */
-  --color-line-ink: #262626;  /* on ink */
-
-  /* text */
-  --color-soot: #40403d;      /* secondary on paper */
-  --color-gray: #6f6e6a;      /* muted on paper */
-  --color-faint: #a3a29e;     /* tertiary on paper, "not for" columns */
-  --color-fog: #b9b8b4;       /* secondary on ink */
-  --color-fog-dim: #8f8e8a;   /* muted on ink */
-
-  /* accent */
+  --color-ink: #111111;
+  --color-paper: #ffffff;
+  --color-paper-raised: #f4f3ef;
+  --color-line: #ecebea;
+  --color-soot: #272625;
+  --color-gray: #6d6c6b;
+  --color-faint: #a8a7a5;
+  --color-fog: #9a9997;
+  --color-fog-dim: #7a7977;
+  --color-line-ink: #2a2a2a;
+  --color-ink-raised: #1a1a1a;
   --color-phoenix: #e8400d;
   --color-phoenix-bright: #ff5c26;
 
-  /* type */
-  --font-sans: "DM Sans", ui-sans-serif, system-ui, -apple-system, sans-serif;
-  --font-mono: "DM Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-serif: "Instrument Serif", Georgia, "Times New Roman", serif;
+  --font-mono: "Inter", ui-sans-serif, system-ui, sans-serif;
 
-  /* rhythm */
   --spacing: 0.25rem;
-  --radius-none: 0px;
-  --radius-sm: 2px;
-  --radius-md: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-pill: 9999px;
 
-  /* motion */
+  --shadow-soft: 0 1px 2px color-mix(in srgb, var(--color-ink) 4%, transparent),
+    0 8px 24px color-mix(in srgb, var(--color-ink) 5%, transparent);
+
   --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-/* ---------------------------------------------------------------------------
-   Self-hosted fonts (public/fonts). font-display swap.
---------------------------------------------------------------------------- */
-@font-face {
-  font-family: "DM Sans";
-  font-style: normal;
-  font-weight: 100 1000;
-  font-display: swap;
-  src: url("/fonts/DMSans-100-1000-normal.woff2") format("woff2");
+@utility soft-card {
+  background: var(--color-paper);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-soft);
 }
+
+@utility band-raised {
+  background: var(--color-paper-raised);
+}
+
+@utility band-ink {
+  background: var(--color-ink);
+  color: var(--color-paper);
+}
+
 @font-face {
-  font-family: "DM Mono";
+  font-family: "Inter";
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url("/fonts/DMMono-400-normal.woff2") format("woff2");
+  src: url("/fonts/Inter-400-normal.woff2") format("woff2");
 }
 @font-face {
-  font-family: "DM Mono";
+  font-family: "Inter";
   font-style: normal;
   font-weight: 500;
   font-display: swap;
-  src: url("/fonts/DMMono-500-normal.woff2") format("woff2");
+  src: url("/fonts/Inter-500-normal.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("/fonts/Inter-600-normal.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Instrument Serif";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/InstrumentSerif-400-normal.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Instrument Serif";
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/InstrumentSerif-400-italic.woff2") format("woff2");
 }
 
-/* ---------------------------------------------------------------------------
-   Base
---------------------------------------------------------------------------- */
 html {
   scroll-behavior: smooth;
   @media (prefers-reduced-motion: reduce) {
@@ -86,77 +103,117 @@ body {
 }
 
 ::selection {
-  background: var(--color-phoenix);
+  background: var(--color-ink);
   color: var(--color-paper);
 }
 
 :focus-visible {
-  outline: 2px solid var(--color-phoenix);
-  outline-offset: 2px;
+  outline: 2px solid var(--color-ink);
+  outline-offset: 3px;
 }
 
-/* ---------------------------------------------------------------------------
-   Shared utilities
---------------------------------------------------------------------------- */
+/* Soft page atmosphere: grid + corner auras (hack-nation.ai) */
+@utility hn-atmosphere {
+  position: relative;
+  isolation: isolate;
+  &::before {
+    content: "";
+    pointer-events: none;
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    background-image:
+      linear-gradient(to right, color-mix(in srgb, var(--color-ink) 4%, transparent) 1px, transparent 1px),
+      linear-gradient(to bottom, color-mix(in srgb, var(--color-ink) 4%, transparent) 1px, transparent 1px);
+    background-size: 64px 64px;
+    mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, black 20%, transparent 75%);
+  }
+  &::after {
+    content: "";
+    pointer-events: none;
+    position: absolute;
+    inset: -10% -5% auto;
+    height: 70vh;
+    z-index: -1;
+    background:
+      radial-gradient(38% 55% at 8% 18%, color-mix(in srgb, #d0b2ff 55%, transparent), transparent 70%),
+      radial-gradient(42% 60% at 92% 22%, color-mix(in srgb, #99fff9 50%, transparent), transparent 72%);
+    filter: blur(2px);
+  }
+}
 
-/* Mono section marker, HN12-style: "01 · THE PROGRAM". 12px floor, never smaller. */
 @utility marker {
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 0.75rem;
-  letter-spacing: 0.18em;
+  font-weight: 500;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--color-gray);
 }
 
-/* Light display headline: the one voice for section headings. */
 @utility display {
-  font-family: var(--font-sans);
-  font-weight: 275;
-  letter-spacing: -0.015em;
+  font-family: var(--font-serif);
+  font-weight: 400;
+  letter-spacing: -0.02em;
   line-height: 1.05;
 }
 
-/* Rectangular mono button, dark on paper. */
 @utility btn-ink {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
   background: var(--color-ink);
   color: var(--color-paper);
-  font-family: var(--font-mono);
-  font-size: 0.8125rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  padding: 1.05rem 2.4rem;
-  transition: background-color 0.2s ease;
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  padding: 0.9rem 1.75rem;
+  border-radius: var(--radius-pill);
+  transition: background-color 0.2s ease, transform 0.2s var(--ease-out-quart);
   &:hover {
-    background: var(--color-phoenix);
+    background: var(--color-soot);
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    &:hover {
+      transform: translateY(-1px);
+    }
   }
 }
 
-/* Rectangular mono button, paper on ink (hero). */
-@utility btn-paper {
-  display: inline-block;
+@utility btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
   background: var(--color-paper);
   color: var(--color-ink);
-  font-family: var(--font-mono);
-  font-size: 0.8125rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  padding: 1.05rem 2.4rem;
-  transition: background-color 0.2s ease, color 0.2s ease;
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  padding: 0.9rem 1.75rem;
+  border-radius: var(--radius-pill);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--color-ink) 12%, transparent);
+  transition: background-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s var(--ease-out-quart);
   &:hover {
-    background: var(--color-phoenix);
-    color: var(--color-paper);
+    background: var(--color-paper-raised);
+    box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--color-ink) 22%, transparent);
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    &:hover {
+      transform: translateY(-1px);
+    }
   }
 }
 
-/* One-time scroll reveal. Progressive enhancement: without support or with
-   reduced motion, content is simply visible. Only transform/opacity animate. */
 @utility reveal {
   @media (prefers-reduced-motion: no-preference) {
     @supports (animation-timeline: view()) {
       animation: reveal-in 1ms linear both;
       animation-timeline: view();
-      animation-range: entry 0% entry 60%;
+      animation-range: entry 0% entry 55%;
     }
   }
 }
@@ -164,7 +221,7 @@ body {
 @keyframes reveal-in {
   from {
     opacity: 0;
-    transform: translateY(12px);
+    transform: translateY(14px);
   }
   to {
     opacity: 1;

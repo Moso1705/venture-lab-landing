@@ -14,19 +14,20 @@ const ogPath = join(root, 'public/og.png');
 const ogB64Path = join(root, 'scripts/og.png.b64');
 
 const GOOGLE_CSS =
-  'https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,100..1000&family=DM+Mono:wght@400;500&display=swap';
-// A Chrome UA makes the API return woff2 sources.
+  'https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&display=swap';
 const UA =
   'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36';
 
 const fontFile = (family, weight, style) =>
-  `${family.replaceAll(' ', '')}-${weight.replaceAll(' ', '-')}-${style}.woff2`;
+  `${family.replaceAll(' ', '')}-${weight}-${style}.woff2`;
 
 async function ensureFonts() {
   const expected = [
-    'DMSans-100-1000-normal.woff2',
-    'DMMono-400-normal.woff2',
-    'DMMono-500-normal.woff2',
+    'InstrumentSerif-400-normal.woff2',
+    'InstrumentSerif-400-italic.woff2',
+    'Inter-400-normal.woff2',
+    'Inter-500-normal.woff2',
+    'Inter-600-normal.woff2',
   ];
   if (expected.every((f) => existsSync(join(fontsDir, f)))) return;
 
@@ -40,7 +41,7 @@ async function ensureFonts() {
     if (subset !== 'latin') continue;
     const family = body.match(/font-family: '([^']+)'/)[1];
     const style = body.match(/font-style: (\w+)/)[1];
-    const weight = body.match(/font-weight: ([\d ]+)/)[1].trim();
+    const weight = body.match(/font-weight: ([\d]+)/)[1].trim();
     const url = body.match(/url\((https:[^)]+\.woff2)\)/)[1];
     const name = fontFile(family, weight, style);
     if (!expected.includes(name) || existsSync(join(fontsDir, name))) continue;
@@ -50,7 +51,7 @@ async function ensureFonts() {
     console.log(`restored ${name}`);
   }
 
-  const missing = expected.filter((f) => !existsSync(join(fontsDir, f)));
+  const missing = expected.filter((f) => !existsSync(join(fontsDir, name)));
   if (missing.length) throw new Error(`Fonts still missing after restore: ${missing.join(', ')}`);
 }
 
@@ -62,8 +63,6 @@ async function ensureOgImage() {
     console.log('restored og.png');
     return;
   }
-  // Source-only deploys cannot carry the b64 sidecar either; fall back to the
-  // copy the live site already serves.
   const res = await fetch('https://venture-lab-landing.vercel.app/og.png');
   if (!res.ok) {
     throw new Error(`og.png missing and live fetch failed (${res.status}). Restore public/og.png or scripts/og.png.b64.`);

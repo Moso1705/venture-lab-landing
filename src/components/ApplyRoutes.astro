@@ -1,0 +1,44 @@
+---
+/**
+ * Three applicant paths. Whisper-gray band so this block reads apart from program + apply.
+ */
+import { applyRoutes } from '../content/site';
+---
+
+<section class="band-raised border-b border-line">
+  <div class="mx-auto max-w-6xl px-6 py-20 md:px-8 md:py-24">
+    <div class="reveal mx-auto max-w-2xl text-center">
+      <p class="marker">{applyRoutes.marker}</p>
+      <h2 class="display mt-4 text-[clamp(2.25rem,5vw,3.25rem)] italic">{applyRoutes.headline}</h2>
+      <p class="mt-4 text-base leading-relaxed text-gray">{applyRoutes.sub}</p>
+    </div>
+
+    <div class="reveal mt-12 grid gap-4 md:grid-cols-3 md:gap-5">
+      {
+        applyRoutes.paths.map((path) => (
+          <a
+            href={path.href}
+            class:list={[
+              'group flex flex-col rounded-[var(--radius-md)] p-6 transition-[transform,box-shadow,background-color] duration-200 md:p-8',
+              path.primary
+                ? 'bg-ink text-paper shadow-[var(--shadow-soft)]'
+                : 'soft-card hover:bg-paper',
+            ]}
+          >
+            <p class:list={['text-xs font-medium uppercase tracking-[0.14em]', path.primary ? 'text-paper/55' : 'text-gray']}>
+              {path.role}
+            </p>
+            <h3 class="mt-4 font-serif text-[1.5rem] leading-snug tracking-tight md:text-[1.65rem]">{path.title}</h3>
+            <p class:list={['mt-3 flex-1 text-sm leading-relaxed', path.primary ? 'text-paper/70' : 'text-gray']}>
+              {path.body}
+            </p>
+            <span class:list={['mt-8 inline-flex items-center gap-2 text-sm font-medium', path.primary ? 'text-paper' : 'text-ink']}>
+              {path.cta}
+              <span class="transition-transform duration-200 group-hover:translate-x-0.5" aria-hidden="true">→</span>
+            </span>
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</section>

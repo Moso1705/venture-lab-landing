@@ -1,24 +1,31 @@
 ---
 /**
- * The waitlist capture as a working funnel: one email field, POSTs to
- * /api/get-in-line, stores in the vl-waitlist blob store. This is the interim
- * answer until the real application forms exist.
+ * Email capture until the real application form exists.
+ * API route name stays /api/get-in-line; user-facing copy does not.
  */
 interface Props {
   role: 'founder' | 'mba' | 'mentor';
-  note: string;
+  note?: string;
+  cta?: string;
+  finePrint?: string;
+  showNote?: boolean;
 }
 
-const { role, note } = Astro.props;
+const {
+  role,
+  note,
+  cta = 'Notify me',
+  finePrint = 'Email is only used to tell you when applications open.',
+  showNote = false,
+} = Astro.props;
 ---
 
-<div class="get-in-line border border-line bg-paper-raised px-6 py-7 md:px-8">
-  <p class="font-mono text-[0.75rem] uppercase tracking-[0.18em] text-soot">Spots are limited.</p>
-  <p class="mt-2 text-[0.9375rem] leading-relaxed text-soot">{note}</p>
-  <form class="gil-form mt-7" data-role={role}>
-    <div class="flex flex-wrap items-end gap-x-6 gap-y-5">
-      <div class="min-w-[14rem] flex-1">
-        <label class="font-mono text-[0.75rem] uppercase tracking-[0.18em] text-gray" for={`gil-email-${role}`}>
+<div class="get-in-line soft-card p-6 md:p-8">
+  {showNote && note && <p class="mb-6 text-[0.9375rem] leading-relaxed text-soot">{note}</p>}
+  <form class="gil-form" data-role={role}>
+    <div class="flex flex-col gap-4 sm:flex-row sm:items-end">
+      <div class="min-w-0 flex-1">
+        <label class="text-xs font-medium uppercase tracking-[0.12em] text-gray" for={`gil-email-${role}`}>
           Email
         </label>
         <input
@@ -27,19 +34,17 @@ const { role, note } = Astro.props;
           name="email"
           required
           maxlength="254"
-          placeholder="ada@lovelace.dev"
+          placeholder="you@company.com"
           autocomplete="email"
-          class="mt-2 block w-full border-b border-gray bg-transparent pb-2 text-[1.0625rem] text-ink placeholder:text-faint focus:border-ink focus:outline-none"
+          class="mt-2 block w-full rounded-xl border border-line bg-paper-raised/50 px-4 py-3 text-[1.0625rem] text-ink placeholder:text-faint focus:border-ink focus:bg-paper focus:outline-none"
         />
       </div>
       <input type="text" name="company_website" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
-      <button type="submit" class="btn-ink">Get in line</button>
+      <button type="submit" class="btn-ink shrink-0 sm:mb-0.5">{cta}</button>
     </div>
   </form>
-  <p class="gil-status mt-5 hidden font-mono text-[0.8125rem]" role="status" aria-live="polite"></p>
-  <p class="mt-5 font-mono text-[0.75rem] tracking-[0.04em] text-gray">
-    email is only used to tell you when applications open
-  </p>
+  <p class="gil-status mt-5 hidden text-sm" role="status" aria-live="polite"></p>
+  <p class="mt-4 text-xs text-gray">{finePrint}</p>
 </div>
 
 <script>
@@ -50,7 +55,7 @@ const { role, note } = Astro.props;
       e.preventDefault();
       const data = Object.fromEntries(new FormData(form).entries());
       status.classList.remove('hidden');
-      status.textContent = '… writing you into the ledger';
+      status.textContent = 'Saving…';
       status.style.color = 'var(--color-gray)';
       try {
         const res = await fetch('/api/get-in-line', {
@@ -61,14 +66,14 @@ const { role, note } = Astro.props;
         const out = await res.json();
         if (out.ok) {
           form.classList.add('hidden');
-          status.textContent = '✓ you are in line. we write the moment selection opens.';
-          status.style.color = 'var(--color-phoenix)';
+          status.textContent = 'Saved. We will write when applications open.';
+          status.style.color = 'var(--color-ink)';
         } else {
-          status.textContent = `✗ ${out.error ?? 'could not save, try again'}`;
+          status.textContent = out.error ?? 'Could not save. Try again.';
           status.style.color = 'var(--color-soot)';
         }
       } catch {
-        status.textContent = '✗ network hiccup, try again';
+        status.textContent = 'Network error. Try again.';
         status.style.color = 'var(--color-soot)';
       }
     });
