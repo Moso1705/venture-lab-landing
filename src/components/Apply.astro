@@ -10,10 +10,11 @@ import GetInLine from './GetInLine.astro';
   <div class="mx-auto max-w-3xl px-6 py-16 md:px-8 md:py-20">
     <div class="reveal text-center">
       <p class="marker">{apply.marker}</p>
-      <h2 class="mt-4 text-[clamp(1.5rem,4vw,2.25rem)] font-medium tracking-[0.04em] text-ink uppercase">
+      {/* Uppercase CTA headline is intentional (APPLY NOW...), not the serif section-title. */}
+      <h2 class="mt-4 text-[clamp(1.5rem,4vw,2.25rem)] font-medium tracking-[0.06em] text-ink uppercase">
         {apply.headline}
       </h2>
-      <p class="mx-auto mt-4 max-w-md text-base leading-relaxed text-gray">{apply.sub}</p>
+      <p class="section-sub mx-auto max-w-md">{apply.sub}</p>
     </div>
     <div class="reveal mt-8">
       {

@@ -145,13 +145,24 @@ body {
   }
 }
 
+/* Section marker: APPLY, OUTCOMES, WHAT YOU GET, partners, etc. */
 @utility marker {
   font-family: var(--font-sans);
   font-size: 0.75rem;
   font-weight: 500;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--color-gray);
+}
+
+/* Intentional HN-Blue accent label (Investor Day endcap, not general markers). */
+@utility marker-blue {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-hn-blue);
 }
 
 @utility display {
@@ -159,6 +170,23 @@ body {
   font-weight: 400;
   letter-spacing: -0.02em;
   line-height: 1.05;
+}
+
+/* Shared section headline scale (not the hero). */
+@utility section-title {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+  font-size: clamp(2rem, 4.5vw, 3.25rem);
+}
+
+/* Shared supporting subline under section titles. */
+@utility section-sub {
+  margin-top: 1rem;
+  font-size: 1rem;
+  line-height: 1.625;
+  color: var(--color-gray);
 }
 
 @utility btn-ink {

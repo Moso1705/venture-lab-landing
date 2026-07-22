@@ -1,7 +1,7 @@
 ---
 /**
- * Program opening: headline, benefits, entry path,
- * twelve-week journey + gate. White canvas with atmosphere.
+ * Funnel top: hero, what we give you, how to apply.
+ * No week grid, no Clear the gate (voice: keep it a funnel, not a structured program).
  */
 import { whatIs } from '../content/site';
 ---
@@ -11,49 +11,32 @@ import { whatIs } from '../content/site';
   <div class="relative mx-auto max-w-6xl px-6 pb-4 md:px-8 md:pb-6">
     <div class="reveal mx-auto max-w-3xl text-center">
       <p class="marker">{whatIs.eyebrow}</p>
-      <span class="mt-5 inline-flex items-center rounded-full border border-ink/10 bg-paper/85 px-3.5 py-1 text-xs font-medium tracking-[0.08em] text-ink uppercase">
+      <span class="mt-5 inline-flex items-center rounded-full border border-ink/10 bg-paper/85 px-3.5 py-1 text-xs font-medium tracking-[0.14em] text-ink uppercase">
         {whatIs.badge}
       </span>
       <h1 class="display mt-6 text-[clamp(2.5rem,7vw,5rem)]">
         <span class="text-gray">{whatIs.headline.lead}</span>
-        <br />
+        {' '}
         <em class="italic text-ink">{whatIs.headline.emphasis}</em>
       </h1>
-      <p class="mt-6 text-base leading-relaxed text-gray md:text-lg">{whatIs.sub}</p>
-      <p class="mt-4 text-sm text-soot">
-        {whatIs.meta.join(' · ')}
-      </p>
+      {
+        whatIs.sub && (
+          <p class="section-sub mx-auto max-w-xl">{whatIs.sub}</p>
+        )
+      }
     </div>
   </div>
 
-  <!-- What you get: bigger centered label + five pillars + partner logos -->
+  <!-- This is what we give you -->
   <div class="relative mx-auto max-w-6xl px-6 py-14 md:px-8 md:py-16">
     <div class="reveal mx-auto max-w-5xl">
-      <p class="text-center text-sm font-medium tracking-[0.14em] text-gray uppercase md:text-base">
-        {whatIs.pillarsLabel}
-      </p>
+      <p class="pillars-label text-center">{whatIs.pillarsLabel}</p>
       <div class="pillars mt-10">
         {
           whatIs.pillars.map((pillar) => (
             <div class="pillar">
               <h2 class="text-[0.9375rem] font-medium tracking-tight text-ink">{pillar.title}</h2>
-              <p class="mt-2 text-sm leading-relaxed text-gray">
-                {pillar.body}
-                {'link' in pillar && pillar.link && (
-                  <>
-                    {' '}
-                    <a
-                      href={pillar.link.href}
-                      rel="noopener"
-                      target="_blank"
-                      class="font-medium text-hn-blue underline-offset-4 hover:underline"
-                    >
-                      {pillar.link.label}
-                    </a>
-                    .
-                  </>
-                )}
-              </p>
+              <p class="mt-2 text-sm leading-relaxed text-gray">{pillar.body}</p>
             </div>
           ))
         }
@@ -80,7 +63,7 @@ import { whatIs } from '../content/site';
     </div>
   </div>
 
-  <!-- How to apply: large HN-Blue label + four steps -->
+  <!-- HOW TO APPLY: intentional large HN-Blue -->
   <div class="band-raised border-y border-line">
     <div class="reveal mx-auto max-w-6xl px-6 py-14 md:px-8 md:py-16">
       <div class="mx-auto max-w-5xl">
@@ -88,7 +71,7 @@ import { whatIs } from '../content/site';
           <h2 class="font-serif text-[clamp(1.75rem,4.5vw,2.75rem)] leading-none tracking-tight text-hn-blue uppercase">
             {whatIs.pathLabel}
           </h2>
-          <p class="text-xs font-medium tracking-[0.12em] text-hn-blue uppercase">{whatIs.pathEnd}</p>
+          <p class="marker-blue">{whatIs.pathEnd}</p>
         </div>
 
         <ol class="path-rail mt-10 md:mt-12">
@@ -105,59 +88,19 @@ import { whatIs } from '../content/site';
       </div>
     </div>
   </div>
-
-  <div class="border-b border-line bg-paper">
-    <div class="reveal mx-auto max-w-6xl px-6 py-16 md:px-8 md:py-20">
-      <div class="flex flex-wrap items-end justify-between gap-3">
-        <p class="marker">{whatIs.phasesLabel}</p>
-        <p class="text-xs font-medium tracking-[0.14em] text-gray uppercase">{whatIs.phasesSpan}</p>
-      </div>
-
-      <ol class="phase-journey mt-10">
-        {
-          whatIs.phases.map((phase, i) => (
-            <li class="phase-journey__step">
-              <div class="phase-journey__copy">
-                <p class="text-[0.6875rem] font-medium tracking-[0.14em] text-gray uppercase">{phase.weeks}</p>
-                <h3 class="mt-2.5 text-base font-medium tracking-tight text-ink">{phase.title}</h3>
-                <p class="mt-1.5 max-w-xs text-sm leading-relaxed text-gray">{phase.body}</p>
-              </div>
-              {i < whatIs.phases.length - 1 && (
-                <span class="phase-journey__arrow" aria-hidden="true">
-                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" />
-                  </svg>
-                </span>
-              )}
-            </li>
-          ))
-        }
-      </ol>
-
-      <div class="gate mt-12 md:mt-14">
-        <div class="gate__head">
-          <p class="text-[0.6875rem] font-medium tracking-[0.14em] text-gray uppercase">{whatIs.gate.note}</p>
-          <h3 class="mt-2 font-serif text-[clamp(1.5rem,3vw,2rem)] leading-tight tracking-tight text-ink">
-            {whatIs.gate.title}
-          </h3>
-          <p class="mt-2 max-w-sm text-sm leading-relaxed text-gray">{whatIs.gate.body}</p>
-        </div>
-        <ol class="gate__reqs">
-          {
-            whatIs.gate.requirements.map((req) => (
-              <li class="gate__req">
-                <p class="gate__value">{req.value}</p>
-                <p class="mt-1 text-xs leading-snug text-gray sm:text-sm">{req.label}</p>
-              </li>
-            ))
-          }
-        </ol>
-      </div>
-    </div>
-  </div>
 </section>
 
 <style>
+  /* Bigger centered give-label; still gray (HN-Blue reserved for HOW TO APPLY / numbers). */
+  .pillars-label {
+    font-family: var(--font-sans);
+    font-size: clamp(0.875rem, 1.6vw, 1.0625rem);
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-gray);
+  }
+
   .pillars {
     display: grid;
     gap: 2rem;
@@ -226,133 +169,6 @@ import { whatIs } from '../content/site';
 
     .path-rail__step:last-child {
       padding-right: 0;
-    }
-  }
-
-  /* Twelve-week journey: phases linked by small arrows */
-  .phase-journey {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-  }
-
-  .phase-journey__step {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) auto;
-    gap: 0.75rem;
-    align-items: stretch;
-  }
-
-  .phase-journey__copy {
-    border-top: 1px solid var(--color-line);
-    padding-block: 1.25rem;
-  }
-
-  .phase-journey__arrow {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--color-faint);
-    transform: rotate(90deg);
-  }
-
-  .phase-journey__step:last-child .phase-journey__arrow {
-    display: none;
-  }
-
-  @media (min-width: 640px) {
-    .phase-journey {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      column-gap: 0;
-      row-gap: 0.5rem;
-    }
-
-    .phase-journey__step {
-      position: relative;
-      display: block;
-      padding-inline: 0.85rem;
-    }
-
-    .phase-journey__step:nth-child(3n + 1) {
-      padding-left: 0;
-    }
-
-    .phase-journey__step:nth-child(3n) {
-      padding-right: 0;
-    }
-
-    .phase-journey__copy {
-      padding-block: 1.25rem 1.5rem;
-      height: 100%;
-    }
-
-    .phase-journey__arrow {
-      position: absolute;
-      top: calc(1.25rem + 0.35rem);
-      right: -0.35rem;
-      transform: none;
-      width: 1rem;
-      height: 1rem;
-      color: color-mix(in srgb, var(--color-hn-blue) 55%, var(--color-faint));
-      pointer-events: none;
-    }
-
-    /* No right arrow at end of each row */
-    .phase-journey__step:nth-child(3n) .phase-journey__arrow {
-      display: none;
-    }
-  }
-
-  /* Gate: quiet metric strip */
-  .gate {
-    display: grid;
-    gap: 1.5rem;
-    border-top: 1px solid var(--color-ink);
-    padding-top: 1.75rem;
-  }
-
-  .gate__reqs {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: grid;
-    gap: 1.25rem;
-  }
-
-  .gate__value {
-    font-family: var(--font-serif);
-    font-size: clamp(1.5rem, 3vw, 1.875rem);
-    line-height: 1;
-    letter-spacing: -0.02em;
-    font-variant-numeric: tabular-nums;
-    color: var(--color-soot);
-  }
-
-  @media (min-width: 768px) {
-    .gate {
-      grid-template-columns: minmax(11rem, 0.85fr) minmax(0, 1.5fr);
-      gap: 2.5rem;
-      align-items: end;
-      padding-top: 2rem;
-    }
-
-    .gate__reqs {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 0;
-    }
-
-    .gate__req {
-      padding-inline: 1rem;
-      border-left: 1px solid var(--color-line);
-    }
-
-    .gate__req:first-child {
-      padding-left: 0;
-      border-left: none;
     }
   }
 </style>

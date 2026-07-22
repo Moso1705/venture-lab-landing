@@ -2,9 +2,9 @@
  * Page content. Components render what is here and never hardcode words.
  * Claims must stay covered by docs/FACTS.md.
  *
- * Structure: sketch order. Substance: Michi's Venture Lab copy, adapted.
- * Tone: YC-short, top-tier, not hackathon-heavy. No em/en dashes. No "get in line".
- * Free / no equity: stated once in hero meta pills (and once in og meta). Not repeated.
+ * Funnel spine (voice notes Jul 2026): give → how to apply → pick path → notify → proof.
+ * Tone: YC-short, elite, not hackathon-heavy. No em/en dashes. No "get in line".
+ * Free / no equity: og meta + FAQ only. Never as hero pills.
  */
 // Michi: paste the Cohort application form URL here (Tally/Typeform/Google Form).
 export const applyFormUrl = '';
@@ -13,11 +13,11 @@ export const formIsLive = Boolean(applyFormUrl);
 export const demoDayVideoUrl = '';
 export const site = {
   name: 'HackNation Venture Lab',
-  tagline: 'Twelve weeks from prototype to a company that can raise.',
+  tagline: 'Twelve weeks full-time to Investor Day.',
   url: 'https://venture-lab-landing.vercel.app',
   parentUrl: 'https://hack-nation.ai',
   ogDescription:
-    'Twelve weeks, senior mentors, and a room of investors. Free to join, no equity taken.',
+    'The new Unicorn Foundry. Twelve weeks full-time to Investor Day. Free to join, no equity taken.',
 };
 export const nav = {
   hn: { label: 'HN', href: 'https://hack-nation.ai' },
@@ -34,36 +34,37 @@ export const nav = {
 export const whatIs = {
   eyebrow: 'HackNation Venture Lab',
   badge: 'Cohort 3',
-  headline: { lead: 'You built the prototype.', emphasis: 'Now build the company.' },
-  // Free / no-equity stated once in meta (and in og meta). Duration kept for legacy hero.meta.
+  // Voice: "the new unicorn foundry". Copyright TBD (teen edu site + UK dormant co. exist).
+  // Positioning line only, not a claimed product brand.
+  headline: { lead: 'The new', emphasis: 'Unicorn Foundry' },
   duration: '12 weeks',
-  meta: ['Remote', 'Free', 'No equity'],
-  sub: 'Twelve weeks with senior mentors, biweekly gates, and a room of investors.',
-  pathLabel: 'How to apply', // rendered uppercase as HOW TO APPLY
+  meta: [] as string[],
+  sub: 'For the most ambitious founders.',
+  pathLabel: 'How to apply',
   pathEnd: 'Investor Day',
   steps: [
     {
       num: '01',
-      title: 'Show us your exceptional profile',
-      body: 'Builders who ship. Track record, clarity, and the drive to go full-time.',
+      title: 'Choose your Exception',
+      body: 'An exceptional profile. Track record and the drive to go full-time.',
     },
     {
       num: '02',
-      title: 'Show us your moonshot idea',
+      title: 'Choose your Moonshot Idea',
       body: 'A working prototype and a sharp thesis. Not a slide deck.',
     },
     {
       num: '03',
       title: 'Get selected',
-      body: 'Real user pain, a sharp team, proof you keep shipping. Small cohort on purpose.',
+      body: 'Small cohort on purpose.',
     },
     {
       num: '04',
-      title: 'Run the lab. 12 weeks full-time.',
-      body: 'Intensive. Biweekly gates, coaching, and Investor Day at the end.',
+      title: 'Run the lab · 12 weeks full-time',
+      body: 'Intensive. Investor Day at the end.',
     },
   ],
-  pillarsLabel: 'What you get',
+  pillarsLabel: 'This is what we give you',
   pillars: [
     {
       title: 'Mentors',
@@ -71,15 +72,12 @@ export const whatIs = {
     },
     {
       title: 'Coaches',
-      body: 'An ambitious business co-founder from a top US, European, or Asian university on the business side.',
+      body: 'An ambitious business co-founder from a top US, European, or Asian university.',
     },
     {
       title: 'Credits',
-      body: 'API credits and partner discounts',
-      link: {
-        label: 'via Start2',
-        href: 'https://start2group.notion.site/Let-s-save-your-Startups-Money-sign-up-today-and-unlock-access-to-exclusive-Discounts-a49e51a43e114b64a888d346b8857fe6',
-      },
+      // Start2 gallery highlights. No Notion URL.
+      body: '$1M+ in compute and discounts. 130+ startup deals.',
     },
     {
       title: 'Partners',
@@ -87,7 +85,7 @@ export const whatIs = {
     },
     {
       title: 'Top Tier Investors',
-      body: 'EWOR, a16z, Antler, Creandum, Cherry, EF and more. Waiting for the best teams on Investor Day.',
+      body: 'EWOR, a16z, Antler, Creandum, Cherry, EF and more. Waiting on Investor Day.',
     },
   ],
   partners: {
@@ -98,8 +96,9 @@ export const whatIs = {
       { name: 'Start2 Group', logo: '/logos/start2.svg', href: 'https://start2.group', h: 24 },
     ],
   },
-  phasesLabel: 'The twelve-week journey',
-  phasesSpan: 'wk 01 → wk 12',
+  // Legacy for Jump / role pages only. Not on the funnel page.
+  phasesLabel: 'Twelve weeks',
+  phasesSpan: 'Prototype in. Investor Day out.',
   phases: [
     { weeks: 'wk 01-02', title: 'Voice of customer', body: 'Talk to the people you think you are building for.' },
     { weeks: 'wk 03-04', title: 'First commitment', body: 'Money, a pilot, or a signed letter. Something real.' },
@@ -122,7 +121,7 @@ export const whatIs = {
 export const applyRoutes = {
   marker: 'Apply',
   headline: 'Pick your path',
-  sub: 'Founders, mentors, and MBA coaches. Same program, different seats.',
+  sub: 'Founders who want in. Mentors and MBA coaches who raise the bar.',
   paths: [
     {
       role: 'Founders',
@@ -145,7 +144,7 @@ export const applyRoutes = {
     {
       role: 'MBA coaches',
       title: 'Coach a startup',
-      body: 'One team from prototype through Investor Day. Strategy, GTM, and the gates.',
+      body: 'One team from prototype through Investor Day. Strategy and go-to-market.',
       cta: 'Coach as an MBA',
       href: '/mba',
       tone: 'raised' as const,
@@ -153,7 +152,7 @@ export const applyRoutes = {
   ],
 };
 export const apply = {
-  marker: 'Founders',
+  marker: 'Notice',
   headline: 'Apply now. Your future starts here.',
   sub: formIsLive
     ? 'VL3 cohort applications are open. Tell us what you built and who needs it.'
@@ -164,27 +163,18 @@ export const apply = {
 export const stories = {
   marker: 'Outcomes',
   headline: 'Founders who shipped further.',
-  sub: 'Alumni have landed Y Combinator and seed rounds.',
+  sub: 'Alumni who kept shipping after the Lab.',
   // Photos: placeholders until Michi supplies portraits.
-  // LinkedIn: paste real profile URLs; empty string shows a pending slot.
+  // Voice: Janet + David only.
   testimonials: [
     {
       name: 'David de Gruijl',
       role: 'Founder @ Anto (YC F25)',
       badge: 'YC F25',
       quote:
-        'I got into Y Combinator with the same idea, finished the batch, and raised a seed. Grateful for the push that got me there.',
+        'Same idea. Y Combinator, then a seed. Grateful for the push that got me there.',
       image: '/portraits/placeholder.svg',
       linkedin: 'https://www.linkedin.com/in/daviddegruijl',
-    },
-    {
-      name: 'Artem Arzyn',
-      role: 'Venture Lab alumnus',
-      badge: 'Alumnus',
-      quote:
-        'The Venture Track challenged me to think like a founder. Mentorship and pitch sessions changed how I build.',
-      image: '/portraits/placeholder.svg',
-      linkedin: 'https://www.linkedin.com/in/artem-arzyn',
     },
     {
       name: 'Dr. Janet Brinz',
@@ -231,7 +221,7 @@ export const hero = {
   poweredBy: 'powered by hack-nation',
   wordmark: 'Venture Lab',
   subline: site.tagline,
-  meta: [whatIs.duration, ...whatIs.meta].join(' · '),
+  meta: whatIs.duration,
   live: 'Cohort 3 forms next',
   primaryCta: { label: formIsLive ? 'Apply now' : 'Notify me', href: '#apply' },
   secondaryCta: { label: 'see the program', href: '#program' },
@@ -311,7 +301,7 @@ export const audience = {
     items: [
       { lead: 'Idea only:', body: 'come back when something is running.' },
       { lead: 'You want a certificate:', body: 'there is none.' },
-      { lead: 'You cannot commit weekly hours:', body: 'gates do not happen on the side.' },
+      { lead: 'You cannot commit full-time:', body: 'twelve weeks is not a side project.' },
     ],
   },
   soloNote: 'Solo technical founders are welcome. Cohort 1 had five.',
