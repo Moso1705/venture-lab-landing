@@ -33,13 +33,15 @@ export const nav = {
 };
 export const whatIs = {
   eyebrow: 'HackNation Venture Lab',
-  badge: 'Cohort 3',
+  badge: 'VL3',
   // Voice: "the new unicorn foundry". Copyright TBD (teen edu site + UK dormant co. exist).
   // Positioning line only, not a claimed product brand.
   headline: { lead: 'The new', emphasis: 'Unicorn Foundry' },
   duration: '12 weeks',
   meta: [] as string[],
   sub: 'For the most ambitious founders.',
+  // Quiet FOMO under the hero. No fake deadlines, no rejection theater.
+  whisper: 'Limited seats. Selection, not open enrollment.',
   pathLabel: 'How to apply',
   pathEnd: 'Investor Day',
   steps: [
@@ -56,7 +58,7 @@ export const whatIs = {
     {
       num: '03',
       title: 'Get selected',
-      body: 'Small cohort on purpose. High bar, few seats.',
+      body: 'Small VL3 cohort on purpose. High bar, few seats.',
     },
     {
       num: '04',
@@ -121,14 +123,14 @@ export const whatIs = {
 export const applyRoutes = {
   marker: 'Apply',
   headline: 'Pick your path',
-  sub: 'Founders who want in. Mentors and MBA coaches who raise the bar.',
+  sub: 'Ambitious founders first. Mentors and MBA coaches who raise the bar.',
   paths: [
     {
       role: 'Founders',
       title: 'Build the company',
       body: formIsLive
-        ? 'Apply with a working prototype. Ten minutes to submit. No deck required.'
-        : 'Leave your email. We write when Cohort 3 selection opens for teams.',
+        ? 'Apply with a working prototype. Limited VL3 seats. Selection is the filter.'
+        : 'Leave your email. We write when VL3 selection opens. Seats are limited.',
       cta: formIsLive ? 'Apply with your team' : 'Notify me',
       href: '#apply',
       tone: 'ink' as const,
@@ -155,8 +157,8 @@ export const apply = {
   marker: 'Notice',
   headline: 'Apply now. Your future starts here.',
   sub: formIsLive
-    ? 'VL3 cohort applications are open. Tell us what you built and who needs it.'
-    : 'VL3 cohort applications open soon.',
+    ? 'VL3 applications are open. Limited seats for ambitious founders.'
+    : 'VL3 opens soon. Limited seats. Get notified for selection.',
   cta: formIsLive ? 'Continue' : 'Notify me',
   note: 'Email is only used to tell you when applications open.',
 };
