@@ -155,7 +155,7 @@ const { data, formUrl, formTitle, role } = Astro.props;
         {
           data.proof.map((stat) => (
             <div class="reveal">
-              <dd class="display text-4xl tabular-nums md:text-5xl" data-countup={stat.value} data-suffix={stat.suffix}>
+              <dd class="display text-4xl tabular-nums text-hn-blue md:text-5xl" data-countup={stat.value} data-suffix={stat.suffix}>
                 {stat.value.toLocaleString('en-US')}
                 {stat.suffix}
               </dd>
