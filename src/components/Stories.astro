@@ -1,7 +1,7 @@
 ---
 /**
- * Outcomes: testimonial carousel, partners, company examples.
- * Soft raised band so stories read as their own chapter after apply.
+ * Outcomes: HN-style testimonial carousel + company examples.
+ * Partner logos live under What you get; this section stays proof-focused.
  */
 import { stories } from '../content/site';
 const slides = stories.testimonials;
@@ -15,11 +15,14 @@ const slides = stories.testimonials;
     </div>
 
     <div class="reveal mt-12" data-testimonials>
-      <div class="soft-card p-6 md:p-10">
+      <div class="soft-card overflow-hidden p-6 md:p-10">
         {
           slides.map((t, i) => (
             <article
-              class:list={['testimonial-slide grid gap-8 md:grid-cols-[200px_minmax(0,1fr)] md:gap-10', i === 0 ? '' : 'hidden']}
+              class:list={[
+                'testimonial-slide grid gap-8 md:grid-cols-[200px_minmax(0,1fr)] md:gap-10',
+                i === 0 ? '' : 'hidden',
+              ]}
               data-slide={i}
               aria-hidden={i === 0 ? 'false' : 'true'}
             >
@@ -41,7 +44,7 @@ const slides = stories.testimonials;
                       class="btn-ink w-fit !px-4 !py-2 text-xs"
                       data-linkedin
                     >
-                      LinkedIn →
+                      View LinkedIn profile →
                     </a>
                   ) : (
                     <span
@@ -55,8 +58,8 @@ const slides = stories.testimonials;
                 }
               </div>
               <div class="flex min-w-0 flex-col justify-center">
-                <span class="inline-flex w-fit items-center gap-2 rounded-full border border-line px-3 py-1 text-xs font-medium text-soot">
-                  <span class="h-1.5 w-1.5 rounded-full bg-phoenix" aria-hidden="true" />
+                <span class="inline-flex w-fit items-center gap-2 rounded-full border border-line bg-paper-raised/80 px-3 py-1 text-xs font-medium text-soot">
+                  <span class="h-1.5 w-1.5 rounded-full bg-hn-blue" aria-hidden="true" />
                   {t.badge}
                 </span>
                 <blockquote class="mt-5 font-serif text-[clamp(1.25rem,2.5vw,1.55rem)] leading-snug italic text-ink">
@@ -104,26 +107,6 @@ const slides = stories.testimonials;
           </div>
         </div>
       </div>
-    </div>
-
-    <div class="reveal mt-16 rounded-[var(--radius-lg)] border border-line bg-paper px-6 py-10 md:px-10">
-      <p class="marker text-center">{stories.sponsors.line}</p>
-      <div class="mt-8 flex flex-wrap items-center justify-center gap-x-12 gap-y-6">
-        {
-          stories.sponsors.orgs.map((org) => (
-            <a
-              href={org.href}
-              rel="noopener"
-              target="_blank"
-              class="opacity-75 transition-opacity hover:opacity-100"
-              aria-label={org.name}
-            >
-              <img src={org.logo} alt={org.name} height={org.h} style={`height:${org.h}px`} class="w-auto" loading="lazy" />
-            </a>
-          ))
-        }
-      </div>
-      <p class="mx-auto mt-6 max-w-xl text-center text-sm leading-relaxed text-gray">{stories.sponsors.ewor}</p>
     </div>
 
     <div class="reveal mt-16">

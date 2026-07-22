@@ -26,37 +26,69 @@ import { whatIs } from '../content/site';
     </div>
   </div>
 
-  <!-- Benefits: open hairline columns on white -->
+  <!-- What you get: bigger centered label + five pillars + partner logos -->
   <div class="relative mx-auto max-w-6xl px-6 py-14 md:px-8 md:py-16">
     <div class="reveal mx-auto max-w-5xl">
-      <p class="marker">{whatIs.pillarsLabel}</p>
-      <div class="mt-8 grid gap-8 sm:grid-cols-3 sm:gap-0">
+      <p class="text-center text-sm font-medium tracking-[0.14em] text-gray uppercase md:text-base">
+        {whatIs.pillarsLabel}
+      </p>
+      <div class="pillars mt-10">
         {
-          whatIs.pillars.map((pillar, i) => (
-            <div
-              class:list={[
-                'sm:px-6',
-                i === 0 && 'sm:pl-0',
-                i === whatIs.pillars.length - 1 && 'sm:pr-0',
-                i > 0 && 'sm:border-l sm:border-line',
-              ]}
-            >
+          whatIs.pillars.map((pillar) => (
+            <div class="pillar">
               <h2 class="text-[0.9375rem] font-medium tracking-tight text-ink">{pillar.title}</h2>
-              <p class="mt-2 text-sm leading-relaxed text-gray">{pillar.body}</p>
+              <p class="mt-2 text-sm leading-relaxed text-gray">
+                {pillar.body}
+                {'link' in pillar && pillar.link && (
+                  <>
+                    {' '}
+                    <a
+                      href={pillar.link.href}
+                      rel="noopener"
+                      target="_blank"
+                      class="font-medium text-hn-blue underline-offset-4 hover:underline"
+                    >
+                      {pillar.link.label}
+                    </a>
+                    .
+                  </>
+                )}
+              </p>
             </div>
           ))
         }
       </div>
+
+      <div class="mt-14 border-t border-line pt-10">
+        <p class="marker text-center">{whatIs.partners.line}</p>
+        <div class="mt-8 flex flex-wrap items-center justify-center gap-x-12 gap-y-6">
+          {
+            whatIs.partners.orgs.map((org) => (
+              <a
+                href={org.href}
+                rel="noopener"
+                target="_blank"
+                class="opacity-75 transition-opacity hover:opacity-100"
+                aria-label={org.name}
+              >
+                <img src={org.logo} alt={org.name} height={org.h} style={`height:${org.h}px`} class="w-auto" loading="lazy" />
+              </a>
+            ))
+          }
+        </div>
+      </div>
     </div>
   </div>
 
-  <!-- Entry path: raised band + phoenix step numbers -->
+  <!-- How to apply: large HN-Blue label + four steps -->
   <div class="band-raised border-y border-line">
     <div class="reveal mx-auto max-w-6xl px-6 py-14 md:px-8 md:py-16">
       <div class="mx-auto max-w-5xl">
         <div class="flex flex-wrap items-end justify-between gap-3">
-          <p class="marker">{whatIs.pathLabel}</p>
-          <p class="text-xs font-medium tracking-[0.12em] text-phoenix uppercase">{whatIs.pathEnd}</p>
+          <h2 class="font-serif text-[clamp(1.75rem,4.5vw,2.75rem)] leading-none tracking-tight text-hn-blue uppercase">
+            {whatIs.pathLabel}
+          </h2>
+          <p class="text-xs font-medium tracking-[0.12em] text-hn-blue uppercase">{whatIs.pathEnd}</p>
         </div>
 
         <ol class="path-rail mt-10 md:mt-12">
@@ -64,7 +96,7 @@ import { whatIs } from '../content/site';
             whatIs.steps.map((step) => (
               <li class="path-rail__step">
                 <p class="path-rail__num" aria-hidden="true">{step.num}</p>
-                <h2 class="mt-3 text-lg font-medium tracking-tight text-ink">{step.title}</h2>
+                <h3 class="mt-3 text-lg font-medium tracking-tight text-ink">{step.title}</h3>
                 <p class="mt-2 text-sm leading-relaxed text-gray">{step.body}</p>
               </li>
             ))
@@ -126,6 +158,40 @@ import { whatIs } from '../content/site';
 </section>
 
 <style>
+  .pillars {
+    display: grid;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  @media (min-width: 640px) {
+    .pillars {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 2rem 2.5rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .pillars {
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 0;
+    }
+
+    .pillar {
+      padding-inline: 0.85rem;
+      border-left: 1px solid var(--color-line);
+    }
+
+    .pillar:first-child {
+      padding-left: 0;
+      border-left: none;
+    }
+
+    .pillar:last-child {
+      padding-right: 0;
+    }
+  }
+
   .path-rail {
     display: grid;
     gap: 2.25rem;
@@ -139,19 +205,19 @@ import { whatIs } from '../content/site';
     font-size: clamp(1.75rem, 3vw, 2.25rem);
     line-height: 1;
     letter-spacing: 0.02em;
-    color: var(--color-phoenix);
+    color: var(--color-hn-blue);
   }
 
   @media (min-width: 768px) {
     .path-rail {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-columns: repeat(4, minmax(0, 1fr));
       gap: 0;
       align-items: start;
     }
 
     .path-rail__step {
       padding-inline: 0.75rem;
-      padding-right: 1.75rem;
+      padding-right: 1.25rem;
     }
 
     .path-rail__step:first-child {
@@ -231,7 +297,7 @@ import { whatIs } from '../content/site';
       transform: none;
       width: 1rem;
       height: 1rem;
-      color: color-mix(in srgb, var(--color-phoenix) 55%, var(--color-faint));
+      color: color-mix(in srgb, var(--color-hn-blue) 55%, var(--color-faint));
       pointer-events: none;
     }
 
@@ -241,7 +307,7 @@ import { whatIs } from '../content/site';
     }
   }
 
-  /* Gate: quiet metric strip, no phoenix numerals */
+  /* Gate: quiet metric strip */
   .gate {
     display: grid;
     gap: 1.5rem;

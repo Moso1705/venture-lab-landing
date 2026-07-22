@@ -18,6 +18,9 @@
   --color-ink-raised: #1a1a1a;
   --color-phoenix: #e8400d;
   --color-phoenix-bright: #ff5c26;
+  /* hack-nation.ai --color-intelligence-blue */
+  --color-hn-blue: #328efa;
+  --color-hn-blue-soft: #eaf3fe;
 
   --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
   --font-serif: "Instrument Serif", Georgia, "Times New Roman", serif;

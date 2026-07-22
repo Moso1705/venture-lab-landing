@@ -1,6 +1,6 @@
 ---
 /**
- * Three applicant paths. Whisper-gray band so this block reads apart from program + apply.
+ * Three applicant paths. Differentiated tones (ink / HN-Blue / raised).
  */
 import { applyRoutes } from '../content/site';
 ---
@@ -20,19 +20,40 @@ import { applyRoutes } from '../content/site';
             href={path.href}
             class:list={[
               'group flex flex-col rounded-[var(--radius-md)] p-6 transition-[transform,box-shadow,background-color] duration-200 md:p-8',
-              path.primary
-                ? 'bg-ink text-paper shadow-[var(--shadow-soft)]'
-                : 'soft-card hover:bg-paper',
+              path.tone === 'ink' && 'bg-ink text-paper shadow-[var(--shadow-soft)]',
+              path.tone === 'blue' &&
+                'border border-hn-blue/25 bg-hn-blue-soft shadow-[var(--shadow-soft)] hover:border-hn-blue/40',
+              path.tone === 'raised' &&
+                'border border-ink/10 bg-paper shadow-[var(--shadow-soft)] hover:border-ink/20',
             ]}
           >
-            <p class:list={['text-xs font-medium uppercase tracking-[0.14em]', path.primary ? 'text-paper/55' : 'text-gray']}>
+            <p
+              class:list={[
+                'text-xs font-medium uppercase tracking-[0.14em]',
+                path.tone === 'ink' && 'text-paper/55',
+                path.tone === 'blue' && 'text-hn-blue',
+                path.tone === 'raised' && 'text-gray',
+              ]}
+            >
               {path.role}
             </p>
             <h3 class="mt-4 font-serif text-[1.5rem] leading-snug tracking-tight md:text-[1.65rem]">{path.title}</h3>
-            <p class:list={['mt-3 flex-1 text-sm leading-relaxed', path.primary ? 'text-paper/70' : 'text-gray']}>
+            <p
+              class:list={[
+                'mt-3 flex-1 text-sm leading-relaxed',
+                path.tone === 'ink' ? 'text-paper/70' : 'text-gray',
+              ]}
+            >
               {path.body}
             </p>
-            <span class:list={['mt-8 inline-flex items-center gap-2 text-sm font-medium', path.primary ? 'text-paper' : 'text-ink']}>
+            <span
+              class:list={[
+                'mt-8 inline-flex items-center gap-2 text-sm font-medium',
+                path.tone === 'ink' && 'text-paper',
+                path.tone === 'blue' && 'text-hn-blue',
+                path.tone === 'raised' && 'text-ink',
+              ]}
+            >
               {path.cta}
               <span class="transition-transform duration-200 group-hover:translate-x-0.5" aria-hidden="true">→</span>
             </span>

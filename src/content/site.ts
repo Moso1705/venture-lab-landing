@@ -39,40 +39,65 @@ export const whatIs = {
   duration: '12 weeks',
   meta: ['Remote', 'Free', 'No equity'],
   sub: 'Twelve weeks with senior mentors, biweekly gates, and a room of investors.',
-  pathLabel: 'How you get there',
+  pathLabel: 'How to apply', // rendered uppercase as HOW TO APPLY
   pathEnd: 'Investor Day',
   steps: [
     {
       num: '01',
-      title: 'Ship a prototype',
-      body: 'Something running that users can touch. Built with us, or scouted from outside.',
+      title: 'Show us your exceptional profile',
+      body: 'Builders who ship. Track record, clarity, and the drive to go full-time.',
     },
     {
       num: '02',
-      title: 'Get selected',
-      body: 'Real user pain, a sharp team, and proof you keep shipping. Small cohort on purpose.',
+      title: 'Show us your moonshot idea',
+      body: 'A working prototype and a sharp thesis. Not a slide deck.',
     },
     {
       num: '03',
-      title: 'Run the Lab',
-      body: 'Twelve weeks of coaching and biweekly gates. Clear them and you pitch.',
+      title: 'Get selected',
+      body: 'Real user pain, a sharp team, proof you keep shipping. Small cohort on purpose.',
+    },
+    {
+      num: '04',
+      title: 'Run the lab. 12 weeks full-time.',
+      body: 'Intensive. Biweekly gates, coaching, and Investor Day at the end.',
     },
   ],
   pillarsLabel: 'What you get',
   pillars: [
     {
-      title: 'Mentors and coaches',
-      body: 'An MBA coach from schools like Stanford GSB, Harvard, and MIT Sloan. Senior mentors matched by domain.',
+      title: 'Mentors',
+      body: 'Leaders from Big Tech and Big Pharma who spar ideas, roast you, and coach you.',
     },
     {
-      title: 'Credits and partners',
-      body: 'API credits, Start2 discounts, and partners including EWOR and Databricks.',
+      title: 'Coaches',
+      body: 'An ambitious business co-founder from a top US, European, or Asian university on the business side.',
     },
     {
-      title: 'Investors in the room',
-      body: 'Demo Day mid-program. Investor Day with firms including a16z, Antler, Creandum, Cherry Ventures, EF, and EWOR.',
+      title: 'Credits',
+      body: 'API credits and partner discounts',
+      link: {
+        label: 'via Start2',
+        href: 'https://start2group.notion.site/Let-s-save-your-Startups-Money-sign-up-today-and-unlock-access-to-exclusive-Discounts-a49e51a43e114b64a888d346b8857fe6',
+      },
+    },
+    {
+      title: 'Partners',
+      body: 'Industry exposure through the Hack-Nation network: feedback and possible customers.',
+    },
+    {
+      title: 'Top Tier Investors',
+      body: 'EWOR, a16z, Antler, Creandum, Cherry, EF and more. Waiting for the best teams on Investor Day.',
     },
   ],
+  partners: {
+    line: 'Partners',
+    orgs: [
+      { name: 'EWOR', logo: '/logos/ewor.svg', href: 'https://ewor.com', h: 26 },
+      { name: 'Databricks', logo: '/logos/databricks.svg', href: 'https://databricks.com', h: 24 },
+      { name: 'Start2 Group', logo: '/logos/start2.svg', href: 'https://start2.group', h: 24 },
+    ],
+  },
   phasesLabel: 'The twelve-week journey',
   phasesSpan: 'wk 01 → wk 12',
   phases: [
@@ -107,32 +132,32 @@ export const applyRoutes = {
         : 'Leave your email. We write when Cohort 3 selection opens.',
       cta: formIsLive ? 'Apply with your team' : 'Notify me',
       href: '#apply',
-      primary: true,
+      tone: 'ink' as const,
     },
     {
       role: 'Mentors',
       title: 'Guide a team',
-      body: 'About an hour a week. We pre-select; the team picks. Matched by domain.',
+      body: 'We pre-select; the team picks. Matched by domain. Operators who have shipped.',
       cta: 'Mentor a team',
       href: '/mentor',
-      primary: false,
+      tone: 'blue' as const,
     },
     {
       role: 'MBA coaches',
       title: 'Coach a startup',
-      body: 'One team, weekly cadence, from prototype through Investor Day.',
+      body: 'One team from prototype through Investor Day. Strategy, GTM, and the gates.',
       cta: 'Coach as an MBA',
       href: '/mba',
-      primary: false,
+      tone: 'raised' as const,
     },
   ],
 };
 export const apply = {
   marker: 'Founders',
-  headline: formIsLive ? 'Request a spot' : 'Be first when Cohort 3 opens',
+  headline: 'Apply now. Your future starts here.',
   sub: formIsLive
-    ? 'Tell us what you built and who needs it. Ten minutes, no deck required.'
-    : 'Drop your email. You hear when selection opens.',
+    ? 'VL3 cohort applications are open. Tell us what you built and who needs it.'
+    : 'VL3 cohort applications open soon.',
   cta: formIsLive ? 'Continue' : 'Notify me',
   note: 'Email is only used to tell you when applications open.',
 };
@@ -148,7 +173,7 @@ export const stories = {
       role: 'Founder @ Anto (YC F25)',
       badge: 'YC F25',
       quote:
-        'I applied to Y Combinator with the same idea, got in, finished the batch, and raised a seed. Grateful for the push that got me there.',
+        'I got into Y Combinator with the same idea, finished the batch, and raised a seed. Grateful for the push that got me there.',
       image: '/portraits/placeholder.svg',
       linkedin: 'https://www.linkedin.com/in/daviddegruijl',
     },
@@ -188,6 +213,7 @@ export const stories = {
     ewor: 'EWOR co-runs product-market fit and sales workshops with the Lab.',
   },
 };
+
 export const footer = {
   wordmark: 'Venture Lab',
   line: 'A Hack-Nation program. Built out of MIT, run worldwide.',
