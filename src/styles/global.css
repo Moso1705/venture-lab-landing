@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+/* Explicit scan roots so utilities in .astro never drop out of the build. */
+@source "../**/*.{astro,html,js,jsx,ts,tsx}";
+
 /* ---------------------------------------------------------------------------
    Design tokens aligned with hack-nation.ai: white canvas, Instrument Serif
    display, Inter body, soft aura gradients, black pill CTAs, phoenix accent.
@@ -107,6 +110,12 @@ body {
   text-rendering: optimizeLegibility;
 }
 
+/* Kill browser default blue/purple underlined links; utilities set hierarchy. */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
 ::selection {
   background: var(--color-ink);
   color: var(--color-paper);
@@ -189,6 +198,16 @@ body {
   font-size: 1rem;
   line-height: 1.625;
   color: var(--color-gray);
+}
+
+/* Hero subline under the display headline: stronger than section-sub. */
+@utility hero-sub {
+  margin-top: 1.25rem;
+  font-size: clamp(1.125rem, 2.2vw, 1.375rem);
+  font-weight: 500;
+  letter-spacing: -0.015em;
+  line-height: 1.45;
+  color: var(--color-soot);
 }
 
 @utility sr-only {

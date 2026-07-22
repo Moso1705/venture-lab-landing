@@ -32,26 +32,61 @@ interface Props {
 const { data, formUrl, formTitle, role } = Astro.props;
 ---
 
-<header class="sticky top-0 z-50 border-b border-line bg-paper/92 backdrop-blur-md">
-  <div class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-6 py-4 md:px-8">
-    <div class="flex min-w-0 items-center gap-3 md:gap-5">
+<header class="role-nav sticky top-0 z-50 border-b border-line bg-paper/92 backdrop-blur-md">
+  <div class="role-nav__inner mx-auto flex max-w-6xl items-center justify-between px-6 py-4 md:px-8">
+    <div class="role-nav__brand flex min-w-0 items-center">
       <a href="https://hack-nation.ai" rel="noopener" class="text-sm font-medium tracking-tight text-ink/70 transition-colors hover:text-ink">
         HN
       </a>
-      <span class="hidden h-4 w-px bg-line sm:block" aria-hidden="true"></span>
-      <a href="/" class="flex min-w-0 items-baseline gap-2">
-        <span class="text-sm font-semibold tracking-tight">VL</span>
-        <span class="hidden text-sm text-gray sm:inline">Venture Lab</span>
+      <span class="role-nav__dot" aria-hidden="true">·</span>
+      <a href="/" class="role-nav__wordmark flex min-w-0 items-baseline">
+        <span class="text-sm font-semibold tracking-tight text-ink">VL</span>
+        <span class="role-nav__wordmark-long hidden text-sm text-gray sm:inline">Venture Lab</span>
       </a>
     </div>
-    <nav class="flex items-center gap-5" aria-label="Page">
+    <nav class="role-nav__links flex items-center" aria-label="Page">
       <a href="/" class="hidden text-sm text-ink/65 transition-colors hover:text-ink md:inline">
         The program
       </a>
-      <a href="#apply" class="btn-ink !px-5 !py-2.5 text-sm">Apply</a>
+      <a href="#apply" class="btn-ink role-nav__cta text-sm">Apply</a>
     </nav>
   </div>
 </header>
+
+<style>
+  .role-nav a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .role-nav__inner {
+    gap: 1.25rem;
+  }
+
+  .role-nav__brand {
+    gap: 0.75rem;
+  }
+
+  .role-nav__dot {
+    display: inline-flex;
+    color: var(--color-faint);
+    font-size: 0.875rem;
+    line-height: 1;
+    user-select: none;
+  }
+
+  .role-nav__wordmark {
+    gap: 0.4rem;
+  }
+
+  .role-nav__links {
+    gap: 1.25rem;
+  }
+
+  .role-nav__cta {
+    padding: 0.65rem 1.25rem;
+  }
+</style>
 
 <main>
   <section class="hn-atmosphere overflow-hidden border-b border-line">

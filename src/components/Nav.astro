@@ -1,56 +1,129 @@
 ---
 /**
  * Light header in the Hack-Nation style: HN · VL · Hack-Nation · partner slot.
+ * Layout CSS is scoped here so wordmark + links + CTA stay spaced even if
+ * utility scanning flakes; utilities still handle colors/hover/responsive hide.
  */
 import { nav } from '../content/site';
 ---
 
-<header id="site-nav" class="fixed inset-x-0 top-0 z-50 border-b border-transparent transition-[background-color,border-color,backdrop-filter] duration-200">
-  <div class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-6 py-4 md:px-8">
-    <div class="flex min-w-0 items-center gap-3 md:gap-5">
-      <a href={nav.hn.href} rel="noopener" class="text-sm font-medium tracking-tight text-ink/70 transition-colors hover:text-ink">
+<header id="site-nav" class="site-nav fixed inset-x-0 top-0 z-50 border-b border-transparent transition-[background-color,border-color,backdrop-filter] duration-200">
+  <div class="site-nav__inner mx-auto flex max-w-6xl items-center justify-between px-6 py-4 md:px-8">
+    <div class="site-nav__brand flex min-w-0 items-center">
+      <a
+        href={nav.hn.href}
+        rel="noopener"
+        class="site-nav__link text-sm font-medium tracking-tight text-ink/70 transition-colors hover:text-ink"
+      >
         {nav.hn.label}
       </a>
-      <span class="hidden h-4 w-px bg-line sm:block" aria-hidden="true"></span>
-      <a href="#top" class="flex min-w-0 items-baseline gap-2">
-        <span class="text-sm font-semibold tracking-tight">{nav.wordmark.short}</span>
-        <span class="hidden text-sm text-gray sm:inline">{nav.wordmark.long}</span>
+      <span class="site-nav__dot" aria-hidden="true">·</span>
+      <a href="#top" class="site-nav__wordmark flex min-w-0 items-baseline">
+        <span class="text-sm font-semibold tracking-tight text-ink">{nav.wordmark.short}</span>
+        <span class="site-nav__wordmark-long hidden text-sm text-gray sm:inline">{nav.wordmark.long}</span>
       </a>
-      <span class="hidden h-4 w-px bg-line md:block" aria-hidden="true"></span>
-      <a href={nav.parent.href} rel="noopener" class="hidden text-sm text-ink/70 transition-colors hover:text-ink md:inline">
+      <span class="site-nav__dot site-nav__dot--md" aria-hidden="true">·</span>
+      <a
+        href={nav.parent.href}
+        rel="noopener"
+        class="site-nav__link site-nav__parent hidden text-sm text-ink/70 transition-colors hover:text-ink md:inline"
+      >
         {nav.parent.label}
       </a>
     </div>
 
-    <div class="flex items-center gap-4 md:gap-6">
+    <div class="site-nav__actions flex items-center">
       {
         nav.partnerSlot ? (
-          <a href={nav.partnerSlot.href} rel="noopener" class="hidden items-center md:flex" aria-label={nav.partnerSlot.name}>
+          <a href={nav.partnerSlot.href} rel="noopener" class="site-nav__partner hidden items-center md:flex" aria-label={nav.partnerSlot.name}>
             <img src={nav.partnerSlot.logo} alt={nav.partnerSlot.name} class="h-6 w-auto opacity-70" />
           </a>
         ) : (
           <span
-            class="hidden h-7 w-[4.5rem] items-center justify-center rounded border border-dashed border-line md:flex"
+            class="site-nav__partner-slot hidden h-7 w-[4.5rem] items-center justify-center rounded border border-dashed border-line md:flex"
             aria-hidden="true"
             title="Partner logo"
           />
         )
       }
-      <nav class="hidden items-center gap-5 md:flex" aria-label="Page sections">
+      <nav class="site-nav__links hidden items-center md:flex" aria-label="Page sections">
         {
           nav.links.map((link) => (
-            <a href={link.href} class="text-sm text-ink/65 transition-colors hover:text-ink">
+            <a href={link.href} class="site-nav__link text-sm text-ink/65 transition-colors hover:text-ink">
               {link.label}
             </a>
           ))
         }
       </nav>
-      <a href={nav.cta.href} class="btn-ink !px-5 !py-2.5 text-sm">
+      <a href={nav.cta.href} class="btn-ink site-nav__cta text-sm">
         {nav.cta.label}
       </a>
     </div>
   </div>
 </header>
+
+<style>
+  .site-nav a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .site-nav__inner {
+    gap: 1.25rem;
+  }
+
+  .site-nav__brand {
+    gap: 0.75rem;
+  }
+
+  @media (min-width: 768px) {
+    .site-nav__brand {
+      gap: 1rem;
+    }
+  }
+
+  .site-nav__dot {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-faint);
+    font-size: 0.875rem;
+    line-height: 1;
+    user-select: none;
+  }
+
+  .site-nav__dot--md {
+    display: none;
+  }
+
+  @media (min-width: 768px) {
+    .site-nav__dot--md {
+      display: inline-flex;
+    }
+  }
+
+  .site-nav__wordmark {
+    gap: 0.4rem;
+  }
+
+  .site-nav__actions {
+    gap: 1rem;
+  }
+
+  @media (min-width: 768px) {
+    .site-nav__actions {
+      gap: 1.5rem;
+    }
+  }
+
+  .site-nav__links {
+    gap: 1.25rem;
+  }
+
+  .site-nav__cta {
+    padding: 0.65rem 1.25rem;
+  }
+</style>
 
 <script>
   const navEl = document.getElementById('site-nav')!;
