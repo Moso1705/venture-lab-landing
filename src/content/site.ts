@@ -46,22 +46,22 @@ export const whatIs = {
     {
       num: '01',
       title: 'Choose your Exception',
-      body: 'An exceptional profile. Track record and the drive to go full-time.',
+      body: 'Exceptional profile, track record, and drive to go full-time.',
     },
     {
       num: '02',
-      title: 'Choose your Moonshot Idea',
+      title: 'Choose your Moonshot',
       body: 'A working prototype and a sharp thesis. Not a slide deck.',
     },
     {
       num: '03',
       title: 'Get selected',
-      body: 'Small cohort on purpose.',
+      body: 'Small cohort on purpose. High bar, few seats.',
     },
     {
       num: '04',
-      title: 'Run the lab · 12 weeks full-time',
-      body: 'Intensive. Investor Day at the end.',
+      title: 'Run the lab',
+      body: '12 weeks full-time. Intensive. Investor Day at the end.',
     },
   ],
   pillarsLabel: 'This is what we give you',
