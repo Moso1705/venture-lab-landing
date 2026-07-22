@@ -127,8 +127,8 @@ export const applyRoutes = {
       role: 'Founders',
       title: 'Build the company',
       body: formIsLive
-        ? 'Apply with a working prototype. Ten minutes, no deck required.'
-        : 'Leave your email. We write when Cohort 3 selection opens.',
+        ? 'Apply with a working prototype. Ten minutes to submit. No deck required.'
+        : 'Leave your email. We write when Cohort 3 selection opens for teams.',
       cta: formIsLive ? 'Apply with your team' : 'Notify me',
       href: '#apply',
       tone: 'ink' as const,
@@ -136,7 +136,7 @@ export const applyRoutes = {
     {
       role: 'Mentors',
       title: 'Guide a team',
-      body: 'We pre-select; the team picks. Matched by domain. Operators who have shipped.',
+      body: 'We pre-select; the team picks. Matched by domain. Operators who shipped.',
       cta: 'Mentor a team',
       href: '/mentor',
       tone: 'blue' as const,
