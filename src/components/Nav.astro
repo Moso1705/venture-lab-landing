@@ -63,8 +63,8 @@ import { nav } from '../content/site';
 </header>
 
 <style>
-  .site-nav a {
-    color: inherit;
+  /* Do not set color on all anchors: that overrides .btn-ink paper text. */
+  .site-nav a:not(.btn-ink) {
     text-decoration: none;
   }
 
@@ -117,10 +117,19 @@ import { nav } from '../content/site';
   }
 
   .site-nav__links {
+    display: none;
     gap: 1.25rem;
   }
 
-  .site-nav__cta {
+  @media (min-width: 768px) {
+    .site-nav__links {
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  .site-nav__cta.btn-ink {
+    color: var(--color-paper);
     padding: 0.65rem 1.25rem;
   }
 </style>

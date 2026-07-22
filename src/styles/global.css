@@ -110,10 +110,12 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-/* Kill browser default blue/purple underlined links; utilities set hierarchy. */
-a {
-  color: inherit;
-  text-decoration: none;
+/* In @layer base so utilities like .btn-ink can override color. */
+@layer base {
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
 }
 
 ::selection {
