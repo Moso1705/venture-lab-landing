@@ -40,8 +40,8 @@ export const whatIs = {
   duration: '12 weeks',
   meta: [] as string[],
   sub: 'For the most ambitious founders.',
-  // Quiet FOMO under the hero. No fake deadlines, no rejection theater.
-  whisper: 'Limited seats. Selection, not open enrollment.',
+  // Calm exclusivity under the hero. High bar, no scarcity theater.
+  whisper: 'Curated cohort. High bar. Investor Day closes the batch.',
   pathLabel: 'How to apply',
   pathEnd: 'Investor Day',
   steps: [
@@ -58,7 +58,7 @@ export const whatIs = {
     {
       num: '03',
       title: 'Get selected',
-      body: 'Small VL3 cohort on purpose. High bar, few seats.',
+      body: 'Curated VL3 cohort. High bar on purpose.',
     },
     {
       num: '04',
@@ -67,27 +67,28 @@ export const whatIs = {
     },
   ],
   pillarsLabel: 'This is what we give you',
+  // Titles: one word each. Bodies: ~66 chars / two lines at desktop column width.
   pillars: [
     {
       title: 'Mentors',
-      body: 'Leaders from Big Tech and Big Pharma who spar ideas, roast you, and coach you.',
+      body: 'Operators from Big Tech and Big Pharma. They spar, roast, and coach.',
     },
     {
       title: 'Coaches',
-      body: 'An ambitious business co-founder from a top US, European, or Asian university.',
+      body: 'Ambitious business co-founders from top US, EU, and Asian schools.',
     },
     {
       title: 'Credits',
       // Start2 gallery highlights. No Notion URL.
-      body: '$1M+ in compute and discounts. 130+ startup deals.',
+      body: '$1M+ in compute and discounts, plus a stack of 130+ startup deals.',
     },
     {
       title: 'Partners',
-      body: 'Industry exposure through the Hack-Nation network: feedback and possible customers.',
+      body: 'Industry exposure via Hack-Nation: feedback and possible customers.',
     },
     {
-      title: 'Top Tier Investors',
-      body: 'EWOR, a16z, Antler, Creandum, Cherry, EF and more. Waiting on Investor Day.',
+      title: 'Investors',
+      body: 'EWOR, a16z, Antler, Creandum, Cherry, EF. Present on Investor Day.',
     },
   ],
   partners: {
@@ -129,8 +130,8 @@ export const applyRoutes = {
       role: 'Founders',
       title: 'Build the company',
       body: formIsLive
-        ? 'Apply with a working prototype. Limited VL3 seats. Selection is the filter.'
-        : 'Leave your email. We write when VL3 selection opens. Seats are limited.',
+        ? 'Apply with a working prototype. High bar. Curated VL3 cohort.'
+        : 'Leave your email. We write when VL3 applications open.',
       cta: formIsLive ? 'Apply with your team' : 'Notify me',
       href: '#apply',
       tone: 'ink' as const,
@@ -157,8 +158,8 @@ export const apply = {
   marker: 'Notice',
   headline: 'Apply now. Your future starts here.',
   sub: formIsLive
-    ? 'VL3 applications are open. Limited seats for ambitious founders.'
-    : 'VL3 opens soon. Limited seats. Get notified for selection.',
+    ? 'VL3 applications are open. Curated cohort for ambitious founders.'
+    : 'VL3 opens soon. Get notified when the curated cohort forms.',
   cta: formIsLive ? 'Continue' : 'Notify me',
   note: 'Email is only used to tell you when applications open.',
 };
@@ -201,10 +202,10 @@ export const stories = {
   examplesLabel: 'From past cohorts',
   examplesIntro: 'A few teams from Investor Day.',
   startups: [
-    { name: 'a11y', tag: 'GovTech', line: 'Automated accessibility for the public sector.', traction: 'Live product', url: 'https://a11ygov.com' },
-    { name: 'Anka', tag: 'Healthcare', line: 'AI patient companion.', traction: 'Hospital pilots in talks', url: 'https://anka.health' },
+    { name: 'a11y', tag: 'GovTech', line: 'Automated accessibility for government.', traction: 'Live product', url: 'https://a11ygov.com' },
+    { name: 'Anka', tag: 'Healthcare', line: 'AI companion for hospital patients.', traction: 'Hospital pilots', url: 'https://anka.health' },
     { name: 'Upwind', tag: 'Marketing', line: 'On-brand campaigns at software speed.', traction: 'First revenue' },
-    { name: 'Eliot', tag: 'Enterprise', line: 'Semantic middleware for AI agents.', traction: 'Champion at BASF' },
+    { name: 'Eliot', tag: 'Enterprise', line: 'Semantic middleware for AI agents.', traction: 'BASF champion' },
   ],
   sponsors: {
     line: 'Partners',

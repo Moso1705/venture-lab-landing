@@ -113,27 +113,25 @@ const slides = stories.testimonials;
     <div class="reveal mt-14">
       <p class="marker">{stories.examplesLabel}</p>
       <p class="mt-2 max-w-xl text-sm leading-relaxed text-gray">{stories.examplesIntro}</p>
-      <ul class="mt-6 overflow-hidden rounded-[var(--radius-md)] border border-line bg-paper divide-y divide-line">
+      <ul class="startup-list mt-6 overflow-hidden rounded-[var(--radius-md)] border border-line bg-paper divide-y divide-line">
         {
           stories.startups.map((co) => (
-            <li class="flex flex-col gap-1 px-5 py-4 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6 md:px-6">
-              <div class="flex min-w-0 items-baseline gap-3">
-                {'url' in co && co.url ? (
-                  <a
-                    href={co.url}
-                    rel="noopener"
-                    target="_blank"
-                    class="text-base font-medium tracking-tight underline-offset-4 hover:underline"
-                  >
-                    {co.name}
-                  </a>
-                ) : (
-                  <p class="text-base font-medium tracking-tight">{co.name}</p>
-                )}
-                <p class="shrink-0 text-xs font-medium uppercase tracking-[0.12em] text-gray">{co.tag}</p>
-              </div>
-              <p class="min-w-0 flex-1 text-sm leading-relaxed text-gray sm:text-right">{co.line}</p>
-              <p class="shrink-0 text-xs font-medium text-soot sm:w-36 sm:text-right">{co.traction}</p>
+            <li class="startup-row px-5 py-4 md:px-6">
+              {'url' in co && co.url ? (
+                <a
+                  href={co.url}
+                  rel="noopener"
+                  target="_blank"
+                  class="startup-name text-base font-medium tracking-tight underline-offset-4 hover:underline"
+                >
+                  {co.name}
+                </a>
+              ) : (
+                <p class="startup-name text-base font-medium tracking-tight">{co.name}</p>
+              )}
+              <p class="startup-tag text-xs font-medium uppercase tracking-[0.12em] text-gray">{co.tag}</p>
+              <p class="startup-line text-sm leading-relaxed text-gray">{co.line}</p>
+              <p class="startup-traction text-xs font-medium text-soot">{co.traction}</p>
             </li>
           ))
         }
@@ -141,6 +139,46 @@ const slides = stories.testimonials;
     </div>
   </div>
 </section>
+<style>
+  .startup-row {
+    display: grid;
+    gap: 0.25rem 1rem;
+  }
+
+  .startup-name {
+    min-width: 0;
+  }
+
+  .startup-tag {
+    min-width: 0;
+  }
+
+  .startup-line {
+    min-width: 0;
+    text-wrap: pretty;
+  }
+
+  .startup-traction {
+    min-width: 0;
+  }
+
+  @media (min-width: 640px) {
+    .startup-row {
+      grid-template-columns: 5.5rem 7rem minmax(0, 1fr) 8.5rem;
+      align-items: baseline;
+      gap: 0 1.25rem;
+    }
+
+    .startup-line {
+      text-align: left;
+    }
+
+    .startup-traction {
+      text-align: right;
+      white-space: nowrap;
+    }
+  }
+</style>
 <script>
   const root = document.querySelector('[data-testimonials]');
   if (root) {
