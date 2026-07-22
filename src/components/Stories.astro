@@ -33,6 +33,7 @@ const slides = stories.testimonials;
                   width="180"
                   height="180"
                   class="h-36 w-36 rounded-full object-cover ring-1 ring-ink/5 md:h-[180px] md:w-[180px]"
+                  style={'imagePosition' in t && t.imagePosition ? `object-position: ${t.imagePosition}` : undefined}
                   loading={i === 0 ? 'eager' : 'lazy'}
                 />
                 {

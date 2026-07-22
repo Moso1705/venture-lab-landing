@@ -164,24 +164,35 @@ export const stories = {
   marker: 'Outcomes',
   headline: 'Founders who shipped further.',
   sub: 'Alumni who kept shipping after the Lab.',
-  // Photos: placeholders until Michi supplies portraits.
-  // Voice: Janet + David only.
+  // Portraits: same assets as hack-nation.ai/images/testimonials/*
+  // Quotes: HN homepage carousel (David softened slightly on hackathon spam).
   testimonials: [
     {
       name: 'David de Gruijl',
       role: 'Founder @ Anto (YC F25)',
-      badge: 'YC F25',
+      badge: 'YC F25 founder',
       quote:
-        'Same idea. Y Combinator, then a seed. Grateful for the push that got me there.',
-      image: '/portraits/placeholder.svg',
+        'I did Hack-Nation this summer, applied with the same idea to Y Combinator and got in. Just finished the batch and raised a seed. Can\'t thank you guys enough.',
+      image: '/portraits/david-de-gruijl.png',
       linkedin: 'https://www.linkedin.com/in/daviddegruijl',
     },
     {
+      name: 'Artem Arzyn',
+      role: 'Venture Track Alumnus',
+      badge: 'Venture Track alumnus',
+      quote:
+        'Coming from a purely academic background, the Venture Track challenged me to think like a founder. Between the mentorship and pitch sessions, I gained new skills and thought about technology in completely new ways.',
+      image: '/portraits/artem-arzyn.png',
+      linkedin: 'https://www.linkedin.com/in/artem-arzyn',
+    },
+    {
       name: 'Dr. Janet Brinz',
-      role: 'Venture Lab alumna',
-      badge: 'Alumna',
-      quote: 'Open exchange and honest peer feedback pushed my thinking forward.',
-      image: '/portraits/placeholder.svg',
+      role: 'Venture Track Alumna',
+      badge: 'Venture Track alumna',
+      quote:
+        'What made the Venture Track so valuable was the open exchange of ideas. The peer feedback and honest discussions really pushed my thinking forward.',
+      image: '/portraits/janet-brinz.jpg',
+      imagePosition: 'center 8%',
       linkedin: 'https://www.linkedin.com/in/dr-janet-brinz',
     },
   ],
