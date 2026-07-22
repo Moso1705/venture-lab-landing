@@ -6,12 +6,12 @@ import { apply, applyFormUrl } from '../content/site';
 import GetInLine from './GetInLine.astro';
 ---
 
-<section id="apply" class="bg-paper">
+<section id="apply" class="border-b border-line bg-paper">
   <div class="mx-auto max-w-3xl px-6 py-16 md:px-8 md:py-20">
     <div class="reveal text-center">
       <p class="marker">{apply.marker}</p>
       {/* Uppercase CTA headline is intentional (APPLY NOW...), not the serif section-title. */}
-      <h2 class="mt-4 text-[clamp(1.5rem,4vw,2.25rem)] font-medium tracking-[0.06em] text-ink uppercase">
+      <h2 class="mt-3 text-[clamp(1.5rem,4vw,2.25rem)] font-medium tracking-[0.06em] text-ink uppercase">
         {apply.headline}
       </h2>
       <p class="section-sub mx-auto max-w-md">{apply.sub}</p>

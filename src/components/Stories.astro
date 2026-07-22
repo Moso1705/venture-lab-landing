@@ -6,15 +6,15 @@
 import { stories } from '../content/site';
 const slides = stories.testimonials;
 ---
-<section id="stories" class="band-raised border-t border-line">
-  <div class="mx-auto max-w-6xl px-6 py-20 md:px-8 md:py-28">
+<section id="stories" class="band-raised">
+  <div class="mx-auto max-w-6xl px-6 py-16 md:px-8 md:py-20">
     <div class="reveal mx-auto max-w-2xl text-center">
       <p class="marker">{stories.marker}</p>
-      <h2 class="section-title mt-4 italic">{stories.headline}</h2>
+      <h2 class="section-title mt-3 italic">{stories.headline}</h2>
       <p class="section-sub">{stories.sub}</p>
     </div>
 
-    <div class="reveal mt-12" data-testimonials>
+    <div class="reveal mt-10" data-testimonials>
       <div class="soft-card overflow-hidden p-6 md:p-10">
         {
           slides.map((t, i) => (
@@ -109,10 +109,10 @@ const slides = stories.testimonials;
       </div>
     </div>
 
-    <div class="reveal mt-16">
+    <div class="reveal mt-14">
       <p class="marker">{stories.examplesLabel}</p>
       <p class="mt-2 max-w-xl text-sm leading-relaxed text-gray">{stories.examplesIntro}</p>
-      <ul class="mt-8 overflow-hidden rounded-[var(--radius-md)] border border-line bg-paper divide-y divide-line">
+      <ul class="mt-6 overflow-hidden rounded-[var(--radius-md)] border border-line bg-paper divide-y divide-line">
         {
           stories.startups.map((co) => (
             <li class="flex flex-col gap-1 px-5 py-4 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6 md:px-6">

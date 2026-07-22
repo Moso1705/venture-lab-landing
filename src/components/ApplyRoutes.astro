@@ -6,14 +6,14 @@ import { applyRoutes } from '../content/site';
 ---
 
 <section class="band-raised border-b border-line">
-  <div class="mx-auto max-w-6xl px-6 py-20 md:px-8 md:py-24">
+  <div class="mx-auto max-w-6xl px-6 py-16 md:px-8 md:py-20">
     <div class="reveal mx-auto max-w-2xl text-center">
       <p class="marker">{applyRoutes.marker}</p>
-      <h2 class="section-title mt-4 italic">{applyRoutes.headline}</h2>
+      <h2 class="section-title mt-3 italic">{applyRoutes.headline}</h2>
       <p class="section-sub">{applyRoutes.sub}</p>
     </div>
 
-    <div class="reveal mt-12 grid gap-4 md:grid-cols-3 md:gap-5">
+    <div class="reveal mt-10 grid gap-4 md:grid-cols-3 md:gap-5">
       {
         applyRoutes.paths.map((path) => (
           <a

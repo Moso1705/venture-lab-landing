@@ -2,7 +2,7 @@
  * Page content. Components render what is here and never hardcode words.
  * Claims must stay covered by docs/FACTS.md.
  *
- * Funnel spine (voice notes Jul 2026): give → how to apply → pick path → notify → proof.
+ * Funnel spine: give → how to apply → 12-week arc → pick path → notify → proof.
  * Tone: YC-short, elite, not hackathon-heavy. No em/en dashes. No "get in line".
  * Free / no equity: og meta + FAQ only. Never as hero pills.
  */
@@ -229,13 +229,18 @@ export const hero = {
   networkNote: '14 cities · 115+ countries',
 };
 export const jump = {
-  marker: '01 · the program',
+  marker: 'Twelve weeks',
   headline: whatIs.headline,
-  sub: whatIs.sub,
+  sub: 'Prototype in. Investor Day out.',
   chart: {
+    aria: 'Chart: a prototype line stays flat until the Lab starts, rises steeply across twelve weeks, and branches into your seed round after Investor Day.',
     startLabel: 'h24 · prototype',
-    endLabel: 'wk12 · investor day',
+    endLabel: 'wk12 · Investor Day',
+    endLabelShort: 'Investor Day',
     branchLabel: 'your seed round',
+    aloneLabel: 'the prototype, left alone',
+    labStartLabel: 'the lab starts',
+    midLabel: 'demo day',
     axis: ['wk00', 'wk02', 'wk04', 'wk06', 'wk08', 'wk10', 'wk12'],
   },
   phases: whatIs.phases,

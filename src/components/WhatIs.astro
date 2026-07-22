@@ -8,13 +8,13 @@ import { whatIs } from '../content/site';
 
 <section id="program" class="hn-atmosphere overflow-hidden pt-28 md:pt-32">
   <span id="top" class="absolute top-0" aria-hidden="true"></span>
-  <div class="relative mx-auto max-w-6xl px-6 pb-4 md:px-8 md:pb-6">
+  <div class="relative mx-auto max-w-6xl px-6 pb-2 md:px-8">
     <div class="reveal mx-auto max-w-3xl text-center">
       <p class="marker">{whatIs.eyebrow}</p>
-      <span class="mt-5 inline-flex items-center rounded-full border border-ink/10 bg-paper/85 px-3.5 py-1 text-xs font-medium tracking-[0.14em] text-ink uppercase">
+      <span class="mt-4 inline-flex items-center rounded-full border border-ink/10 bg-paper/85 px-3 py-1 text-[0.6875rem] font-medium tracking-[0.14em] text-ink uppercase">
         {whatIs.badge}
       </span>
-      <h1 class="display mt-6 text-[clamp(2.5rem,7vw,5rem)]">
+      <h1 class="display mt-5 text-[clamp(2.5rem,7vw,5rem)]">
         <span class="text-gray">{whatIs.headline.lead}</span>
         {' '}
         <em class="italic text-ink">{whatIs.headline.emphasis}</em>
@@ -28,7 +28,7 @@ import { whatIs } from '../content/site';
   </div>
 
   <!-- This is what we give you -->
-  <div class="relative mx-auto max-w-6xl px-6 py-14 md:px-8 md:py-16">
+  <div class="relative mx-auto max-w-6xl px-6 py-16 md:px-8 md:py-20">
     <div class="reveal mx-auto max-w-5xl">
       <p class="pillars-label text-center">{whatIs.pillarsLabel}</p>
       <div class="pillars mt-10">
@@ -42,16 +42,16 @@ import { whatIs } from '../content/site';
         }
       </div>
 
-      <div class="mt-14 border-t border-line pt-10">
+      <div class="mt-12 border-t border-line pt-8">
         <p class="marker text-center">{whatIs.partners.line}</p>
-        <div class="mt-8 flex flex-wrap items-center justify-center gap-x-12 gap-y-6">
+        <div class="mt-6 flex flex-wrap items-center justify-center gap-x-12 gap-y-5">
           {
             whatIs.partners.orgs.map((org) => (
               <a
                 href={org.href}
                 rel="noopener"
                 target="_blank"
-                class="opacity-75 transition-opacity hover:opacity-100"
+                class="opacity-70 transition-opacity hover:opacity-100"
                 aria-label={org.name}
               >
                 <img src={org.logo} alt={org.name} height={org.h} style={`height:${org.h}px`} class="w-auto" loading="lazy" />
@@ -64,8 +64,8 @@ import { whatIs } from '../content/site';
   </div>
 
   <!-- HOW TO APPLY: intentional large HN-Blue -->
-  <div class="band-raised border-y border-line">
-    <div class="reveal mx-auto max-w-6xl px-6 py-14 md:px-8 md:py-16">
+  <div class="border-t border-line bg-paper">
+    <div class="reveal mx-auto max-w-6xl px-6 py-16 md:px-8 md:py-20">
       <div class="mx-auto max-w-5xl">
         <div class="flex flex-wrap items-end justify-between gap-3">
           <h2 class="font-serif text-[clamp(1.75rem,4.5vw,2.75rem)] leading-none tracking-tight text-hn-blue uppercase">
@@ -91,10 +91,9 @@ import { whatIs } from '../content/site';
 </section>
 
 <style>
-  /* Bigger centered give-label; still gray (HN-Blue reserved for HOW TO APPLY / numbers). */
   .pillars-label {
     font-family: var(--font-sans);
-    font-size: clamp(0.875rem, 1.6vw, 1.0625rem);
+    font-size: clamp(0.8125rem, 1.4vw, 0.9375rem);
     font-weight: 500;
     letter-spacing: 0.14em;
     text-transform: uppercase;
@@ -103,14 +102,14 @@ import { whatIs } from '../content/site';
 
   .pillars {
     display: grid;
-    gap: 2rem;
+    gap: 1.75rem;
     list-style: none;
   }
 
   @media (min-width: 640px) {
     .pillars {
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 2rem 2.5rem;
+      gap: 1.75rem 2.25rem;
     }
   }
 
@@ -137,7 +136,7 @@ import { whatIs } from '../content/site';
 
   .path-rail {
     display: grid;
-    gap: 2.25rem;
+    gap: 2rem;
     list-style: none;
     margin: 0;
     padding: 0;

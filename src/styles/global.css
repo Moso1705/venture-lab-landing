@@ -183,10 +183,22 @@ body {
 
 /* Shared supporting subline under section titles. */
 @utility section-sub {
-  margin-top: 1rem;
+  margin-top: 0.75rem;
   font-size: 1rem;
   line-height: 1.625;
   color: var(--color-gray);
+}
+
+@utility sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
 }
 
 @utility btn-ink {

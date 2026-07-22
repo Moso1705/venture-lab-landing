@@ -1,0 +1,276 @@
+---
+/**
+ * Michi trajectory chart: prototype flat → Lab exponential → Investor Day → seed branch.
+ * Funnel visual only. No week-phase grid, no Clear the Gate.
+ */
+import { jump } from '../content/site';
+
+const X0 = 170;
+const X12 = 880;
+const ticks = jump.chart.axis.map((label, i) => ({
+  label,
+  x: X0 + ((X12 - X0) / (jump.chart.axis.length - 1)) * i,
+}));
+---
+
+<section id="arc" class="border-b border-line bg-paper" aria-labelledby="arc-heading">
+  <div class="mx-auto max-w-6xl px-6 py-16 md:px-8 md:py-20">
+    <div class="reveal mx-auto max-w-2xl text-center">
+      <p class="marker">{jump.marker}</p>
+      <h2 id="arc-heading" class="sr-only">{jump.chart.aria}</h2>
+      <p class="section-sub mx-auto max-w-md">{jump.sub}</p>
+    </div>
+
+    <!-- Desktop -->
+    <div
+      class="chart-wrap relative mt-10 hidden md:block md:mt-12"
+      role="img"
+      aria-label={jump.chart.aria}
+    >
+      <svg viewBox="0 0 1160 460" class="w-full" aria-hidden="true">
+        {ticks.map((t) => (
+          <line x1={t.x} y1="40" x2={t.x} y2="400" stroke="var(--color-line)" stroke-width="1" />
+        ))}
+
+        <line x1="40" y1="400" x2="1120" y2="400" stroke="var(--color-line)" stroke-width="1" />
+        {ticks.map((t) => (
+          <g>
+            <line x1={t.x} y1="400" x2={t.x} y2="408" stroke="var(--color-gray)" stroke-width="1" />
+            <text
+              x={t.x}
+              y="430"
+              text-anchor="middle"
+              fill="var(--color-gray)"
+              font-family="var(--font-sans)"
+              font-size="12"
+              letter-spacing="1.2"
+            >
+              {t.label}
+            </text>
+          </g>
+        ))}
+
+        <path d="M40 372 L96 372 L118 352 L170 348" fill="none" stroke="var(--color-gray)" stroke-width="1.5" />
+        <text
+          x="42"
+          y="330"
+          fill="var(--color-gray)"
+          font-family="var(--font-sans)"
+          font-size="12"
+          letter-spacing="1.2"
+        >
+          {jump.chart.startLabel}
+        </text>
+
+        <line
+          x1="170"
+          y1="348"
+          x2="1078"
+          y2="344"
+          stroke="var(--color-faint)"
+          stroke-width="1"
+          stroke-dasharray="2 6"
+        />
+        <text
+          x="1078"
+          y="332"
+          text-anchor="end"
+          fill="var(--color-faint)"
+          font-family="var(--font-sans)"
+          font-size="11"
+          letter-spacing="1.2"
+        >
+          {jump.chart.aloneLabel}
+        </text>
+
+        <path
+          d="M170 348 C420 345 640 320 780 245 C855 205 866 150 880 90"
+          fill="none"
+          stroke="var(--color-ink)"
+          stroke-width="2"
+        />
+
+        <circle cx="170" cy="348" r="4" fill="var(--color-ink)" />
+        <text
+          x="182"
+          y="374"
+          fill="var(--color-soot)"
+          font-family="var(--font-sans)"
+          font-size="12"
+          letter-spacing="1.2"
+        >
+          {jump.chart.labStartLabel}
+        </text>
+        <circle cx="560" cy="316" r="4" fill="var(--color-ink)" />
+        <text
+          x="560"
+          y="292"
+          text-anchor="middle"
+          fill="var(--color-soot)"
+          font-family="var(--font-sans)"
+          font-size="12"
+          letter-spacing="1.2"
+        >
+          {jump.chart.midLabel}
+        </text>
+
+        <!-- Investor Day: HN-Blue -->
+        <circle cx="880" cy="90" r="4.5" fill="var(--color-hn-blue)" />
+        <text
+          x="866"
+          y="82"
+          text-anchor="end"
+          fill="var(--color-hn-blue)"
+          font-family="var(--font-sans)"
+          font-size="12"
+          letter-spacing="1.2"
+          font-weight="500"
+        >
+          {jump.chart.endLabel}
+        </text>
+
+        <!-- Seed branch: subtle phoenix -->
+        <line
+          x1="880"
+          y1="90"
+          x2="1000"
+          y2="32"
+          stroke="var(--color-phoenix)"
+          stroke-width="1.75"
+          stroke-dasharray="6 6"
+          opacity="0.85"
+        />
+        <circle cx="1000" cy="32" r="4" fill="none" stroke="var(--color-phoenix)" stroke-width="1.75" opacity="0.85" />
+        <text
+          x="1014"
+          y="37"
+          fill="var(--color-phoenix)"
+          font-family="var(--font-sans)"
+          font-size="12"
+          letter-spacing="1.2"
+          opacity="0.9"
+        >
+          {jump.chart.branchLabel}
+        </text>
+      </svg>
+      <div class="chart-wipe" aria-hidden="true"></div>
+    </div>
+
+    <!-- Mobile -->
+    <div
+      class="chart-wrap relative mt-8 md:hidden"
+      role="img"
+      aria-label={jump.chart.aria}
+    >
+      <svg viewBox="0 0 390 290" class="w-full" aria-hidden="true">
+        {[70, 185, 300].map((x) => (
+          <line x1={x} y1="30" x2={x} y2="240" stroke="var(--color-line)" stroke-width="1" />
+        ))}
+        <line x1="12" y1="240" x2="378" y2="240" stroke="var(--color-line)" stroke-width="1" />
+        {[
+          { x: 70, label: 'wk00' },
+          { x: 185, label: 'wk06' },
+          { x: 300, label: 'wk12' },
+        ].map((t) => (
+          <g>
+            <line x1={t.x} y1="240" x2={t.x} y2="246" stroke="var(--color-gray)" stroke-width="1" />
+            <text
+              x={t.x}
+              y="264"
+              text-anchor="middle"
+              fill="var(--color-gray)"
+              font-family="var(--font-sans)"
+              font-size="11"
+              letter-spacing="1"
+            >
+              {t.label}
+            </text>
+          </g>
+        ))}
+        <path d="M12 216 L38 216 L48 206 L70 204" fill="none" stroke="var(--color-gray)" stroke-width="1.5" />
+        <text
+          x="14"
+          y="196"
+          fill="var(--color-gray)"
+          font-family="var(--font-sans)"
+          font-size="11"
+          letter-spacing="1"
+        >
+          {jump.chart.startLabel}
+        </text>
+        <path
+          d="M70 204 C160 202 230 180 262 140 C284 112 300 84 300 62"
+          fill="none"
+          stroke="var(--color-ink)"
+          stroke-width="2"
+        />
+        <circle cx="70" cy="204" r="3.5" fill="var(--color-ink)" />
+        <circle cx="300" cy="62" r="4" fill="var(--color-hn-blue)" />
+        <text
+          x="288"
+          y="54"
+          text-anchor="end"
+          fill="var(--color-hn-blue)"
+          font-family="var(--font-sans)"
+          font-size="11"
+          letter-spacing="1"
+          font-weight="500"
+        >
+          {jump.chart.endLabelShort}
+        </text>
+        <line
+          x1="300"
+          y1="62"
+          x2="352"
+          y2="30"
+          stroke="var(--color-phoenix)"
+          stroke-width="1.75"
+          stroke-dasharray="5 5"
+          opacity="0.85"
+        />
+        <circle cx="352" cy="30" r="3.5" fill="none" stroke="var(--color-phoenix)" stroke-width="1.75" opacity="0.85" />
+        <text
+          x="344"
+          y="18"
+          text-anchor="end"
+          fill="var(--color-phoenix)"
+          font-family="var(--font-sans)"
+          font-size="11"
+          letter-spacing="1"
+          opacity="0.9"
+        >
+          {jump.chart.branchLabel}
+        </text>
+      </svg>
+      <div class="chart-wipe" aria-hidden="true"></div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .chart-wipe {
+    display: none;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    @supports (animation-timeline: view()) {
+      .chart-wipe {
+        display: block;
+        position: absolute;
+        inset: 0;
+        background: var(--color-paper);
+        transform-origin: right;
+        animation: chart-wipe-out 1ms linear both;
+        animation-timeline: view();
+        animation-range: entry 20% entry 90%;
+      }
+      @keyframes chart-wipe-out {
+        from {
+          transform: scaleX(1);
+        }
+        to {
+          transform: scaleX(0);
+        }
+      }
+    }
+  }
+</style>
