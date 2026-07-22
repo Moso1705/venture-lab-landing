@@ -1,7 +1,8 @@
 ---
 /**
- * Three applicant paths. Differentiated tones (primary / HN-Blue / raised).
- * Founders stays light: soft ink border + whisper fill + blue accents (primary).
+ * Three applicant paths. Differentiated tones (primary HN-Blue / soft blue / raised).
+ * Founders: solid HN-Blue + white text (primary, softer than flat black).
+ * Mentors: soft blue. MBA: quiet white.
  */
 import { applyRoutes } from '../content/site';
 ---
@@ -20,9 +21,9 @@ import { applyRoutes } from '../content/site';
           <a
             href={path.href}
             class:list={[
-              'group flex flex-col rounded-[var(--radius-md)] p-6 transition-[transform,box-shadow,background-color,border-color] duration-200 md:p-8',
+              'group flex flex-col rounded-[var(--radius-md)] p-6 transition-[transform,box-shadow,background-color,filter] duration-200 md:p-8',
               path.tone === 'ink' &&
-                'border border-ink/20 bg-paper shadow-[var(--shadow-soft)] hover:border-ink/35',
+                'bg-hn-blue text-paper shadow-[var(--shadow-primary)] hover:brightness-[0.96]',
               path.tone === 'blue' &&
                 'border border-hn-blue/25 bg-hn-blue-soft shadow-[var(--shadow-soft)] hover:border-hn-blue/40',
               path.tone === 'raised' &&
@@ -32,21 +33,28 @@ import { applyRoutes } from '../content/site';
             <p
               class:list={[
                 'text-xs font-medium uppercase tracking-[0.14em]',
-                path.tone === 'ink' && 'text-hn-blue',
+                path.tone === 'ink' && 'text-paper/60',
                 path.tone === 'blue' && 'text-hn-blue',
                 path.tone === 'raised' && 'text-gray',
               ]}
             >
               {path.role}
             </p>
-            <h3 class="mt-4 font-serif text-[1.5rem] leading-snug tracking-tight text-ink md:text-[1.65rem]">
+            <h3 class="mt-4 font-serif text-[1.5rem] leading-snug tracking-tight md:text-[1.65rem]">
               {path.title}
             </h3>
-            <p class="mt-3 flex-1 text-sm leading-relaxed text-gray">{path.body}</p>
+            <p
+              class:list={[
+                'mt-3 flex-1 text-sm leading-relaxed',
+                path.tone === 'ink' ? 'text-paper/75' : 'text-gray',
+              ]}
+            >
+              {path.body}
+            </p>
             <span
               class:list={[
                 'mt-8 inline-flex items-center gap-2 text-sm font-medium',
-                path.tone === 'ink' && 'text-hn-blue',
+                path.tone === 'ink' && 'text-paper',
                 path.tone === 'blue' && 'text-hn-blue',
                 path.tone === 'raised' && 'text-ink',
               ]}
