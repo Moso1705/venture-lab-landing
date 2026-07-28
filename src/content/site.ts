@@ -7,8 +7,8 @@
  * Free / no equity: og meta + FAQ only. Never as hero pills.
  */
 // Michi: paste the Cohort application form URL here (Tally/Typeform/Google Form).
-export const applyFormUrl = 'https://forms.gle/vU1qAZ4piVrtMSAa6';
-export const formIsLive = Boolean(applyFormUrl);
+export const applyFormUrl = ''; 
+export const formIsLive = true;
 // Michi: Demo Day / Investor Day video. Empty = section hidden.
 export const demoDayVideoUrl = '';
 export const site = {
@@ -26,10 +26,10 @@ export const nav = {
   partnerSlot: null as null | { name: string; logo: string; href: string },
   links: [
     { label: 'Program', href: '#program' },
-    { label: 'Apply', href: '#apply' },
+    { label: 'Apply', href: 'https://forms.gle/vU1qAZ4piVrtMSAa6' },
     { label: 'Stories', href: '#stories' },
   ],
-  cta: { label: 'Apply', href: '#apply' },
+  cta: { label: 'Apply', href: 'https://forms.gle/vU1qAZ4piVrtMSAa6' },
 };
 export const whatIs = {
   eyebrow: 'HackNation Venture Lab',
@@ -133,7 +133,7 @@ export const applyRoutes = {
         ? 'Apply with a working prototype. High bar. Curated VL3 cohort.'
         : 'Leave your email. We write when VL3 applications open.',
       cta: formIsLive ? 'Apply with your team' : 'Notify me',
-      href: '#apply',
+      href: formIsLive ? 'https://forms.gle/vU1qAZ4piVrtMSAa6' : '#apply',
       tone: 'ink' as const,
     },
     {
@@ -237,7 +237,7 @@ export const hero = {
   subline: site.tagline,
   meta: whatIs.duration,
   live: 'Cohort 3 forms next',
-  primaryCta: { label: formIsLive ? 'Apply now' : 'Notify me', href: '#apply' },
+  primaryCta: { label: formIsLive ? 'Apply now' : 'Notify me', href: formIsLive ? 'https://forms.gle/vU1qAZ4piVrtMSAa6' : '#apply' },
   secondaryCta: { label: 'see the program', href: '#program' },
   cities: ['Munich', 'Zurich', 'London', 'Boston', 'San Francisco'],
   networkNote: '14 cities · 115+ countries',
