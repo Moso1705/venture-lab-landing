@@ -1,5 +1,7 @@
 ---
 import { footer } from '../content/site';
+
+const isExternal = (href: string) => /^https?:\/\//.test(href);
 ---
 
 <footer class="border-t border-line bg-paper">
@@ -14,6 +16,8 @@ import { footer } from '../content/site';
         footer.links.map((link) => (
           <a
             href={link.href}
+            target={isExternal(link.href) ? '_blank' : undefined}
+            rel={isExternal(link.href) ? 'noopener noreferrer' : undefined}
             class="text-sm text-gray underline-offset-4 transition-colors hover:text-ink hover:underline"
           >
             {link.label}

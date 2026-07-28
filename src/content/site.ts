@@ -2,13 +2,19 @@
  * Page content. Components render what is here and never hardcode words.
  * Claims must stay covered by docs/FACTS.md.
  *
- * Funnel spine: give → how to apply → 12-week arc → pick path → notify → proof.
+ * Funnel spine: give → how to apply → 12-week arc → pick path → apply forms → proof.
  * Tone: YC-short, elite, not hackathon-heavy. No em/en dashes. No "get in line".
  * Free / no equity: og meta + FAQ only. Never as hero pills.
  */
-// Michi: paste the Cohort application form URL here (Tally/Typeform/Google Form).
-export const applyFormUrl = ''; 
-export const formIsLive = true;
+// Public Google Forms (/viewform only, never /edit admin URLs).
+export const founderFormUrl =
+  'https://docs.google.com/forms/d/e/1FAIpQLSeNXACrZ0UwDuImghwnL8snxaZkpf-jVneXegkrmbqLTAOz1Q/viewform';
+export const mentorFormUrl =
+  'https://docs.google.com/forms/d/e/1FAIpQLSea2NRWrmSFVSZ97Aq1S4cLnBDRljLrHCTLUPI99hO2LfFkNQ/viewform';
+export const mbaFormUrl =
+  'https://docs.google.com/forms/d/e/1FAIpQLSc3zWeKDKm3yJDtN4K60BJSg2BKSiwST5mPuvzQErYK5ag6Wg/viewform';
+/** @deprecated Prefer founderFormUrl — kept as alias for older imports. */
+export const applyFormUrl = founderFormUrl;
 // Michi: Demo Day / Investor Day video. Empty = section hidden.
 export const demoDayVideoUrl = '';
 export const site = {
@@ -25,11 +31,11 @@ export const nav = {
   parent: { label: 'Hack-Nation', href: 'https://hack-nation.ai' },
   partnerSlot: null as null | { name: string; logo: string; href: string },
   links: [
-    { label: 'Program', href: '#program' },
-    { label: 'Apply', href: 'https://forms.gle/vU1qAZ4piVrtMSAa6' },
+    { label: 'Program', href: '#film' },
+    { label: 'Apply', href: '#film' },
     { label: 'Stories', href: '#stories' },
   ],
-  cta: { label: 'Apply', href: 'https://forms.gle/vU1qAZ4piVrtMSAa6' },
+  cta: { label: 'Apply', href: '#film' },
 };
 export const whatIs = {
   eyebrow: 'HackNation Venture Lab',
@@ -40,55 +46,55 @@ export const whatIs = {
   duration: '12 weeks',
   meta: [] as string[],
   sub: 'For the most ambitious founders.',
-  // Calm exclusivity under the hero. High bar, no scarcity theater.
-  whisper: 'Curated cohort. High bar. Investor Day closes the batch.',
+  // Kai: de-word. No second exclusivity line under the hero.
+  whisper: '',
   pathLabel: 'How to apply',
   pathEnd: 'Investor Day',
   steps: [
     {
       num: '01',
       title: 'Choose your Exception',
-      body: 'Exceptional profile, track record, and drive to go full-time.',
+      body: 'Track record. Full-time drive.',
     },
     {
       num: '02',
       title: 'Choose your Moonshot',
-      body: 'A working prototype and a sharp thesis. Not a slide deck.',
+      body: 'Working prototype. Sharp thesis.',
     },
     {
       num: '03',
       title: 'Get selected',
-      body: 'Curated VL3 cohort. High bar on purpose.',
+      body: 'Curated VL3. High bar.',
     },
     {
       num: '04',
       title: 'Run the lab',
-      body: '12 weeks full-time. Intensive. Investor Day at the end.',
+      body: '12 weeks full-time. Investor Day.',
     },
   ],
   pillarsLabel: 'This is what we give you',
-  // Titles: one word each. Bodies: ~66 chars / two lines at desktop column width.
+  // Titles: one word. Bodies: one short line (Kai: de-word).
   pillars: [
     {
       title: 'Mentors',
-      body: 'Operators from Big Tech and Big Pharma. They spar, roast, and coach.',
+      body: 'Big Tech and Big Pharma. Spar, roast, coach.',
     },
     {
       title: 'Coaches',
-      body: 'Ambitious business co-founders from top US, EU, and Asian schools.',
+      body: 'Business co-founders from top US, EU, and Asian schools.',
     },
     {
       title: 'Credits',
       // Start2 gallery highlights. No Notion URL.
-      body: '$1M+ in compute and discounts, plus a stack of 130+ startup deals.',
+      body: '$1M+ compute and discounts. 130+ deals.',
     },
     {
       title: 'Partners',
-      body: 'Industry exposure via Hack-Nation: feedback and possible customers.',
+      body: 'Hack-Nation network. Feedback and customers.',
     },
     {
       title: 'Investors',
-      body: 'EWOR, a16z, Antler, Creandum, Cherry, EF. Present on Investor Day.',
+      body: 'EWOR, a16z, Antler, Creandum, Cherry, EF. Investor Day.',
     },
   ],
   partners: {
@@ -124,49 +130,71 @@ export const whatIs = {
 export const applyRoutes = {
   marker: 'Apply',
   headline: 'Pick your path',
-  sub: 'Ambitious founders first. Mentors and MBA coaches who raise the bar.',
+  sub: '',
   paths: [
     {
       role: 'Founders',
       title: 'Build the company',
-      body: formIsLive
-        ? 'Apply with a working prototype. High bar. Curated VL3 cohort.'
-        : 'Leave your email. We write when VL3 applications open.',
-      cta: formIsLive ? 'Apply with your team' : 'Notify me',
-      href: formIsLive ? 'https://forms.gle/vU1qAZ4piVrtMSAa6' : '#apply',
-      tone: 'ink' as const,
+      body: 'Working prototype. High bar. Curated VL3.',
+      cta: 'Apply as a founder',
+      href: founderFormUrl,
+      tone: 'purple' as const,
     },
     {
       role: 'Mentors',
       title: 'Guide a team',
-      body: 'We pre-select; the team picks. Matched by domain. Operators who shipped.',
-      cta: 'Mentor a team',
-      href: '/mentor',
+      body: 'We pre-select. The team picks. Matched by domain.',
+      cta: 'Apply as a mentor',
+      href: mentorFormUrl,
       tone: 'blue' as const,
     },
     {
       role: 'MBA coaches',
       title: 'Coach a startup',
-      body: 'One team from prototype through Investor Day. Strategy and go-to-market.',
-      cta: 'Coach as an MBA',
-      href: '/mba',
-      tone: 'raised' as const,
+      body: 'One team. Prototype to Investor Day.',
+      cta: 'Apply as an MBA',
+      href: mbaFormUrl,
+      tone: 'white' as const,
     },
   ],
 };
 export const apply = {
-  marker: 'Notice',
+  marker: 'Apply',
   headline: 'Apply now. Your future starts here.',
-  sub: formIsLive
-    ? 'VL3 applications are open. Curated cohort for ambitious founders.'
-    : 'VL3 opens soon. Get notified when the curated cohort forms.',
-  cta: formIsLive ? 'Continue' : 'Notify me',
-  note: 'Email is only used to tell you when applications open.',
+  sub: 'VL3 applications are open. Pick your path.',
+  buttons: [
+    { label: 'Founders', href: founderFormUrl, tone: 'purple' as const },
+    { label: 'Mentors', href: mentorFormUrl, tone: 'blue' as const },
+    { label: 'MBAs', href: mbaFormUrl, tone: 'white' as const },
+  ],
 };
+
+/**
+ * Multi-scene scroll film (Janustiu guide).
+ * mode 'keyframes' = crossfade between /public/film-keys/key_01… (AI stills, no Kling yet)
+ * mode 'sequence' = scrub frame_0001.webp … frame_N.webp (full Kling export)
+ * mode 'procedural' = soft canvas atmosphere fallback
+ */
+export const filmScroll = {
+  mode: 'keyframes' as 'procedural' | 'sequence' | 'keyframes',
+  frameCount: 150,
+  framePad: 4,
+  framePath: '/frames/frame_',
+  frameExt: 'webp',
+  keyCount: 7,
+  keyPad: 2,
+  keyPath: '/film-keys/key_',
+  keyExt: 'webp',
+  // Full-page light film scroll (~one scene per screen).
+  scrollScreens: 7.2,
+  showFrameCounter: false,
+  overlays: [],
+};
+
 export const stories = {
   marker: 'Outcomes',
   headline: 'Founders who shipped further.',
-  sub: 'Alumni who kept shipping after the Lab.',
+  sub: '',
   // Portraits: same assets as hack-nation.ai/images/testimonials/*
   // Quotes: HN homepage carousel (David softened slightly on hackathon spam).
   testimonials: [
@@ -175,7 +203,7 @@ export const stories = {
       role: 'Founder @ Anto (YC F25)',
       badge: 'YC F25 founder',
       quote:
-        'I did Hack-Nation this summer, applied with the same idea to Y Combinator and got in. Just finished the batch and raised a seed. Can\'t thank you guys enough.',
+        'I did Hack-Nation this summer, applied with the same idea to Y Combinator and got in. Finished the batch and raised a seed.',
       image: '/portraits/david-de-gruijl.png',
       linkedin: 'https://www.linkedin.com/in/daviddegruijl',
     },
@@ -200,7 +228,7 @@ export const stories = {
     },
   ],
   examplesLabel: 'From past cohorts',
-  examplesIntro: 'A few teams from Investor Day.',
+  examplesIntro: '',
   startups: [
     { name: 'a11y', tag: 'GovTech', line: 'Automated accessibility for government.', traction: 'Live product', url: 'https://a11ygov.com' },
     { name: 'Anka', tag: 'Healthcare', line: 'AI companion for hospital patients.', traction: 'Hospital pilots', url: 'https://anka.health' },
@@ -223,13 +251,13 @@ export const footer = {
   line: 'A Hack-Nation program. Built out of MIT, run worldwide.',
   legal: 'Hack-Nation UG, Tal 44, 80339 München',
   links: [
-    { label: 'Coach a team', href: '/mba' },
-    { label: 'Mentor a team', href: '/mentor' },
+    { label: 'Apply as MBA', href: mbaFormUrl },
+    { label: 'Apply as mentor', href: mentorFormUrl },
     { label: 'hack-nation.ai', href: 'https://hack-nation.ai' },
   ],
 };
 /* --------------------------------------------------------------------------
-   Legacy exports for /mba, /mentor, and older components.
+   Legacy exports for older components.
 --------------------------------------------------------------------------- */
 export const hero = {
   poweredBy: 'powered by hack-nation',
@@ -237,7 +265,7 @@ export const hero = {
   subline: site.tagline,
   meta: whatIs.duration,
   live: 'Cohort 3 forms next',
-  primaryCta: { label: formIsLive ? 'Apply now' : 'Notify me', href: formIsLive ? 'https://forms.gle/vU1qAZ4piVrtMSAa6' : '#apply' },
+  primaryCta: { label: 'Apply now', href: '#film' },
   secondaryCta: { label: 'see the program', href: '#program' },
   cities: ['Munich', 'Zurich', 'London', 'Boston', 'San Francisco'],
   networkNote: '14 cities · 115+ countries',

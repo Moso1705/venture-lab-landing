@@ -1,8 +1,6 @@
 ---
 /**
- * Light header in the Hack-Nation style: HN · VL · Hack-Nation · partner slot.
- * Layout CSS is scoped here so wordmark + links + CTA stay spaced even if
- * utility scanning flakes; utilities still handle colors/hover/responsive hide.
+ * Light header in the Hack-Nation style.
  */
 import { nav } from '../content/site';
 ---
@@ -10,11 +8,7 @@ import { nav } from '../content/site';
 <header id="site-nav" class="site-nav fixed inset-x-0 top-0 z-50 border-b border-transparent transition-[background-color,border-color,backdrop-filter] duration-200">
   <div class="site-nav__inner mx-auto flex max-w-6xl items-center justify-between px-6 py-4 md:px-8">
     <div class="site-nav__brand flex min-w-0 items-center">
-      <a
-        href={nav.hn.href}
-        rel="noopener"
-        class="site-nav__link text-sm font-medium tracking-tight text-ink/70 transition-colors hover:text-ink"
-      >
+      <a href={nav.hn.href} rel="noopener" class="site-nav__link text-sm font-medium tracking-tight text-ink/70 transition-colors hover:text-ink">
         {nav.hn.label}
       </a>
       <span class="site-nav__dot" aria-hidden="true">·</span>
@@ -23,11 +17,7 @@ import { nav } from '../content/site';
         <span class="site-nav__wordmark-long hidden text-sm text-gray sm:inline">{nav.wordmark.long}</span>
       </a>
       <span class="site-nav__dot site-nav__dot--md" aria-hidden="true">·</span>
-      <a
-        href={nav.parent.href}
-        rel="noopener"
-        class="site-nav__link site-nav__parent hidden text-sm text-ink/70 transition-colors hover:text-ink md:inline"
-      >
+      <a href={nav.parent.href} rel="noopener" class="site-nav__link site-nav__parent hidden text-sm text-ink/70 transition-colors hover:text-ink md:inline">
         {nav.parent.label}
       </a>
     </div>
@@ -39,11 +29,7 @@ import { nav } from '../content/site';
             <img src={nav.partnerSlot.logo} alt={nav.partnerSlot.name} class="h-6 w-auto opacity-70" />
           </a>
         ) : (
-          <span
-            class="site-nav__partner-slot hidden h-7 w-[4.5rem] items-center justify-center rounded border border-dashed border-line md:flex"
-            aria-hidden="true"
-            title="Partner logo"
-          />
+          <span class="site-nav__partner-slot hidden h-7 w-[4.5rem] items-center justify-center rounded border border-dashed border-line md:flex" aria-hidden="true" title="Partner logo" />
         )
       }
       <nav class="site-nav__links hidden items-center md:flex" aria-label="Page sections">
@@ -63,71 +49,55 @@ import { nav } from '../content/site';
 </header>
 
 <style>
-  /* Do not set color on all anchors: that overrides .btn-ink paper text. */
   .site-nav a:not(.btn-ink) {
     text-decoration: none;
   }
-
   .site-nav__inner {
     gap: 1.25rem;
   }
-
   .site-nav__brand {
     gap: 0.75rem;
   }
-
   @media (min-width: 768px) {
     .site-nav__brand {
       gap: 1rem;
     }
   }
-
   .site-nav__dot {
     display: inline-flex;
-    align-items: center;
-    justify-content: center;
     color: var(--color-faint);
     font-size: 0.875rem;
     line-height: 1;
-    user-select: none;
   }
-
   .site-nav__dot--md {
     display: none;
   }
-
   @media (min-width: 768px) {
     .site-nav__dot--md {
       display: inline-flex;
     }
   }
-
   .site-nav__wordmark {
     gap: 0.4rem;
   }
-
   .site-nav__actions {
     gap: 1rem;
   }
-
   @media (min-width: 768px) {
     .site-nav__actions {
       gap: 1.5rem;
     }
   }
-
   .site-nav__links {
     display: none;
     gap: 1.25rem;
   }
-
   @media (min-width: 768px) {
     .site-nav__links {
       display: flex;
       align-items: center;
     }
   }
-
   .site-nav__cta.btn-ink {
     color: var(--color-paper);
     padding: 0.65rem 1.25rem;
