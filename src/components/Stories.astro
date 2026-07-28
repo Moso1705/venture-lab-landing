@@ -1,21 +1,21 @@
 ---
 /**
- * Outcomes: HN-style testimonial carousel + company examples (light).
+ * Outcomes: HN-style testimonial carousel + company examples.
+ * Partner logos live under What you get; this section stays proof-focused.
  */
 import { stories } from '../content/site';
 const slides = stories.testimonials;
 ---
-
-<section id="stories" class="band-raised border-t border-line">
+<section id="stories" class="band-raised">
   <div class="mx-auto max-w-6xl px-6 py-16 md:px-8 md:py-20">
     <div class="reveal mx-auto max-w-2xl text-center">
       <p class="marker">{stories.marker}</p>
       <h2 class="section-title mt-3 italic">{stories.headline}</h2>
-      {stories.sub && <p class="section-sub">{stories.sub}</p>}
+      <p class="section-sub">{stories.sub}</p>
     </div>
 
     <div class="reveal mt-10" data-testimonials>
-      <div class="soft-card outcomes-card overflow-hidden p-6 md:p-10">
+      <div class="soft-card overflow-hidden p-6 md:p-10">
         {
           slides.map((t, i) => (
             <article
@@ -47,7 +47,15 @@ const slides = stories.testimonials;
                     >
                       View LinkedIn profile →
                     </a>
-                  ) : null
+                  ) : (
+                    <span
+                      class="inline-flex w-fit items-center rounded-full border border-dashed border-line px-4 py-2 text-xs font-medium text-faint"
+                      data-linkedin-pending
+                      title="LinkedIn URL pending"
+                    >
+                      LinkedIn soon
+                    </span>
+                  )
                 }
               </div>
               <div class="flex min-w-0 flex-col justify-center">
@@ -59,8 +67,8 @@ const slides = stories.testimonials;
                   “{t.quote}”
                 </blockquote>
                 <div class="mt-6">
-                  <p class="font-medium tracking-tight">{t.name}</p>
-                  <p class="mt-0.5 text-sm text-gray">{t.role}</p>
+                  <p class="font-medium tracking-tight" data-name>{t.name}</p>
+                  <p class="mt-0.5 text-sm text-gray" data-role>{t.role}</p>
                 </div>
               </div>
             </article>
@@ -104,9 +112,7 @@ const slides = stories.testimonials;
 
     <div class="reveal mt-14">
       <p class="marker">{stories.examplesLabel}</p>
-      {stories.examplesIntro && (
-        <p class="mt-2 max-w-xl text-sm leading-relaxed text-gray">{stories.examplesIntro}</p>
-      )}
+      <p class="mt-2 max-w-xl text-sm leading-relaxed text-gray">{stories.examplesIntro}</p>
       <ul class="startup-list mt-6 overflow-hidden rounded-[var(--radius-md)] border border-line bg-paper divide-y divide-line">
         {
           stories.startups.map((co) => (
@@ -133,26 +139,27 @@ const slides = stories.testimonials;
     </div>
   </div>
 </section>
-
 <style>
-  .outcomes-card {
-    transition: box-shadow 0.35s var(--ease-out-quart);
-  }
-
-  @media (prefers-reduced-motion: no-preference) {
-    .outcomes-card:hover {
-      box-shadow: var(--shadow-lift);
-    }
-  }
-
   .startup-row {
     display: grid;
     gap: 0.25rem 1rem;
-    transition: background-color 0.2s ease;
   }
 
-  .startup-row:hover {
-    background: color-mix(in srgb, var(--color-hn-blue-soft) 55%, white);
+  .startup-name {
+    min-width: 0;
+  }
+
+  .startup-tag {
+    min-width: 0;
+  }
+
+  .startup-line {
+    min-width: 0;
+    text-wrap: pretty;
+  }
+
+  .startup-traction {
+    min-width: 0;
   }
 
   @media (min-width: 640px) {
@@ -162,21 +169,21 @@ const slides = stories.testimonials;
       gap: 0 1.25rem;
     }
 
+    .startup-line {
+      text-align: left;
+    }
+
     .startup-traction {
       text-align: right;
       white-space: nowrap;
     }
   }
 </style>
-
 <script>
   const root = document.querySelector('[data-testimonials]');
   if (root) {
     const slides = [...root.querySelectorAll<HTMLElement>('.testimonial-slide')];
     let index = 0;
-    let timer: number | undefined;
-    const motionOk = window.matchMedia('(prefers-reduced-motion: no-preference)').matches;
-
     const show = (next: number) => {
       index = (next + slides.length) % slides.length;
       slides.forEach((slide, i) => {
@@ -192,29 +199,10 @@ const slides = stories.testimonials;
         else dot.removeAttribute('aria-current');
       });
     };
-
-    const arm = () => {
-      if (!motionOk) return;
-      window.clearInterval(timer);
-      timer = window.setInterval(() => show(index + 1), 6500);
-    };
-
-    root.querySelector('[data-prev]')?.addEventListener('click', () => {
-      show(index - 1);
-      arm();
-    });
-    root.querySelector('[data-next]')?.addEventListener('click', () => {
-      show(index + 1);
-      arm();
-    });
+    root.querySelector('[data-prev]')?.addEventListener('click', () => show(index - 1));
+    root.querySelector('[data-next]')?.addEventListener('click', () => show(index + 1));
     root.querySelectorAll<HTMLElement>('[data-dot]').forEach((dot) => {
-      dot.addEventListener('click', () => {
-        show(Number(dot.dataset.dot));
-        arm();
-      });
+      dot.addEventListener('click', () => show(Number(dot.dataset.dot)));
     });
-    root.addEventListener('pointerenter', () => window.clearInterval(timer));
-    root.addEventListener('pointerleave', arm);
-    arm();
   }
 </script>

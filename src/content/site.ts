@@ -31,11 +31,11 @@ export const nav = {
   parent: { label: 'Hack-Nation', href: 'https://hack-nation.ai' },
   partnerSlot: null as null | { name: string; logo: string; href: string },
   links: [
-    { label: 'Program', href: '#film' },
-    { label: 'Apply', href: '#film' },
+    { label: 'Program', href: '#program' },
+    { label: 'Apply', href: '#apply' },
     { label: 'Stories', href: '#stories' },
   ],
-  cta: { label: 'Apply', href: '#film' },
+  cta: { label: 'Apply', href: '#apply' },
 };
 export const whatIs = {
   eyebrow: 'HackNation Venture Lab',
@@ -265,7 +265,7 @@ export const hero = {
   subline: site.tagline,
   meta: whatIs.duration,
   live: 'Cohort 3 forms next',
-  primaryCta: { label: 'Apply now', href: '#film' },
+  primaryCta: { label: 'Apply now', href: '#apply' },
   secondaryCta: { label: 'see the program', href: '#program' },
   cities: ['Munich', 'Zurich', 'London', 'Boston', 'San Francisco'],
   networkNote: '14 cities · 115+ countries',

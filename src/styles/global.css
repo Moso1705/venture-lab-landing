@@ -24,7 +24,6 @@
   /* hack-nation.ai --color-intelligence-blue */
   --color-hn-blue: #328efa;
   --color-hn-blue-soft: #eaf3fe;
-  /* Atmosphere lilac, deepened for solid CTAs */
   --color-hn-purple: #7c5cff;
   --color-hn-purple-soft: #f0ebff;
 
@@ -42,8 +41,6 @@
     0 8px 24px color-mix(in srgb, var(--color-ink) 5%, transparent);
   --shadow-primary: 0 2px 4px color-mix(in srgb, var(--color-hn-blue) 22%, transparent),
     0 14px 32px color-mix(in srgb, var(--color-ink) 12%, transparent);
-  --shadow-lift: 0 8px 16px color-mix(in srgb, var(--color-hn-blue) 12%, transparent),
-    0 24px 48px color-mix(in srgb, var(--color-ink) 10%, transparent);
 
   --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
 }
@@ -371,56 +368,5 @@ body {
   to {
     opacity: 1;
     transform: translateY(0);
-  }
-}
-
-/* Staggered children: set by enhance.js when view() unsupported, or CSS when available */
-@utility stagger-ready {
-  @media (prefers-reduced-motion: no-preference) {
-    & [data-stagger-item] {
-      opacity: 0;
-      transform: translateY(18px);
-      transition:
-        opacity 0.55s var(--ease-out-quart),
-        transform 0.55s var(--ease-out-quart);
-      transition-delay: calc(var(--stagger-i, 0) * 70ms);
-    }
-
-    &.is-in [data-stagger-item] {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-}
-
-/* Soft pointer spotlight for premium sections (transform/opacity only on overlays) */
-@utility spotlight-host {
-  position: relative;
-  isolation: isolate;
-
-  &::before {
-    content: "";
-    pointer-events: none;
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-    opacity: 0;
-    background: radial-gradient(
-      520px circle at var(--spot-x, 50%) var(--spot-y, 20%),
-      color-mix(in srgb, var(--color-hn-blue) 14%, transparent),
-      transparent 55%
-    );
-    transition: opacity 0.35s ease;
-  }
-
-  @media (prefers-reduced-motion: no-preference) {
-    &:hover::before {
-      opacity: 1;
-    }
-  }
-
-  & > * {
-    position: relative;
-    z-index: 1;
   }
 }

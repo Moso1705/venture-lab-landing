@@ -6,14 +6,12 @@ interface Props {
   title?: string;
   description?: string;
   path?: string;
-  theme?: 'light' | 'film';
 }
 
 const {
   title = `${site.name} · Cohort 3`,
   description = site.ogDescription,
   path = '/',
-  theme = 'light',
 } = Astro.props;
 
 const canonical = new URL(path, site.url).href;
@@ -29,13 +27,13 @@ const orgSchema = {
 ---
 
 <!doctype html>
-<html lang="en" class={theme === 'film' ? 'theme-film' : undefined}>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
-    <meta name="theme-color" content={theme === 'film' ? '#070708' : '#ffffff'} />
+    <meta name="theme-color" content="#ffffff" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="canonical" href={canonical} />
     <link rel="preload" href="/fonts/InstrumentSerif-400-normal.woff2" as="font" type="font/woff2" crossorigin />
@@ -56,6 +54,5 @@ const orgSchema = {
   </head>
   <body>
     <slot />
-    <script src="../scripts/enhance.js"></script>
   </body>
 </html>

@@ -1,189 +1,236 @@
 ---
 /**
- * Offer + path as two full-viewport film slides.
+ * Funnel top: hero, what we give you, how to apply.
+ * No week grid, no Clear the gate (voice: keep it a funnel, not a structured program).
  */
-import Slide from './Slide.astro';
 import { whatIs } from '../content/site';
 ---
 
-<span id="top" class="absolute" aria-hidden="true"></span>
-
-<Slide id="program">
-  <div class="mx-auto max-w-5xl text-center">
-    <p class="slide-marker">{whatIs.pillarsLabel}</p>
-    <div class="pillars mt-10" data-stagger>
+<section id="program" class="hn-atmosphere overflow-hidden pt-28 md:pt-32">
+  <span id="top" class="absolute top-0" aria-hidden="true"></span>
+  <div class="relative mx-auto max-w-6xl px-6 pb-2 md:px-8">
+    <div class="reveal mx-auto max-w-3xl text-center">
+      <p class="marker">{whatIs.eyebrow}</p>
+      <span class="mt-4 inline-flex items-center rounded-full border border-ink/10 bg-paper/85 px-3 py-1 text-[0.6875rem] font-medium tracking-[0.14em] text-ink uppercase">
+        {whatIs.badge}
+      </span>
+      <h1 class="display mt-5 text-[clamp(2.5rem,7vw,5rem)]">
+        <span class="text-gray">{whatIs.headline.lead}</span>
+        {' '}
+        <em class="italic text-ink">{whatIs.headline.emphasis}</em>
+      </h1>
       {
-        whatIs.pillars.map((pillar) => (
-          <div class="pillar" data-stagger-item>
-            <h2 class="pillar-title">{pillar.title}</h2>
-            <p class="pillar-body">{pillar.body}</p>
-          </div>
-        ))
+        whatIs.sub && (
+          <p class="hero-sub mx-auto max-w-xl text-balance">{whatIs.sub}</p>
+        )
+      }
+      {
+        whatIs.whisper && (
+          <p class="mt-4 text-center text-sm tracking-wide text-gray">{whatIs.whisper}</p>
+        )
       }
     </div>
+  </div>
 
-    <div class="mt-12 border-t border-white/10 pt-8">
-      <p class="slide-marker opacity-70">{whatIs.partners.line}</p>
-      <div class="mt-6 flex flex-wrap items-center justify-center gap-x-10 gap-y-5">
+  <!-- This is what we give you -->
+  <div class="relative mx-auto max-w-6xl px-6 py-16 md:px-8 md:py-20">
+    <div class="reveal mx-auto max-w-5xl">
+      <p class="pillars-label text-center">{whatIs.pillarsLabel}</p>
+      <div class="pillars mt-10">
         {
-          whatIs.partners.orgs.map((org) => (
-            <a
-              href={org.href}
-              rel="noopener"
-              target="_blank"
-              class="opacity-60 transition-opacity hover:opacity-100"
-              aria-label={org.name}
-            >
-              <img
-                src={org.logo}
-                alt=""
-                height={org.h}
-                style={`height:${org.h}px; filter: brightness(0) invert(1)`}
-                class="w-auto"
-                loading="lazy"
-              />
-            </a>
+          whatIs.pillars.map((pillar) => (
+            <div class="pillar">
+              <h2 class="text-[0.9375rem] font-medium tracking-tight text-ink">{pillar.title}</h2>
+              <p class="mt-2 text-sm leading-relaxed text-gray">{pillar.body}</p>
+            </div>
           ))
         }
       </div>
+
+      <div class="mt-12 border-t border-line pt-8">
+        <p class="marker text-center">{whatIs.partners.line}</p>
+        <div class="mt-6 flex flex-wrap items-center justify-center gap-x-12 gap-y-5">
+          {
+            whatIs.partners.orgs.map((org) => (
+              <a
+                href={org.href}
+                rel="noopener"
+                target="_blank"
+                class="opacity-70 transition-opacity hover:opacity-100"
+                aria-label={org.name}
+              >
+                <img src={org.logo} alt={org.name} height={org.h} style={`height:${org.h}px`} class="w-auto" loading="lazy" />
+              </a>
+            ))
+          }
+        </div>
+      </div>
     </div>
   </div>
-</Slide>
 
-<Slide id="apply-path" tone="raised">
-  <div class="mx-auto max-w-5xl">
-    <div class="flex flex-wrap items-end justify-between gap-3">
-      <h2 class="font-serif text-[clamp(1.75rem,4.5vw,2.75rem)] leading-none tracking-tight text-hn-blue uppercase">
-        {whatIs.pathLabel}
-      </h2>
-      <p class="slide-marker text-hn-blue">{whatIs.pathEnd}</p>
+  <!-- HOW TO APPLY: intentional large HN-Blue -->
+  <div class="border-t border-line bg-paper">
+    <div class="reveal mx-auto max-w-6xl px-6 py-16 md:px-8 md:py-20">
+      <div class="mx-auto max-w-5xl">
+        <div class="flex flex-wrap items-end justify-between gap-3">
+          <h2 class="font-serif text-[clamp(1.75rem,4.5vw,2.75rem)] leading-none tracking-tight text-hn-blue uppercase">
+            {whatIs.pathLabel}
+          </h2>
+          <p class="marker-blue">{whatIs.pathEnd}</p>
+        </div>
+
+        <ol class="path-rail mt-10 md:mt-12">
+          {
+            whatIs.steps.map((step) => (
+              <li class="path-rail__step">
+                <p class="path-rail__num" aria-hidden="true">{step.num}</p>
+                <h3 class="path-rail__title">{step.title}</h3>
+                <p class="path-rail__body">{step.body}</p>
+              </li>
+            ))
+          }
+        </ol>
+      </div>
     </div>
-
-    <ol class="path-rail mt-10 md:mt-12" data-path-rail>
-      {
-        whatIs.steps.map((step, i) => (
-          <li class="path-rail__step" data-path-step style={`--i:${i}`}>
-            <p class="path-rail__num" aria-hidden="true">{step.num}</p>
-            <h3 class="path-rail__title">{step.title}</h3>
-            <p class="path-rail__body">{step.body}</p>
-          </li>
-        ))
-      }
-    </ol>
   </div>
-</Slide>
+</section>
 
 <style>
-  .slide-marker {
-    font-family: var(--font-serif);
-    font-size: clamp(1.35rem, 3vw, 2rem);
-    font-style: italic;
-    letter-spacing: -0.02em;
-    color: #f5f5f3;
+  .pillars-label {
+    font-family: var(--font-sans);
+    font-size: clamp(0.8125rem, 1.4vw, 0.9375rem);
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-gray);
   }
 
   .pillars {
     display: grid;
-    gap: 0.85rem;
+    gap: 1.75rem;
+    list-style: none;
+    align-items: stretch;
   }
 
   .pillar {
-    text-align: left;
-    padding: 1.15rem 1.1rem;
-    border-radius: var(--radius-md);
-    border: 1px solid color-mix(in srgb, #fff 12%, transparent);
-    background: color-mix(in srgb, #fff 4%, transparent);
-    transition:
-      transform 0.35s var(--ease-out-quart),
-      border-color 0.35s ease,
-      background-color 0.35s ease;
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
   }
 
-  .pillar-title {
-    font-size: 1.0625rem;
-    font-weight: 600;
-    letter-spacing: -0.02em;
-    color: #f7f7f5;
+  .pillar h2 {
+    min-height: 1.5em;
+    line-height: 1.25;
   }
 
-  .pillar-body {
-    margin-top: 0.45rem;
-    font-size: 0.875rem;
-    line-height: 1.5;
-    color: color-mix(in srgb, #f7f7f5 62%, transparent);
-  }
-
-  @media (prefers-reduced-motion: no-preference) {
-    .pillar:hover {
-      transform: translateY(-4px);
-      border-color: color-mix(in srgb, #328efa 45%, transparent);
-      background: color-mix(in srgb, #328efa 10%, transparent);
-    }
+  .pillar p {
+    flex: 1;
+    text-wrap: pretty;
   }
 
   @media (min-width: 640px) {
     .pillars {
       grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.75rem 2.25rem;
+    }
+
+    .pillar p {
+      min-height: 4.5em;
     }
   }
 
   @media (min-width: 1024px) {
     .pillars {
       grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 0;
+    }
+
+    .pillar {
+      padding-inline: 0.85rem;
+      border-left: 1px solid var(--color-line);
+    }
+
+    .pillar:first-child {
+      padding-left: 0;
+      border-left: none;
+    }
+
+    .pillar:last-child {
+      padding-right: 0;
+    }
+
+    .pillar p {
+      min-height: 5.5em;
     }
   }
 
   .path-rail {
     display: grid;
-    gap: 0.85rem;
+    gap: 2rem;
     list-style: none;
     margin: 0;
     padding: 0;
   }
 
   .path-rail__step {
-    padding: 1.15rem 1.1rem;
-    border-radius: var(--radius-md);
-    border: 1px solid color-mix(in srgb, #fff 12%, transparent);
-    background: color-mix(in srgb, #fff 4%, transparent);
-    transition:
-      transform 0.35s var(--ease-out-quart),
-      border-color 0.35s ease;
+    display: flex;
+    flex-direction: column;
   }
 
   .path-rail__num {
     font-family: var(--font-serif);
-    font-size: clamp(1.75rem, 3vw, 2.35rem);
+    font-size: clamp(1.75rem, 3vw, 2.25rem);
     line-height: 1;
+    letter-spacing: 0.02em;
     color: var(--color-hn-blue);
   }
 
   .path-rail__title {
-    margin-top: 0.65rem;
-    font-size: 1.0625rem;
-    font-weight: 600;
-    letter-spacing: -0.015em;
-    color: #f7f7f5;
+    margin-top: 0.75rem;
+    max-width: 11.5rem;
+    font-size: 1.125rem;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    line-height: 1.25;
+    color: var(--color-ink);
+    text-wrap: balance;
   }
 
   .path-rail__body {
-    margin-top: 0.35rem;
+    margin-top: 0.5rem;
+    max-width: 16rem;
     font-size: 0.875rem;
-    line-height: 1.5;
-    color: color-mix(in srgb, #f7f7f5 62%, transparent);
-  }
-
-  @media (prefers-reduced-motion: no-preference) {
-    .path-rail__step:hover,
-    .path-rail__step.is-active {
-      transform: translateY(-4px);
-      border-color: color-mix(in srgb, #328efa 45%, transparent);
-    }
+    line-height: 1.625;
+    color: var(--color-gray);
+    text-wrap: pretty;
   }
 
   @media (min-width: 768px) {
     .path-rail {
       grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 0;
+      align-items: stretch;
+    }
+
+    .path-rail__step {
+      padding-inline: 0.75rem;
+      padding-right: 1.25rem;
+    }
+
+    .path-rail__step:first-child {
+      padding-left: 0;
+    }
+
+    .path-rail__step:last-child {
+      padding-right: 0;
+    }
+
+    .path-rail__title {
+      min-height: 2.5em;
+    }
+
+    .path-rail__body {
+      min-height: 4.875em;
     }
   }
 </style>
