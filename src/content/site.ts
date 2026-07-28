@@ -7,7 +7,7 @@
  * Free / no equity: og meta + FAQ only. Never as hero pills.
  */
 // Michi: paste the Cohort application form URL here (Tally/Typeform/Google Form).
-export const applyFormUrl = '';
+export const applyFormUrl = 'https://forms.gle/vU1qAZ4piVrtMSAa6';
 export const formIsLive = Boolean(applyFormUrl);
 // Michi: Demo Day / Investor Day video. Empty = section hidden.
 export const demoDayVideoUrl = '';
